@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\C_pengajuan;
+use App\Http\Controllers\mitra\C_pengajuanAgen;
+use App\Http\Controllers\rekantani\C_pengajuanrekan;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,18 +16,28 @@ use App\Http\Controllers\C_pengajuan;
 */
 
 Route::get('/', function () {
-    return view('V_landingpage');
+    return view('v_landingpage');
 });
 
-Route::get('/pengajuan', function () {
+Route::get('/agen/pengajuan', function () {
     return view('Mitra\v_pengajuan');
 });
+Route::get('/rekantani/pengajuan', function () {
+    return view('rekantani\v_pengajuan');
+});
+Route::get('/rekantani/katalog', function () {
+    return view('rekantani\v_katalogrekan');
+});
+Route::prefix('mitra')->group(function () {
+    Route::get('/agen/katalog', [C_pengajuanAgen::class, 'lihatprofil'])->name('v_katalog');
+    Route::get('/agen/detailkatalog', [C_pengajuanAgen::class, 'detailkatalog'])->name('v_detailkatalog');
+    Route::get('/agen/formpengajuan', [C_pengajuanAgen::class, 'formpengajuan'])->name('v_formpengajuan');
+    Route::get('/agen/pengajuanterbaru', [C_pengajuanAgen::class, 'pengajuanterbaru'])->name('v_pengajuanterbaru');
+    route::get('/agen/detailpengajuan', [C_pengajuanAgen::class, 'detailpengajuan'])->name('v_detailpengajuan');
+});
 
-Route::get('/katalog', [C_pengajuan::class, 'lihatprofil'])->name('v_katalog');
-
-Route::get('/detailkatalog', [C_pengajuan::class, 'detailkatalog'])->name('v_detailkatalog');
-
-Route::get('/formpengajuan', [C_pengajuan::class, 'formpengajuan'])->name('v_formpengajuan');
-
-Route::get('/pengajuanterbaru', [C_pengajuan::class, 'pengajuanterbaru'])->name('v_pengajuanterbaru');
-Route::get('/detailpengajuan', [C_pengajuan::class, 'detailpengajuan'])->name('v_detailpengajuan');
+Route::prefix('rekantani')->group(function () {
+    Route::get('/rekantani/detailpengajuan', [C_pengajuanrekan::class, 'lihatdetailpengajuan'])->name('v_detailpengajuanRekan');
+    Route::get('/rekantani/detailkatalog', [C_pengajuanrekan::class, 'detailkatalog'])->name('v_detailkatalogrekan');
+    Route::get('/rekantani/tambahkatalog', [C_pengajuanrekan::class, 'tambahkatalog'])->name('v_tambahkatalog');
+});
