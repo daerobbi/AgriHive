@@ -29,3 +29,4 @@ Route::get('/detailkatalog', [C_pengajuan::class, 'detailkatalog'])->name('v_det
 Route::get('/formpengajuan', [C_pengajuan::class, 'formpengajuan'])->name('v_formpengajuan');
 
 Route::get('/pengajuanterbaru', [C_pengajuan::class, 'pengajuanterbaru'])->name('v_pengajuanterbaru');
+Route::get('/detailpengajuan', [C_pengajuan::class, 'detailpengajuan'])->name('v_detailpengajuan');

@@ -19,8 +19,12 @@ class C_pengajuan extends Controller
     public function formpengajuan(){
         return view('Mitra.v_formpengajuan');
     }
-    
+
     public function pengajuanterbaru(){
         return view('Mitra.v_pengajuanterbaru');
+    }
+
+    public function detailpengajuan(){
+        return view('Mitra.v_detailpengajuan');
     }
 }

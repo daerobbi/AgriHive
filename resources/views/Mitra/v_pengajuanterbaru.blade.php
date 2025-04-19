@@ -26,7 +26,7 @@
                 <td class="py-4">Bibit Lidah Mertua</td>
                 <td class="py-4 text-green-600 font-medium">Diterima</td>
                 <td class="py-4">
-                    <a href="" class="bg-green-800 text-white px-4 py-1 rounded-full text-sm font-semibold hover:bg-green-950">Detail</a>
+                    <a href="{{route('v_detailpengajuan')}}" class="bg-green-800 text-white px-4 py-1 rounded-full text-sm font-semibold hover:bg-green-950">Detail</a>
                 </td>
             </tr>
             <tr>

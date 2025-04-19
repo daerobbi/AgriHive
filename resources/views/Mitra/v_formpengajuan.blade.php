@@ -109,8 +109,7 @@
 
         setTimeout(() => {
             successModal.classList.add('hidden');
-            // Redirect bisa ditambahkan di sini jika diperlukan
-        }, 2500);
+        }, 1000);
     }
 
     document.getElementById('pengajuanForm').addEventListener('submit', function (e) {
