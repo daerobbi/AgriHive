@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\mitra\C_pengajuanAgen;
 use App\Http\Controllers\rekantani\C_pengajuanrekan;
+use App\Http\Controllers\rekantani\c_katalog;
 use App\Http\Controllers\admin\c_pengajuanadmin;
 
 /*
@@ -15,6 +17,22 @@ use App\Http\Controllers\admin\c_pengajuanadmin;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
 
 Route::get('/', function () {
     return view('v_landingpage');
@@ -32,9 +50,7 @@ Route::get('/rekantani/pengajuan', function () {
     return view('rekantani\v_pengajuan');
 });
 
-Route::get('/rekantani/katalog', function () {
-    return view('rekantani\v_katalogrekan');
-});
+Route::get('/rekantani/katalog', [c_katalog::class, 'index'])->name('rekantani.katalog');
 
 Route::prefix('mitra')->group(function () {
     Route::get('/agen/katalog', [C_pengajuanAgen::class, 'lihatprofil'])->name('v_katalog');
@@ -46,8 +62,11 @@ Route::prefix('mitra')->group(function () {
 
 Route::prefix('rekantani')->group(function () {
     Route::get('/rekantani/detailpengajuan', [C_pengajuanrekan::class, 'lihatdetailpengajuan'])->name('v_detailpengajuanRekan');
-    Route::get('/rekantani/detailkatalog', [C_pengajuanrekan::class, 'detailkatalog'])->name('v_detailkatalogrekan');
-    Route::get('/rekantani/tambahkatalog', [C_pengajuanrekan::class, 'tambahkatalog'])->name('v_tambahkatalog');
+});
+Route::prefix('rekantani')->group(function () {
+    Route::delete('{id}',[c_katalog::class, 'delete'])->name('rekantani.katalog.delete');
+    Route::get('/rekantani/{id}/detailkatalog', [C_katalog::class, 'detailkatalog'])->name('v_detailkatalogrekan');
+    Route::get('/rekantani/tambahkatalog', [C_katalog::class, 'tambahkatalog'])->name('v_tambahkatalog');
 });
 
 Route::prefix('admin')->group(function () {
