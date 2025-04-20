@@ -11,10 +11,10 @@
         <!-- Kanan: Navigasi -->
         <nav class="flex items-center space-x-4 text-sm">
             <a href="/" class="hover:underline">Beranda</a>
-            <a href="/rekantani/katalog" class="hover:underline">Katalog</a>
-            <a href="/rekantani/pengajuan" class="hover:underline">Pengajuan Bibit</a>
-            <a href="/" class="hover:underline">Broadcast</a>
-            <a href="/" class="hover:underline">Manajamen Jadwal Distribusi</a>
+            <a href="/" class="hover:underline">Verifikasi</a>
+            <a href="/" class="hover:underline">Pengajuan</a>
+            <a href="/" class="hover:underline">Agen</a>
+            <a href="/" class="hover:underline">Rekan Tani</a>
             <a href="/" class="hover:underline">Akun</a>
             <a href="">🔔</a>
         </nav>

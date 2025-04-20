@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\mitra\C_pengajuanAgen;
 use App\Http\Controllers\rekantani\C_pengajuanrekan;
+use App\Http\Controllers\admin\c_pengajuanadmin;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,15 +20,22 @@ Route::get('/', function () {
     return view('v_landingpage');
 });
 
+Route::get('/admin/pengajuan', function () {
+    return view('admin\v_pengajuan');
+});
+
 Route::get('/agen/pengajuan', function () {
     return view('Mitra\v_pengajuan');
 });
+
 Route::get('/rekantani/pengajuan', function () {
     return view('rekantani\v_pengajuan');
 });
+
 Route::get('/rekantani/katalog', function () {
     return view('rekantani\v_katalogrekan');
 });
+
 Route::prefix('mitra')->group(function () {
     Route::get('/agen/katalog', [C_pengajuanAgen::class, 'lihatprofil'])->name('v_katalog');
     Route::get('/agen/detailkatalog', [C_pengajuanAgen::class, 'detailkatalog'])->name('v_detailkatalog');
@@ -40,4 +48,8 @@ Route::prefix('rekantani')->group(function () {
     Route::get('/rekantani/detailpengajuan', [C_pengajuanrekan::class, 'lihatdetailpengajuan'])->name('v_detailpengajuanRekan');
     Route::get('/rekantani/detailkatalog', [C_pengajuanrekan::class, 'detailkatalog'])->name('v_detailkatalogrekan');
     Route::get('/rekantani/tambahkatalog', [C_pengajuanrekan::class, 'tambahkatalog'])->name('v_tambahkatalog');
+});
+
+Route::prefix('admin')->group(function () {
+    Route::get('/admin/detailpengajuan', [c_pengajuanadmin::class, 'detailpengajuan'])->name('v_detailpengajuanadmin');
 });

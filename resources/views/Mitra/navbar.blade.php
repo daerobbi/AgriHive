@@ -11,10 +11,10 @@
         <!-- Kanan: Navigasi -->
         <nav class="flex items-center space-x-4 text-sm">
             <a href="/" class="hover:underline">Home</a>
-            <a href="/bibit" class="text-yellow-400 font-semibold hover:underline">Cari & Ajukan Bibit</a>
-            <a href="/riwayat" class="hover:underline">Riwayat Pengajuan</a>
-            <a href="/info" class="hover:underline">Broadcast</a>
-            <a href="/akun" class="hover:underline">Akun</a>
+            <a href="/agen/pengajuan" class=" hover:underline">Cari & Ajukan Bibit</a>
+            <a href="/" class="hover:underline">Riwayat Pengajuan</a>
+            <a href="/" class="hover:underline">Broadcast</a>
+            <a href="/" class="hover:underline">Akun</a>
             <a href="">🔔</a>
         </nav>
     </div>

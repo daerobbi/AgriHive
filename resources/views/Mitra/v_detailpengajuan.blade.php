@@ -1,6 +1,11 @@
 @extends('mitra.app')
 @section('content')
-<div class="flex min-h-screen">
+<script src="//unpkg.com/alpinejs" defer></script>
+<style>
+    [x-cloak] { display: none !important; }
+</style>
+
+<div class="flex min-h-screen" x-data="modalHandler()">
     <!-- Sidebar -->
     <aside class="w-1/4 h-screen sticky top-0 bg-gray-200 p-6 flex flex-col items-center shadow-md min-h-full">
         <img src="https://awsimages.detik.net.id/community/media/visual/2025/04/06/faizal-hussein-1743932549838_169.png?w=500&q=90" alt="Petani" class="rounded-full w-40 h-40 object-cover mb-4">
@@ -40,100 +45,95 @@
             <div>
                 <label class="block text-gray-700 font-medium">Keterangan</label>
                 <textarea class="w-full border rounded px-3 py-2" rows="2">Mohon pilihkan bibit lidah mertua yang daunnya sudah tegak dan sehat. Tolong juga dipacking dengan aman karena pengiriman ke luar kota.</textarea>
+            </div>
+            <div>
+                <label class="block text-gray-700 font-medium">Kontak Narahubung</label>
+                <input type="text" value="wa.me/6287712336190" class="w-full border rounded px-3 py-2" />
+            </div>
         </div>
-        <div>
-            <label class="block text-gray-700 font-medium">Kontak Narahubung</label>
-            <input type="text" value="wa.me/6287712336190" class="w-full border rounded px-3 py-2" />
-        </div>
-    </div>
 
-<!-- Buttons -->
+        <!-- Buttons -->
         <div class="flex justify-between items-center mt-6">
             <a href="{{ route('v_pengajuanterbaru') }}" class="text-green-600 hover:underline text-sm">&lt; kembali</a>
-                <div class="flex gap-4">
-                    <button onclick="openModal('editModal')" class="bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700">Edit</button>
-                    <button onclick="openModal('deleteModal')" class="bg-red-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-red-700">Hapus</button>
+            <div class="flex gap-4">
+                <button @click="openModal('edit')" class="bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700">Edit</button>
+                <button @click="openModal('delete')" class="bg-red-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-red-700">Hapus</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Edit -->
+    <div x-show="modal === 'edit'" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50" x-cloak>
+        <div class="bg-gray-300 rounded-3xl px-10 py-8 text-center">
+            <h2 class="text-3xl font-medium text-gray-800 mb-8">Yakin Merubah Data Pengajuan?</h2>
+            <div class="flex justify-center gap-4">
+                <button @click="closeModal()" class="bg-red-700 text-white font-bold px-10 py-3 rounded-xl">Batal</button>
+                <button @click="confirmAction('edit')" class="bg-green-800 text-white font-bold px-10 py-3 rounded-xl">Yakin</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Delete -->
+    <div x-show="modal === 'delete'" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50" x-cloak>
+        <div class="bg-gray-300 rounded-3xl px-10 py-8 text-center">
+            <h2 class="text-3xl font-medium text-gray-800 mb-8">Yakin Menghapus Pengajuan?</h2>
+            <div class="flex justify-center gap-4">
+                <button @click="closeModal()" class="bg-red-700 text-white font-bold px-10 py-3 rounded-xl">Batal</button>
+                <button @click="confirmAction('delete')" class="bg-green-800 text-white font-bold px-10 py-3 rounded-xl">Yakin</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toasts -->
+    <div x-show="toast === 'edit'" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50" x-cloak x-transition>
+        <div class="bg-gray-300 rounded-3xl px-10 py-8 text-center">
+            <h2 class="text-2xl font-medium text-gray-800 mb-6">Data Pengajuan Berhasil Diubah !</h2>
+            <div class="flex justify-center">
+                <div class="bg-green-800 p-4 rounded-full">
+                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
                 </div>
+            </div>
         </div>
     </div>
-</div>
 
-<!-- Modal Konfirmasi Edit -->
-<div id="editModal" class="hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-    <div class="bg-gray-300 rounded-3xl px-10 py-8 text-center">
-        <h2 class="text-3xl font-medium text-gray-800 mb-8">Yakin Merubah Data Pengajuan?</h2>
-        <div class="flex justify-center gap-4">
-            <button onclick="closeModal('editModal')" class="bg-red-700 text-white font-bold px-10 py-3 rounded-xl">Batal</button>
-            <button onclick="confirmEdit()" class="bg-green-800 text-white font-bold px-10 py-3 rounded-xl">Yakin</button>
-        </div>
-    </div>
-</div>
-
-<!-- Modal Konfirmasi Hapus -->
-<div id="deleteModal" class="hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-    <div class="bg-gray-300 rounded-3xl px-10 py-8 text-center">
-        <h2 class="text-3xl font-medium text-gray-800 mb-8">Yakin Menghapus Pengajuan?</h2>
-        <div class="flex justify-center gap-4">
-            <button onclick="closeModal('deleteModal')" class="bg-red-700 text-white font-bold px-10 py-3 rounded-xl">Batal</button>
-            <button onclick="confirmDelete()" class="bg-green-800 text-white font-bold px-10 py-3 rounded-xl">Yakin</button>
-        </div>
-    </div>
-</div>
-
-<!-- Toast Berhasil Hapus -->
-<div id="deleteSuccessToast" class="hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-    <div class="bg-gray-300 rounded-3xl px-10 py-8 text-center">
-        <h2 class="text-2xl font-medium text-gray-800 mb-6">Data Pengajuan Berhasil Dihapus !</h2>
-        <div class="flex justify-center">
-            <div class="bg-green-800 p-4 rounded-full">
-                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
+    <div x-show="toast === 'delete'" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50" x-cloak x-transition>
+        <div class="bg-gray-300 rounded-3xl px-10 py-8 text-center">
+            <h2 class="text-2xl font-medium text-gray-800 mb-6">Data Pengajuan Berhasil Dihapus !</h2>
+            <div class="flex justify-center">
+                <div class="bg-green-800 p-4 rounded-full">
+                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Toast Berhasil Edit -->
-<div id="editSuccessToast" class="hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-    <div class="bg-gray-300 rounded-3xl px-10 py-8 text-center">
-        <h2 class="text-2xl font-medium text-gray-800 mb-6">Data Pengajuan Berhasil Diubah !</h2>
-        <div class="flex justify-center">
-            <div class="bg-green-800 p-4 rounded-full">
-                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Script Modal & Toast -->
 <script>
-    function openModal(id) {
-        document.getElementById(id).classList.remove('hidden');
-    }
+    function modalHandler() {
+        return {
+            modal: null,
+            toast: null,
 
-    function closeModal(id) {
-        document.getElementById(id).classList.add('hidden');
-    }
+            openModal(type) {
+                this.modal = type;
+            },
 
-    function confirmDelete() {
-        closeModal('deleteModal');
-        const toast = document.getElementById('deleteSuccessToast');
-        toast.classList.remove('hidden');
-        setTimeout(() => {
-            toast.classList.add('hidden');
-        }, 1000);
-    }
+            closeModal() {
+                this.modal = null;
+            },
 
-    function confirmEdit() {
-        closeModal('editModal');
-        const toast = document.getElementById('editSuccessToast');
-        toast.classList.remove('hidden');
-        setTimeout(() => {
-            toast.classList.add('hidden');
-        }, 1000);
+            confirmAction(type) {
+                this.closeModal();
+                this.toast = type;
+                setTimeout(() => {
+                    this.toast = null;
+                }, 1000);
+            }
+        }
     }
 </script>
 @endsection
