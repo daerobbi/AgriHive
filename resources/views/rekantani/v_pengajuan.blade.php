@@ -28,7 +28,7 @@
                 <td class="px-4 py-3 text-gray-500">Perlu diproses</td>
                 <td class="px-4 py-3 text-gray-500">Perlu Diproses</td>
                 <td class="px-4 py-3">
-                    <a href="{{route('v_detailpengajuanRekan')}}" class="bg-green-800 text-white px-4 py-1 rounded-full text-sm hover:bg-green-700 transition-colors duration-200">Detail</a>
+                    <a href="{{route('rekantani.detailpengajuan')}}" class="bg-green-800 text-white px-4 py-1 rounded-full text-sm hover:bg-green-700 transition-colors duration-200">Detail</a>
                 </td>
             </tr>
             <tr class="border-t">
@@ -39,7 +39,7 @@
                 <td class="px-4 py-3 text-green-700 font-semibold">✔ Diterima</td>
                 <td class="px-4 py-3 text-red-600">Belum Dibayar</td>
                 <td class="px-4 py-3">
-                    <a href="{{route('v_detailpengajuanRekan')}}" class="bg-green-800 text-white px-4 py-1 rounded-full text-sm hover:bg-green-700 transition-colors duration-200">Detail</a>
+                    <a href="{{route('rekantani.detailpengajuan')}}" class="bg-green-800 text-white px-4 py-1 rounded-full text-sm hover:bg-green-700 transition-colors duration-200">Detail</a>
                 </td>
             </tr>
             <tr class="border-t">
@@ -50,7 +50,7 @@
                 <td class="px-4 py-3 text-green-700 font-semibold">✔ Diterima</td>
                 <td class="px-4 py-3 text-red-600">Belum Dibayar</td>
                 <td class="px-4 py-3">
-                    <a href="{{route('v_detailpengajuanRekan')}}" class="bg-green-800 text-white px-4 py-1 rounded-full text-sm hover:bg-green-700 transition-colors duration-200">Detail</a>
+                    <a href="{{route('rekantani.detailpengajuan')}}" class="bg-green-800 text-white px-4 py-1 rounded-full text-sm hover:bg-green-700 transition-colors duration-200">Detail</a>
                 </td>
             </tr>
         </tbody>

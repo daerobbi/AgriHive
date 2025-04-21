@@ -1,4 +1,4 @@
-@extends('mitra.app')
+@extends('Mitra.app')
 @section('content')
 <script src="//unpkg.com/alpinejs" defer></script>
 <style>

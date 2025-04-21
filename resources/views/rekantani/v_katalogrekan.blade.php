@@ -21,9 +21,10 @@
                 <div class="grid lg:grid-cols-5 w-full gap-4">
                     <!-- Card -->
                     @foreach ($katalog as $x)
-                        <a href="{{ route('v_detailkatalogrekan', ['id' => $x->id]) }}"
+                        <a href="{{ route('rekantani.detailkatalog', ['id' => $x->id]) }}"
                             class="border rounded-lg overflow-hidden shadow-sm block hover:shadow-md transition">
-                            <img src={{ $x->foto_bibit }} alt="Aglaonema" />
+                            <img src={{ asset('storage/' . $x->foto_bibit) }} alt="Aglaonema"
+                                class='aspect-square object-cover object-center' />
                             <div class="p-2 text-sm">
                                 <div class="text-gray-500 text-xs">{{ $x->jenis_bibit }}</div>
                                 <div class="font-medium">{{ $x->nama_bibit }}</div>
@@ -39,7 +40,7 @@
             @endforeach
         </div>
         <div class="mt-10 flex justify-end">
-            <a href="{{ route('v_tambahkatalog') }}"
+            <a href="{{ route('rekantani.tambahkatalog') }}"
                 class="flex items-center bg-green-700 text-white px-4 py-2 rounded-full hover:bg-green-800">
                 <span class="text-2xl mr-2">+</span> Tambah Katalog
             </a>

@@ -16,23 +16,21 @@ use Illuminate\View\View;
 class RegisteredUserController extends Controller
 {
     /**
-     * Display the registration view.
+     * Display the registration form for rekantani.
      */
-    public function create(): View
+    public function createRekantani(): View
     {
-        return view('auth.register');
+        return view('auth.register-rekantani');
     }
 
     /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
+     * Handle registration request for rekantani.
      */
-    public function store(Request $request): RedirectResponse
+    public function storeRekantani(Request $request): RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -40,10 +38,38 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => 'rekantani',
         ]);
 
         event(new Registered($user));
+        Auth::login($user);
 
+        return redirect(RouteServiceProvider::HOME);
+    }
+    public function createAgen(): View
+    {
+        return view('auth.registeragen');
+    }
+
+    /**
+     * Handle registration request for agen.
+     */
+    public function storeAgen(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => 'agen',
+        ]);
+
+        event(new Registered($user));
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);

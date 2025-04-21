@@ -19,8 +19,8 @@
             <!-- Card Detail Produk -->
             <div class="border rounded-xl p-8 flex gap-8 items-start bg-white shadow">
                 <!-- Gambar -->
-                <img src="https://images.theconversation.com/files/496952/original/file-20221123-16-cg0nlw.jpg?ixlib=rb-4.1.0&q=20&auto=format&w=320&fit=clip&dpr=2&usm=12&cs=strip"
-                    alt="Bibit Lidah Mertua" class="rounded-lg w-[360px] h-[360px] object-cover">
+                <img src={{ asset('storage/' . $detailKatalog->foto_bibit) }} alt="Bibit Lidah Mertua"
+                    class="rounded-lg w-[360px] h-[360px] object-cover">
 
                 <!-- Detail -->
                 <div class="flex-1">
@@ -46,7 +46,7 @@
                             Hapus
                         </button>
                         </form>
-                        <a href="#"
+                        <a href="{{ route('rekantani.editkatalog') }}"
                             class="bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded-full font-semibold">Edit</a>
                     </div>
                 </div>

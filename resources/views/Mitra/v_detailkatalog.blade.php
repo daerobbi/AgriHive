@@ -1,4 +1,4 @@
-@extends('mitra.app')
+v@extends('Mitra.app')
 @section('content')
 
 <div class="flex min-h-screen">

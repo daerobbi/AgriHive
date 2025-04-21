@@ -6,6 +6,7 @@ use App\Http\Controllers\mitra\C_pengajuanAgen;
 use App\Http\Controllers\rekantani\C_pengajuanrekan;
 use App\Http\Controllers\rekantani\c_katalog;
 use App\Http\Controllers\admin\c_pengajuanadmin;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,16 @@ use App\Http\Controllers\admin\c_pengajuanadmin;
 //     return view('welcome');
 // });
 
+// Pendaftaran Rekantani
+Route::get('/register/rekantani', [RegisteredUserController::class, 'createRekantani'])->name('register.rekantani');
+Route::post('/register/rekantani', [RegisteredUserController::class, 'storeRekantani']);
+
+// Pendaftaran Agen
+Route::get('/register/agen', [RegisteredUserController::class, 'createAgen'])->name('register.agen');
+Route::post('/register/agen', [RegisteredUserController::class, 'storeAgen']);
+
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -31,44 +42,37 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
 require __DIR__.'/auth.php';
+Route::get('/', function () {return view('v_landingpage');});
 
-Route::get('/', function () {
-    return view('v_landingpage');
+
+// ADMIN
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    Route::get('/pengajuan', function () {return view('admin.v_pengajuan'); });
+    Route::get('/detailpengajuan', [c_pengajuanadmin::class, 'detailpengajuan'])->name('v_detailpengajuanadmin');
 });
 
-Route::get('/admin/pengajuan', function () {
-    return view('admin\v_pengajuan');
+
+//  REKAN TANI
+Route::middleware(['auth', 'role:rekantani'])->prefix('rekantani')->group(function () {
+    Route::view('pengajuan', 'rekantani.v_pengajuan')->name('rekantani.pengajuan');
+    Route::get('katalog', [C_katalog::class, 'index'])->name('rekantani.katalog');
+    Route::get('/{id}/detailkatalog', [C_katalog::class, 'detailkatalog'])->name('rekantani.detailkatalog');
+    Route::get('/tambahkatalog', [C_katalog::class, 'tampiltambahkatalog'])->name('rekantani.tambahkatalog');
+    Route::post('/tambahkatalog', [C_katalog::class, 'tambahkatalog'])->name('rekantani.tambahkatalog');
+    Route::get('/editkatalog', [C_katalog::class, 'editkatalog'])->name('rekantani.editkatalog');
+    Route::get('/detailpengajuan', [C_pengajuanrekan::class, 'lihatdetailpengajuan'])->name('rekantani.detailpengajuan');
+    Route::delete('/{id}', [C_katalog::class, 'delete'])->name('rekantani.katalog.delete');
 });
 
-Route::get('/agen/pengajuan', function () {
-    return view('Mitra\v_pengajuan');
-});
 
-Route::get('/rekantani/pengajuan', function () {
-    return view('rekantani\v_pengajuan');
-});
+// AGEN
+Route::middleware(['auth', 'role:agen'])->prefix('agen')->group(function () {
+    Route::view('/pengajuan', 'Mitra.v_pengajuan')->name('v_pengajuan');
 
-Route::get('/rekantani/katalog', [c_katalog::class, 'index'])->name('rekantani.katalog');
-
-Route::prefix('mitra')->group(function () {
-    Route::get('/agen/katalog', [C_pengajuanAgen::class, 'lihatprofil'])->name('v_katalog');
-    Route::get('/agen/detailkatalog', [C_pengajuanAgen::class, 'detailkatalog'])->name('v_detailkatalog');
-    Route::get('/agen/formpengajuan', [C_pengajuanAgen::class, 'formpengajuan'])->name('v_formpengajuan');
-    Route::get('/agen/pengajuanterbaru', [C_pengajuanAgen::class, 'pengajuanterbaru'])->name('v_pengajuanterbaru');
-    route::get('/agen/detailpengajuan', [C_pengajuanAgen::class, 'detailpengajuan'])->name('v_detailpengajuan');
-});
-
-Route::prefix('rekantani')->group(function () {
-    Route::get('/rekantani/detailpengajuan', [C_pengajuanrekan::class, 'lihatdetailpengajuan'])->name('v_detailpengajuanRekan');
-});
-Route::prefix('rekantani')->group(function () {
-    Route::delete('{id}',[c_katalog::class, 'delete'])->name('rekantani.katalog.delete');
-    Route::get('/rekantani/{id}/detailkatalog', [C_katalog::class, 'detailkatalog'])->name('v_detailkatalogrekan');
-    Route::get('/rekantani/tambahkatalog', [C_katalog::class, 'tambahkatalog'])->name('v_tambahkatalog');
-});
-
-Route::prefix('admin')->group(function () {
-    Route::get('/admin/detailpengajuan', [c_pengajuanadmin::class, 'detailpengajuan'])->name('v_detailpengajuanadmin');
+    Route::get('/katalog', [C_pengajuanAgen::class, 'lihatprofil'])->name('v_katalog');
+    Route::get('/detailkatalog', [C_pengajuanAgen::class, 'detailkatalog'])->name('v_detailkatalog');
+    Route::get('/formpengajuan', [C_pengajuanAgen::class, 'formpengajuan'])->name('v_formpengajuan');
+    Route::get('/pengajuanterbaru', [C_pengajuanAgen::class, 'pengajuanterbaru'])->name('v_pengajuanterbaru');
+    Route::get('/detailpengajuan', [C_pengajuanAgen::class, 'detailpengajuan'])->name('v_detailpengajuan');
 });

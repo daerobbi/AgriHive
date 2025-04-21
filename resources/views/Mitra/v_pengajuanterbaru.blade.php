@@ -1,4 +1,4 @@
-@extends('mitra.app')
+@extends('Mitra.app')
 @section('content')
 <!-- Header -->
 <div class="bg-gray-100 py-8">

@@ -1,4 +1,4 @@
-@extends('mitra.app')
+@extends('Mitra.app')
 
 @section('content')
 

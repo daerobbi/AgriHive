@@ -9,7 +9,7 @@ class C_pengajuanAgen extends Controller
 {
     public function lihatprofil()
     {
-        return view('Mitra.V_katalog');
+        return view('Mitra.v_katalog');
     }
 
     public function detailkatalog()
