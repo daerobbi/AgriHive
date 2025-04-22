@@ -63,7 +63,7 @@
                                 <option value="Sayuran">sayuran</option>
                                 <option value="buah-buahan">buah-buahan</option>
                                 <option value="tanaman hias">tanaman hias</option>
-                                <option value="tanamana herbal">tanamana herbal</option>
+                                <option value="tanaman herbal">tanaman herbal</option>
                             </select>
                         </div>
 

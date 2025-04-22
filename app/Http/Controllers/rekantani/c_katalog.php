@@ -42,7 +42,7 @@ class c_katalog extends Controller
             'deskripsi' => $request->deskripsi,
             'foto_bibit' => $gambarPath,
             'id_user'=>Auth::user()->id]);
-        return redirect('/rekantani/katalog')->with('success', 'Katalog berhasil ditambahkan!');
+        return redirect('/rekantani/katalog');
     }
 
     public function index(){

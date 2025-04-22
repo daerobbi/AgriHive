@@ -60,10 +60,7 @@
                     @csrf
                     @method('DELETE')
                     <div class="flex justify-center gap-6">
-                        <button @click="modalHapus = false"
-                            class="bg-red-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-red-700">
-                            Batal
-                        </button>
+                        <a href="" class="bg-red-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-red-700">Batal</a>
                 </form>
                 <button
                     @click="

@@ -48,7 +48,7 @@
                         <div>
                             <label class="block text-sm font-medium">Jenis Bibit</label>
                             <select name="jenis_bibit" class="w-full border border-gray-300 rounded px-3 py-2 mt-1">
-                                @foreach (['Sayuran', 'Buah', 'Padi', 'Rempah', 'Lainnya'] as $jenis)
+                                @foreach (['sayuran', 'buah-buahan', 'tanaman hias', 'tanaman herbal'] as $jenis)
                                     <option value="{{ $jenis }}"
                                         {{ $bibit->jenis_bibit === $jenis ? 'selected' : '' }}>{{ $jenis }}</option>
                                 @endforeach
