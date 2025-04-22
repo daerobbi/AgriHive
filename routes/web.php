@@ -57,6 +57,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 Route::middleware(['auth', 'role:rekantani'])->prefix('rekantani')->group(function () {
     Route::view('pengajuan', 'rekantani.v_pengajuan')->name('rekantani.pengajuan');
     Route::get('katalog', [C_katalog::class, 'index'])->name('rekantani.katalog');
+    Route::get('/katalog/cari', [C_katalog::class, 'cariKatalog'])->name('rekantani.cariKatalog');
     Route::get('/{id}/detailkatalog', [C_katalog::class, 'detailkatalog'])->name('rekantani.detailkatalog');
     Route::get('/tambahkatalog', [C_katalog::class, 'tampiltambahkatalog'])->name('rekantani.tambahkatalog');
     Route::post('/tambahkatalog', [C_katalog::class, 'tambahkatalog'])->name('rekantani.tambah.katalog');
@@ -70,7 +71,6 @@ Route::middleware(['auth', 'role:rekantani'])->prefix('rekantani')->group(functi
 // AGEN
 Route::middleware(['auth', 'role:agen'])->prefix('agen')->group(function () {
     Route::view('/pengajuan', 'Mitra.v_pengajuan')->name('v_pengajuan');
-
     Route::get('/katalog', [C_pengajuanAgen::class, 'lihatprofil'])->name('v_katalog');
     Route::get('/detailkatalog', [C_pengajuanAgen::class, 'detailkatalog'])->name('v_detailkatalog');
     Route::get('/formpengajuan', [C_pengajuanAgen::class, 'formpengajuan'])->name('v_formpengajuan');

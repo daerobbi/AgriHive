@@ -15,7 +15,7 @@
             <a href="/rekantani/pengajuan" class="hover:underline">Pengajuan Bibit</a>
             <a href="/" class="hover:underline">Broadcast</a>
             <a href="/" class="hover:underline">Manajamen Jadwal Distribusi</a>
-            <a href="/" class="hover:underline">Akun</a>
+            <a href="/dashboard" class="hover:underline">Akun</a>
             <a href="">🔔</a>
         </nav>
     </div>

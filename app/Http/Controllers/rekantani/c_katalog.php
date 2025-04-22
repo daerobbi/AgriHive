@@ -95,6 +95,29 @@ class c_katalog extends Controller
         return redirect('/rekantani/katalog')->with('success', 'Katalog berhasil diperbarui!');
     }
 
+    public function cariKatalog(Request $request)
+{
+    $query = $request->input('query');
+
+    // Ambil semua bibit milik user yang cocok dengan pencarian
+    $results = bibit::where('id_user', Auth::user()->id)
+                ->where(function ($q) use ($query) {
+                    $q->where('nama_bibit', 'like', '%' . $query . '%')
+                    ->orWhere('jenis_bibit', 'like', '%' . $query . '%');
+                })
+                ->get();
+
+    // Kelompokkan hasil pencarian berdasarkan jenis_bibit
+    $katalogs = $results->groupBy('jenis_bibit')->map(function($group) {
+        return $group->map(function($item){
+            $item->harga = str_replace('IDR','Rp', Number::currency($item->harga,'IDR'));
+            return $item;
+        });
+    });
+
+    return view('rekantani.v_katalogrekan', compact('katalogs'));
+}
+
 }
 
 
