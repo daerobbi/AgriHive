@@ -15,7 +15,7 @@ class c_katalog extends Controller
 {
     public function detailkatalog($id){
         $detailKatalog = bibit::whereId($id)->first();
-        $detailKatalog->harga = Number::currency($detailKatalog->harga,'IDR');
+        $detailKatalog->harga = str_replace('IDR','Rp',Number::currency($detailKatalog->harga,'IDR'));
         return view('rekantani.v_detailkatalogrekan',compact('detailKatalog'));
     }
     public function tampiltambahkatalog(){
@@ -44,10 +44,13 @@ class c_katalog extends Controller
             'id_user'=>Auth::user()->id]);
         return redirect('/rekantani/katalog')->with('success', 'Katalog berhasil ditambahkan!');
     }
-    
+
     public function index(){
     $katalogs = bibit::groupBy('jenis_bibit')->where('id_user','=',Auth::user()->id)->get('jenis_bibit')->map(function($jenis){
-        return bibit::where('jenis_bibit','=',$jenis->jenis_bibit)->get();
+        return bibit::where('jenis_bibit','=',$jenis->jenis_bibit)->get()->map(function($data){
+            $data->harga = str_replace('IDR','Rp',Number::currency($data->harga,'IDR'));
+            return $data;
+        });
     });
         return view('rekantani.v_katalogrekan',compact('katalogs'));
     }
@@ -56,9 +59,42 @@ class c_katalog extends Controller
         bibit::destroy($id);
         return redirect(route('rekantani.katalog'));
     }
-    public function editkatalog(){
-        return view('rekantani.v_editkatalogrekan');
+    public function editkatalog($id)
+    {
+        $bibit = bibit::findOrFail($id);
+        return view('rekantani.v_editkatalogrekan', compact('bibit'));
     }
+    public function updatekatalog(Request $request, $id)
+    {
+
+        $request->validate([
+            'jenis_bibit' => 'required',
+            'nama_bibit' => 'required|string|max:255',
+            'stok' => 'required|integer|min:0',
+            'harga' => 'required|integer|min:0',
+            'deskripsi' => 'required|string',
+        ]);
+
+        $bibit = bibit::findOrFail($id);
+        $bibit->jenis_bibit = $request->jenis_bibit;
+        $bibit->nama_bibit = $request->nama_bibit;
+        $bibit->stok = $request->stok;
+        $bibit->harga = $request->harga;
+        $bibit->deskripsi = $request->deskripsi;
+
+        if ($request->hasFile('foto_bibit')) {
+            if ($bibit->foto_bibit && Storage::disk('public')->exists($bibit->foto_bibit)) {
+                Storage::disk('public')->delete($bibit->foto_bibit);
+            }
+            $gambarPath = $request->file('foto_bibit')->store('katalog', 'public');
+            $bibit->foto_bibit = $gambarPath;
+        }
+
+        $bibit->save();
+
+        return redirect('/rekantani/katalog')->with('success', 'Katalog berhasil diperbarui!');
+    }
+
 }
 
 

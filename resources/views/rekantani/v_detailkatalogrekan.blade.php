@@ -8,8 +8,6 @@
         }
     </style>
 
-    <script src="//unpkg.com/alpinejs" defer></script>
-
     <div x-data="{ modalHapus: false, modalSukses: false }">
 
         <div class="px-10 py-6 flex flex-col">
@@ -46,7 +44,7 @@
                             Hapus
                         </button>
                         </form>
-                        <a href="{{ route('rekantani.editkatalog') }}"
+                        <a href="{{ route('rekantani.editkatalog',  ['id' => $detailKatalog->id]) }}"
                             class="bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded-full font-semibold">Edit</a>
                     </div>
                 </div>

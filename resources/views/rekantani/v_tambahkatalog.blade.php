@@ -7,14 +7,13 @@
             display: none !important;
         }
     </style>
-    <script src="//unpkg.com/alpinejs" defer></script>
 
     <div x-data="{ modalHapus: false, modalSukses: false, modalGagal: false }">
 
         <!-- Main Content -->
         <div class="max-w-6xl mx-auto mt-8 bg-white p-8 rounded-md shadow">
             <h1 class="text-3xl font-bold mb-6 text-center">Katalog Baru</h1>
-            <form action={{ route('rekantani.tambahkatalog') }} method="POST" enctype="multipart/form-data">
+            <form action={{ route('rekantani.tambah.katalog') }} method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <!-- Gambar -->
