@@ -1,12 +1,10 @@
-<!-- Navbar -->
-<div class="bg-green-700 text-white w-full">
-    <div class="flex justify-between items-center py-4 px-6 w-full">
-    <!-- Kiri: Logo dan Judul -->
-    <div class="flex items-center space-x-2">
-        <div class="bg-green-700 rounded-full p-1">
-            <img src="{{ asset('asset/logo.png') }}" class="w-6 h-6" alt="Logo">
-        </div>
-        <span class="font-bold text-xl">AgriHive</span>
+<div class="bg-green-700 text-white w-full h-18">
+    <div class="flex justify-between items-center px-6 h-full">
+        <div class="flex items-center space-x-2 h-full">
+            <div class="rounded-full p-1 flex items-center justify-center h-full">
+                <img src="{{ asset('asset/logo.png') }}" class="w-14 h-14 scale-150 translate-y-1" alt="Logo">
+            </div>
+            <span class="font-bold text-xl leading-none">AgriHive</span>
         </div>
         <!-- Kanan: Navigasi -->
         <nav class="flex items-center space-x-4 text-sm">

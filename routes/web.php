@@ -19,9 +19,9 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('auth.login');
+});
 
 // Pendaftaran Rekantani
 Route::get('/register/rekantani', [RegisteredUserController::class, 'createRekantani'])->name('register.rekantani');
@@ -43,7 +43,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 require __DIR__.'/auth.php';
-Route::get('/', function () {return view('v_landingpage');});
+
+// Route::get('/', function () {return view('v_landingpage');});
 
 
 // ADMIN
