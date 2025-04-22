@@ -79,7 +79,7 @@
 
                 <!-- Tombol -->
                 <div class="flex justify-end mt-6 space-x-4">
-                    <a href="/rekantani/katalog" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded">Batal</a>
+                    <a href="{{ route('rekantani.detailkatalog', $bibit->id) }}" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded">Batal</a>
                     <button type="submit"
                         class="bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded">Simpan</button>
                 </div>

@@ -1,4 +1,4 @@
-@extends('rekantani.app')
+@extends('admin.app')
 @section('content')
 <div class="bg-white py-6 text-center shadow">
     <h1 class="text-2xl font-bold">Pengajuan</h1>

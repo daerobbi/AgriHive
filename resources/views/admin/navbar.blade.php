@@ -12,10 +12,10 @@
         <nav class="flex items-center space-x-4 text-sm">
             <a href="/" class="hover:underline">Beranda</a>
             <a href="/" class="hover:underline">Verifikasi</a>
-            <a href="/" class="hover:underline">Pengajuan</a>
+            <a href="/admin/pengajuan" class="hover:underline">Pengajuan</a>
             <a href="/" class="hover:underline">Agen</a>
             <a href="/" class="hover:underline">Rekan Tani</a>
-            <a href="/" class="hover:underline">Akun</a>
+            <a href="/dashboard" class="hover:underline">Akun</a>
             <a href="">🔔</a>
         </nav>
     </div>

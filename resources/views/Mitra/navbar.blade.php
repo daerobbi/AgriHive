@@ -14,7 +14,7 @@
             <a href="/agen/pengajuan" class=" hover:underline">Cari & Ajukan Bibit</a>
             <a href="/" class="hover:underline">Riwayat Pengajuan</a>
             <a href="/" class="hover:underline">Broadcast</a>
-            <a href="/" class="hover:underline">Akun</a>
+            <a href="/dashboard" class="hover:underline">Akun</a>
             <a href="">🔔</a>
         </nav>
     </div>
