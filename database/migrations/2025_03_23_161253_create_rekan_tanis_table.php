@@ -16,9 +16,9 @@ return new class extends Migration
             $table->timestamps();
             $table->string('nama');
             $table->string('alamat');
-            $table->string('foto_profil');
+            $table->string('foto_profil')->nullable();
             $table->string('no_hp');
-            $table->string('bukti_usaha');
+            $table->string('bukti_usaha')->nullable();
             $table->foreignId('id_akun')->constrained('users');
             $table->foreignId('id_kota')->constrained('kotas');
         });
