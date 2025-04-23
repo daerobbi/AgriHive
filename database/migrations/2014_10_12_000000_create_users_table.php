@@ -19,11 +19,8 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->enum('role',['admin','rekantani','agen'])->default('agen');
-            $table->string('alamat')->nullable();
-            $table->string('no_hp')->nullable();
-            $table->binary('bukti_usaha')->nullable();
-            $table->binary('foto_profil')->nullable();
+            $table->enum('role',['admin','rekantani','agen']);
+            $table->boolean('status_akun')->nullable();
         });
     }
 

@@ -14,18 +14,18 @@ class bibit extends Seeder
      */
     public function run(): void
     {
-        for($i=0;$i < 10;$i++){
-            ModelsBibit::create(
-                [
-                    'nama_bibit' => fake()->word(),
-                    'jenis_bibit' => fake()->randomElement(['buah-buahan','tanaman hias','sayuran','tanaman herbal']),
-                    'deskripsi' => fake()->sentence(),
-                    'harga' => 1000,
-                    'stok' => 100,
-                    'foto_bibit' => "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXIxzXVCzvY56lRZV-9vmnPwkZdy0ff5XiGg&s",
-                    'id_user' => User::first()->id
-                ]
-            );
-        };
+        // for($i=0;$i < 10;$i++){
+        //     ModelsBibit::create(
+        //         [
+        //             'nama_bibit' => fake()->word(),
+        //             'jenis_bibit' => fake()->randomElement(['buah-buahan','tanaman hias','sayuran','tanaman herbal']),
+        //             'deskripsi' => fake()->sentence(),
+        //             'harga' => 1000,
+        //             'stok' => 100,
+        //             'foto_bibit' => "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXIxzXVCzvY56lRZV-9vmnPwkZdy0ff5XiGg&s",
+        //             'id_user' => User::first()->id
+        //         ]
+        //     );
+        // };
     }
 }

@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class DatabaseSeeder extends Seeder
+class UsersSeeder extends Seeder
 {
     public function run()
     {
@@ -15,8 +15,7 @@ class DatabaseSeeder extends Seeder
         ];
 
         for ($i = 0; $i < 10; $i++) {
-            // Menggunakan User::create() untuk menambah data
-            User::create([
+            DB::table('users')->insert([
                 'name' => $names[$i],
                 'email' => "rekantani" . ($i + 1) . "@gmail.com",
                 'password' => bcrypt('rekantani123'),

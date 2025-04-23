@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class rekan_tani extends Model
+{
+    protected $table = 'agens';
+
+    protected $fillable = [
+        'nama',
+        'alamat',
+        'foto_profil',
+        'no_hp',
+        'bukti_usaha',
+        'id_akun',
+        'id_kota'];
+}

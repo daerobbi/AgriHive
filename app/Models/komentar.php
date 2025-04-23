@@ -5,12 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class kota extends Model
+class komentar extends Model
 {
-    use HasFactory;
-    protected $table = 'kotas';
+    protected $table = 'komentars';
 
     protected $fillable = [
-        'nama_kota'];
+        'isi_komentar',
+        'id_broadcast'];
 }
-

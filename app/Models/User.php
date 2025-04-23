@@ -22,11 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
-        'alamat',
-        'no_hp',
-        'bukti_usaha',
-        'foto_profil'
-
+        'status_akun'
     ];
 
     /**

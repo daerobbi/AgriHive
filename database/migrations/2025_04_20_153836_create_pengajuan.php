@@ -16,17 +16,17 @@ return new class extends Migration
             $table->timestamps();
             $table->integer('jumlah_permintaan');
             $table->date('tanggal_dibutuhkan');
-            $table->date('tanggal_pengiriman');
+            $table->date('tanggal_pengiriman')->nullable();
             $table->text('lokasi_pengiriman');
-            $table->text('keterangan');
+            $table->text('keterangan')->nullable();
             $table->string('narahubung');
-            $table->boolean('status_pengajuan');
+            $table->boolean('status_pengajuan')->nullable();
             $table->boolean('status_pembayaran');
             $table->enum('status_pengiriman',['diproses','dikirim','selesai']);
-            $table->binary('foto_invoice');
-            $table->binary('bukti_bayar');
+            $table->binary('foto_invoice')->nullable();
+            $table->binary('bukti_bayar')->nullable();
             $table->foreignId('id_bibit')->constrained('bibit');
-            $table->foreignId('id_user')->constrained('users');
+            $table->foreignId('id_agens')->constrained('agens');
         });
     }
 

@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class kota extends Model
+class notifikasi extends Model
 {
-    use HasFactory;
-    protected $table = 'kotas';
+    protected $table = 'notikasis';
 
     protected $fillable = [
-        'nama_kota'];
+        'judul',
+        'isi_notif',
+        'id_akun'];
 }
-

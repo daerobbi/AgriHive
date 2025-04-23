@@ -96,10 +96,9 @@ class c_katalog extends Controller
     }
 
     public function cariKatalog(Request $request)
-{
+    {
     $query = $request->input('query');
 
-    // Ambil semua bibit milik user yang cocok dengan pencarian
     $results = bibit::where('id_user', Auth::user()->id)
                 ->where(function ($q) use ($query) {
                     $q->where('nama_bibit', 'like', '%' . $query . '%')

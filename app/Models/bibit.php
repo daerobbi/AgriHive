@@ -8,7 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class bibit extends Model
 {
     use HasFactory;
-    protected $table = 'bibit';
+    protected $table = 'bibits';
 
-    protected $fillable = ['nama_bibit','jenis_bibit','deskripsi','harga','stok','foto_bibit','id_user'];
+    protected $fillable = [
+        'nama_bibit',
+        'jenis_bibit',
+        'deskripsi',
+        'harga',
+        'stok',
+        'foto_bibit',
+        'id_user'];
 }
