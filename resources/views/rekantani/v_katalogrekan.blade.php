@@ -40,12 +40,6 @@
 
     <!-- Katalog Section -->
     <div class="px-6 py-6 flex flex-col w-full">
-        @if (request()->input('query'))
-            <h2 class="text-2xl font-semibold text-gray-700 mb-6">
-                Hasil Pencarian untuk: "{{ e(request()->input('query')) }}"
-            </h2>
-        @endif
-
         <div class="w-full flex flex-col gap-5">
             @forelse ($katalogs as $group)
                 @if ($group->count())

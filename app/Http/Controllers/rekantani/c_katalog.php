@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\rekantani;
-
 use App\Http\Controllers\Controller;
 use App\Models\bibit;
 use App\Models\JenisBibit;
@@ -42,7 +41,6 @@ class c_katalog extends Controller
         'foto_bibit' => 'required',
     ]);
 
-    // Cari jenis bibit berdasarkan nama
     $idUser = Auth::id();
     $rekanTani = rekan_tani::where('id_akun', $idUser)->first();
 
@@ -67,26 +65,26 @@ class c_katalog extends Controller
 
 
     public function index(Request $request)
-{
-    $idRekanTani = $this->getIdRekanTani();
-    $query = $request->input('query');
+    {
+        $idRekanTani = $this->getIdRekanTani();
+        $query = $request->input('query');
 
-    $bibits = bibit::with('jenisBibit')
-        ->where('id_rekantani', $idRekanTani)
-        ->when($query, function ($q) use ($query) {
-            $q->where('nama_bibit', 'like', '%' . $query . '%');
-        })
-        ->get()
-        ->map(function ($data) {
-            $data->harga = str_replace('IDR', 'Rp', Number::currency($data->harga, 'IDR'));
-            return $data;
-        })
-        ->groupBy('id_jenisbibit');
+        $bibits = bibit::with('jenisBibit')
+            ->where('id_rekantani', $idRekanTani)
+            ->when($query, function ($q) use ($query) {
+                $q->where('nama_bibit', 'like', '%' . $query . '%');
+            })
+            ->get()
+            ->map(function ($data) {
+                $data->harga = str_replace('IDR', 'Rp', Number::currency($data->harga, 'IDR'));
+                return $data;
+            })
+            ->groupBy('id_jenisbibit');
 
-    return view('rekantani.v_katalogrekan', [
-        'katalogs' => $bibits,
-    ]);
-}
+        return view('rekantani.v_katalogrekan', [
+            'katalogs' => $bibits,
+        ]);
+    }
 
     public function delete($id)
     {
@@ -145,10 +143,10 @@ class c_katalog extends Controller
                     });
             })
             ->get()
-            ->map(function ($item) {
-                $item->harga = str_replace('IDR', 'Rp', Number::currency($item->harga, 'IDR'));
-                return $item;
-            })
+            // ->map(function ($item) {
+            //     $item->harga = str_replace('IDR', 'Rp', Number::currency($item->harga, 'IDR'));
+            //     return $item;
+            // })
             ->groupBy('id_jenisbibit');
 
         return view('rekantani.v_katalogrekan', compact('katalogs'));
