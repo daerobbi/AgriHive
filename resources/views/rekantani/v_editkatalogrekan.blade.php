@@ -47,10 +47,12 @@
                     <div class="space-y-4">
                         <div>
                             <label class="block text-sm font-medium">Jenis Bibit</label>
-                            <select name="jenis_bibit" class="w-full border border-gray-300 rounded px-3 py-2 mt-1">
-                                @foreach (['sayuran', 'buah-buahan', 'tanaman hias', 'tanaman herbal'] as $jenis)
-                                    <option value="{{ $jenis }}"
-                                        {{ $bibit->jenis_bibit === $jenis ? 'selected' : '' }}>{{ $jenis }}</option>
+                            <select name="id_jenisbibit" class="w-full border border-gray-300 rounded px-3 py-2 mt-1">
+                                @foreach ($jenisBibitList as $jenis)
+                                    <option value="{{ $jenis->id }}"
+                                        {{ $bibit->id_jenisbibit == $jenis->id ? 'selected' : '' }}>
+                                        {{ $jenis->jenis_bibit }} <!-- Menampilkan nama jenis bibit -->
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -85,7 +87,8 @@
                 </div>
             </form>
         </div>
-        @if (count($errors))
+
+        @if ($errors->any())
             <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 1000)" x-show="show" x-transition
                 class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
                 <div class="bg-white rounded-3xl p-8 w-full max-w-md text-center shadow-lg">
@@ -100,9 +103,6 @@
                     </div>
                 </div>
             </div>
-        @endisset
-        <!-- Modal Gagal -->
-
-
-</div>
+        @endif
+    </div>
 @endsection

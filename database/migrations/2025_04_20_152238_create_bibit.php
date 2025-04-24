@@ -19,7 +19,6 @@ return new class extends Migration
             $table->integer('harga');
             $table->integer('stok');
             $table->string('foto_bibit');
-            $table->foreignId('id_user')->constrained('users');
             $table->foreignId('id_rekantani')->constrained('rekan_tanis');
             $table->foreignId('id_jenisbibit')->constrained('jenis_bibits');
         });
