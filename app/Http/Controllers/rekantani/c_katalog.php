@@ -126,7 +126,8 @@ class c_katalog extends Controller
 
         $bibit->save();
 
-        return redirect('/rekantani/katalog')->with('success', 'Katalog berhasil diperbarui!');
+        return redirect()->route('rekantani.detailkatalog', ['id' => $bibit->id])->with('success', 'Katalog berhasil diperbarui!');
+
     }
 
     public function cariKatalog(Request $request)

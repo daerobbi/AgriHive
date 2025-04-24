@@ -43,4 +43,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    // Akun.php
+    public function agen()
+    {
+    return $this->hasOne(agen::class);
+    }
+
 }

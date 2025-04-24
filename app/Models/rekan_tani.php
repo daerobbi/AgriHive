@@ -17,4 +17,15 @@ class rekan_tani extends Model
         'bukti_usaha',
         'id_akun',
         'id_kota'];
+
+    public function bibit()
+    {
+        return $this->hasMany(bibit::class, 'id_rekantani', 'id');
+    }
+
+    public function kota()
+    {
+        return $this->belongsTo(kota::class, 'id_kota');
+    }
+
 }

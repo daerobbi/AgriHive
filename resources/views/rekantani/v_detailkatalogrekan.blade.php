@@ -38,19 +38,41 @@
 
                     <!-- Tombol -->
                     <div class="flex gap-3 mt-8">
-
+                        <a href="{{ route('rekantani.katalog') }}"
+                            class="bg-gray-300 hover:bg-gray-400 text-black px-6 py-2 rounded-full font-semibold">
+                            Kembali
+                        </a>
                         <button @click="modalHapus = true"
                             class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full font-semibold">
                             Hapus
                         </button>
-                        </form>
+
                         <a href="{{ route('rekantani.editkatalog',  ['id' => $detailKatalog->id]) }}"
-                            class="bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded-full font-semibold">Edit</a>
+                            class="bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded-full font-semibold">
+                            Edit
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        @if (session('success'))
+        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 1500)" x-show="show" x-transition
+            class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+            <div class="bg-white rounded-3xl p-8 w-full max-w-md text-center shadow-lg">
+                <h2 class="text-xl font-medium text-gray-700 mb-6">{{ session('success') }}</h2>
+                <div class="flex justify-center">
+                    <div class="bg-green-800 rounded-full w-24 h-24 flex items-center justify-center">
+                        <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" stroke-width="3"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
                     </div>
                 </div>
             </div>
         </div>
-
+    @endif
         <!-- Modal Konfirmasi Hapus -->
         <div x-show="modalHapus" x-cloak class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50"
             x-transition>

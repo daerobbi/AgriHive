@@ -20,6 +20,11 @@ class bibit extends Model
         'id_jenisbibit'
     ];
 
+    public function rekanTani()
+    {
+        return $this->belongsTo(rekan_tani::class, 'id_rekantani');
+    }
+
     public function jenisBibit()
     {
         return $this->belongsTo(JenisBibit::class, 'id_jenisbibit');

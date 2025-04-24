@@ -71,9 +71,9 @@ Route::middleware(['auth', 'role:rekantani'])->prefix('rekantani')->group(functi
 
 // AGEN
 Route::middleware(['auth', 'role:agen'])->prefix('agen')->group(function () {
-    Route::view('/pengajuan', 'Mitra.v_pengajuan')->name('v_pengajuan');
-    Route::get('/katalog', [C_pengajuanAgen::class, 'lihatprofil'])->name('v_katalog');
-    Route::get('/detailkatalog', [C_pengajuanAgen::class, 'detailkatalog'])->name('v_detailkatalog');
+    Route::get('/pengajuan', [C_pengajuanAgen::class, 'tampilRekanTani'])->name('v_pengajuan');
+    Route::get('/katalog/{rekantani_id}', [C_pengajuanAgen::class, 'lihatprofil'])->name('agen.katalog');
+    Route::get('/detailkatalog/{bibit_id}', [C_pengajuanAgen::class, 'detailkatalog'])->name('v_detailkatalog');
     Route::get('/formpengajuan', [C_pengajuanAgen::class, 'formpengajuan'])->name('v_formpengajuan');
     Route::get('/pengajuanterbaru', [C_pengajuanAgen::class, 'pengajuanterbaru'])->name('v_pengajuanterbaru');
     Route::get('/detailpengajuan', [C_pengajuanAgen::class, 'detailpengajuan'])->name('v_detailpengajuan');
