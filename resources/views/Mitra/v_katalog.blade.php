@@ -41,10 +41,10 @@
         <div class="flex justify-between mt-6">
             <a href="/agen/pengajuan"
                 class="text-green-700 text-sm hover:text-green-900 hover:font-semibold transition duration-200 hover:underline">&lt; kembali</a>
-            <a href="{{ route('v_formpengajuan') }}"
+            {{-- <a href="{{ route('v_formpengajuan') }}"
                 class="bg-green-700 hover:bg-green-800 hover:shadow-lg hover:scale-105 transform text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition duration-200">
                 <span class="text-xl font-bold">+</span>
-                <span>Buat Pengajuan</span>
+                <span>Buat Pengajuan</span> --}}
             </a>
         </div>
     </main>

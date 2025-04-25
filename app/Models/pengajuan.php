@@ -24,4 +24,14 @@ class pengajuan extends Model
         'bukti_bayar',
         'id_bibit',
         'id_agens'];
+
+    public function bibit()
+    {
+        return $this->belongsTo(Bibit::class, 'id_bibit');
+    }
+
+    public function agen()
+    {
+        return $this->belongsTo(Agen::class, 'id_agens');
+    }
 }

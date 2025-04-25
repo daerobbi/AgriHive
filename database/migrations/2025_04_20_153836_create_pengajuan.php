@@ -23,8 +23,8 @@ return new class extends Migration
             $table->boolean('status_pengajuan')->nullable();
             $table->boolean('status_pembayaran');
             $table->enum('status_pengiriman',['diproses','dikirim','selesai']);
-            $table->binary('foto_invoice')->nullable();
-            $table->binary('bukti_bayar')->nullable();
+            $table->string('foto_invoice')->nullable();
+            $table->string('bukti_bayar')->nullable();
             $table->foreignId('id_bibit')->constrained('bibit');
             $table->foreignId('id_agens')->constrained('agens');
         });

@@ -144,10 +144,10 @@ class c_katalog extends Controller
                     });
             })
             ->get()
-            // ->map(function ($item) {
-            //     $item->harga = str_replace('IDR', 'Rp', Number::currency($item->harga, 'IDR'));
-            //     return $item;
-            // })
+            ->map(function (bibit $item) {
+                $item->harga = str_replace('IDR', 'Rp', Number::currency($item->harga, 'IDR'));
+                return $item;
+            })
             ->groupBy('id_jenisbibit');
 
         return view('rekantani.v_katalogrekan', compact('katalogs'));
