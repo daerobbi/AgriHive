@@ -17,4 +17,11 @@ class agen extends Model
         'no_hp',
         'bukti_usaha',
         'id_akun'];
+
+
+    public function user()
+    {
+        return $this->hasOne(Agen::class, 'id_akun');
+    }
+
 }

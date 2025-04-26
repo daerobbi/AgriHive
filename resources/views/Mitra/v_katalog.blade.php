@@ -1,7 +1,12 @@
 @extends('Mitra.app')
 @section('content')
 
-<div class="flex min-h-screen">
+<div class="flex min-h-screen"
+    x-data="{ showSuccess: {{ session('success') ? 'true' : 'false' }} }"
+    x-init="if (showSuccess) {
+        setTimeout(() => showSuccess = false, 1500);
+    }">
+
     <!-- Sidebar -->
     <aside class="w-1/4 h-screen sticky top-0 bg-gray-200 p-6 flex flex-col items-center shadow-md min-h-full">
         <img src="{{ $rekan->foto_profil ?? '#' }}" alt="Rekan Tani" class="rounded-full w-40 h-40 object-cover mb-4">
@@ -41,13 +46,26 @@
         <div class="flex justify-between mt-6">
             <a href="/agen/pengajuan"
                 class="text-green-700 text-sm hover:text-green-900 hover:font-semibold transition duration-200 hover:underline">&lt; kembali</a>
-            {{-- <a href="{{ route('v_formpengajuan') }}"
-                class="bg-green-700 hover:bg-green-800 hover:shadow-lg hover:scale-105 transform text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition duration-200">
-                <span class="text-xl font-bold">+</span>
-                <span>Buat Pengajuan</span> --}}
-            </a>
         </div>
     </main>
+
+    <!-- Modal Sukses -->
+    @if(session('success'))
+    <div x-show="showSuccess" x-cloak
+        x-transition
+        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-gray-300 rounded-[50px] p-10 text-center">
+            <h2 class="text-3xl font-semibold text-gray-700 mb-8">Pengajuan Terkirim!</h2>
+            <div class="flex justify-center">
+                <div class="bg-green-800 w-28 h-28 rounded-full flex items-center justify-center">
+                    <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" stroke-width="8" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
 </div>
 
 @endsection

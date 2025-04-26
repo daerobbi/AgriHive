@@ -44,10 +44,9 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    // Akun.php
     public function agen()
     {
-    return $this->hasOne(agen::class);
+    return $this->hasOne(agen::class, 'id_akun');
     }
 
 }
