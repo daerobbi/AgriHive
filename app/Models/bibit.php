@@ -29,5 +29,8 @@ class bibit extends Model
     {
         return $this->belongsTo(JenisBibit::class, 'id_jenisbibit');
     }
-
+    public function pengajuan()
+    {
+        return $this->hasOne(rekan_tani::class, 'id_bibit');
+    }
 }

@@ -48,5 +48,9 @@ class User extends Authenticatable
     {
     return $this->hasOne(agen::class, 'id_akun');
     }
+    public function rekantani()
+    {
+        return $this->hasOne(rekan_tani::class, 'id_akun', 'id'); // Menghubungkan 'id_akun' di RekanTani dengan 'id' di User
+    }
 
 }

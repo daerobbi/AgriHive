@@ -20,39 +20,32 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="border-t">
-                <td class="px-4 py-3">1.</td>
-                <td class="px-4 py-3">22/04/2025</td>
-                <td class="px-4 py-3">30/04/2025</td>
-                <td class="px-4 py-3">Multi Agro Nusa</td>
-                <td class="px-4 py-3 text-gray-500">Perlu diproses</td>
-                <td class="px-4 py-3 text-gray-500">Perlu Diproses</td>
-                <td class="px-4 py-3">
-                    <a href="{{route('rekantani.detailpengajuan')}}" class="bg-green-800 text-white px-4 py-1 rounded-full text-sm hover:bg-green-700 transition-colors duration-200">Detail</a>
-                </td>
-            </tr>
-            <tr class="border-t">
-                <td class="px-4 py-3">2.</td>
-                <td class="px-4 py-3">22/04/2025</td>
-                <td class="px-4 py-3">1/05/2025</td>
-                <td class="px-4 py-3">Bu Nia - Sedia Bibit</td>
-                <td class="px-4 py-3 text-green-700 font-semibold">✔ Diterima</td>
-                <td class="px-4 py-3 text-red-600">Belum Dibayar</td>
-                <td class="px-4 py-3">
-                    <a href="{{route('rekantani.detailpengajuan')}}" class="bg-green-800 text-white px-4 py-1 rounded-full text-sm hover:bg-green-700 transition-colors duration-200">Detail</a>
-                </td>
-            </tr>
-            <tr class="border-t">
-                <td class="px-4 py-3">3.</td>
-                <td class="px-4 py-3">22/04/2025</td>
-                <td class="px-4 py-3">1/05/2025</td>
-                <td class="px-4 py-3">Wahyu Bibit Jember</td>
-                <td class="px-4 py-3 text-green-700 font-semibold">✔ Diterima</td>
-                <td class="px-4 py-3 text-red-600">Belum Dibayar</td>
-                <td class="px-4 py-3">
-                    <a href="{{route('rekantani.detailpengajuan')}}" class="bg-green-800 text-white px-4 py-1 rounded-full text-sm hover:bg-green-700 transition-colors duration-200">Detail</a>
-                </td>
-            </tr>
+            <tbody>
+                @foreach ($pengajuan as $index => $item)
+                    <tr class="border-t">
+                        <td class="px-4 py-3">{{ $index + 1 }}.</td>
+                        <td class="px-4 py-3">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</td>
+                        <td class="px-4 py-3">{{ \Carbon\Carbon::parse($item->tanggal_dibutuhkan)->format('d/m/Y') }}</td>
+                        <td class="px-4 py-3">{{ $item->agen->nama}}</td>
+                        <td class="px-4 py-3 text-gray-500">
+                            {{
+                                is_null($item->status_pengajuan) ? 'Perlu diproses' :
+                                ($item->status_pengajuan == 0 ? '❌ Ditolak' : '✔ Diterima')
+                            }}
+                        </td>
+                        <td class="px-4 py-3 text-gray-500">
+                            {{ $item->status_pembayaran == 1 ? 'Sudah Dibayar' : 'Belum Dibayar' }}
+                        </td>
+                        <td class="px-4 py-3">
+                            <a href="{{ route('rekantani.detailpengajuan', $item->id) }}"
+                                class="bg-green-800 text-white px-4 py-1 rounded-full text-sm hover:bg-green-700 transition-colors duration-200">
+                                Detail
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+
         </tbody>
         </table>
     </div>
