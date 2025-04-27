@@ -9,6 +9,7 @@ use App\Models\JenisBibit;
 use App\Models\kota;
 use App\Models\bibit;
 use App\Models\pengajuan;
+use Illuminate\Support\Facades\Auth;
 
 class C_pengajuanAgen extends Controller
 {
@@ -82,10 +83,23 @@ class C_pengajuanAgen extends Controller
         }
 
 
-    public function pengajuanterbaru()
-    {
-        return view('Mitra.v_pengajuanterbaru');
-    }
+        public function pengajuanterbaru()
+        {
+            $user = Auth::user();
+            $agen = $user->agen;
+
+            if (!$agen) {
+                abort(403, 'Agen tidak ditemukan atau belum diverifikasi.');
+            }
+
+            $pengajuan = Pengajuan::with(['bibit.rekanTani'])
+                ->where('id_agens', $agen->id)
+                ->orderBy('created_at', 'desc')
+                ->get();
+
+            return view('Mitra.v_pengajuanterbaru', compact('pengajuan'));
+        }
+
 
     public function detailpengajuan()
     {
