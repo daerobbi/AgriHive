@@ -27,8 +27,8 @@
                 <td class="py-4">{{ $item->bibit->rekanTani->nama ?? '-' }}</td>
                 <td class="py-4">{{ $item->bibit->nama_bibit ?? '-' }}</td>
                 <td class="py-4 font-medium
-                    @if($item->status_pengajuan == 'diterima') text-green-600
-                    @elseif($item->status_pengajuan == 'ditolak') text-red-600
+                    @if($item->status_pengajuan == 'diterima') text-green-600)
+                    @elseif($item->status_pengajuan == 'ditolak') text-red-600)
                     @else text-gray-500
                     @endif
                 ">
@@ -52,7 +52,7 @@
     </table>
 
     <div class="mt-6">
-        <a href="{{ url('/pengajuan') }}" class="text-green-700 text-sm font-medium hover:underline">&lt; kembali</a>
+        <a href="{{ route('v_pengajuan') }}" class="text-green-700 text-sm font-medium hover:underline">&lt; kembali</a>
     </div>
 </div>
 
