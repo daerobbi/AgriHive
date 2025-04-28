@@ -34,7 +34,9 @@
                             }}
                         </td>
                         <td class="px-4 py-3 text-gray-500">
-                            {{ $item->status_pembayaran == 1 ? 'Sudah Dibayar' : 'Belum Dibayar' }}
+                            {{
+                                // is_null($item->status_pembayaran) ? 'Perlu diproses' :
+                                $item->status_pembayaran == 1 ? 'Sudah Dibayar' : 'Belum Dibayar' }}
                         </td>
                         <td class="px-4 py-3">
                             <a href="{{ route('rekantani.detailpengajuan', $item->id) }}"

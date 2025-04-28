@@ -64,8 +64,10 @@ Route::middleware(['auth', 'role:rekantani'])->prefix('rekantani')->group(functi
     Route::post('/tambahkatalog', [C_katalog::class, 'tambahkatalog'])->name('rekantani.tambah.katalog');
     Route::get('/{id}/editkatalog', [C_katalog::class, 'editkatalog'])->name('rekantani.editkatalog');
     Route::put('/editkatalog/{id}', [c_katalog::class, 'updatekatalog'])->name('rekantani.katalog.update');
-    Route::get('/detailpengajuan', [C_pengajuanrekan::class, 'lihatdetailpengajuan'])->name('rekantani.detailpengajuan');
-    Route::delete('/{id}', [C_katalog::class, 'delete'])->name('rekantani.katalog.delete');
+    Route::get('/detailpengajuan/{id}', [C_pengajuanrekan::class, 'lihatdetailpengajuan'])->name('rekantani.detailpengajuan');
+    Route::post('/pengajuan/{id}/terima', [C_pengajuanrekan::class, 'terimaPengajuan'])->name('rekantani.pengajuan.terima');
+    Route::post('/pengajuan/{id}/tolak', [C_pengajuanrekan::class, 'tolakPengajuan'])->name('rekantani.pengajuan.tolak');
+    Route::delete('/katalog/{id}', [C_katalog::class, 'delete'])->name('rekantani.katalog.delete');
 });
 
 
@@ -77,5 +79,7 @@ Route::middleware(['auth', 'role:agen'])->prefix('agen')->group(function () {
     Route::get('/pengajuan/form/{bibit_id}', [C_pengajuanAgen::class, 'formpengajuan'])->name('v_formpengajuan');
     Route::post('/submit-pengajuan/{bibit_id}', [C_pengajuanAgen::class, 'submitPengajuan'])->name('agen.submitpengajuan');
     Route::get('/pengajuanterbaru', [C_pengajuanAgen::class, 'pengajuanterbaru'])->name('v_pengajuanterbaru');
-    Route::get('/detailpengajuan', [C_pengajuanAgen::class, 'detailpengajuan'])->name('v_detailpengajuan');
+    Route::get('/agen/pengajuan/detail/{pengajuan_id}', [C_pengajuanAgen::class, 'detailpengajuan'])->name('agen.detailpengajuan');
+    Route::put('/agen/pengajuan/update/{pengajuan_id}', [C_pengajuanAgen::class, 'updatePengajuan'])->name('agen.updatepengajuan');
+    Route::delete('/agen/pengajuan/hapus/{pengajuan_id}', [C_pengajuanAgen::class, 'hapusPengajuan'])->name('agen.hapuspengajuan');
 });

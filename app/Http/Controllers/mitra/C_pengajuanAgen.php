@@ -101,10 +101,46 @@ class C_pengajuanAgen extends Controller
         }
 
 
-    public function detailpengajuan()
-    {
-        return view('Mitra.v_detailpengajuan');
-    }
+        public function detailpengajuan($pengajuan_id)
+        {
+            $pengajuan = Pengajuan::with('bibit.rekanTani')->findOrFail($pengajuan_id);
+            return view('Mitra.v_detailpengajuan', compact('pengajuan'));
+        }
+
+        public function updatePengajuan(Request $request, $pengajuan_id)
+        {
+            $request->validate([
+                'jumlah_permintaan' => 'required|integer|min:1',
+                'tanggal_dibutuhkan' => 'required|date',
+                'tanggal_pengiriman' => 'nullable|date',
+                'lokasi_pengiriman' => 'required|string',
+                'keterangan' => 'nullable|string',
+                'narahubung' => 'required|string',
+            ]);
+
+            $pengajuan = Pengajuan::findOrFail($pengajuan_id);
+
+            $pengajuan->update([
+                'jumlah_permintaan' => $request->jumlah_permintaan,
+                'tanggal_dibutuhkan' => $request->tanggal_dibutuhkan,
+                'tanggal_pengiriman' => $request->tanggal_pengiriman,
+                'lokasi_pengiriman' => $request->lokasi_pengiriman,
+                'keterangan' => $request->keterangan,
+                'narahubung' => $request->narahubung,
+            ]);
+
+            return redirect()->route('v_pengajuanterbaru')
+                ->with('success', 'Data pengajuan berhasil diubah.');
+        }
+
+        public function hapusPengajuan($pengajuan_id)
+        {
+            $pengajuan = Pengajuan::findOrFail($pengajuan_id);
+            $pengajuan->delete();
+
+            return redirect()->route('v_pengajuanterbaru')
+                ->with('success', 'Data pengajuan berhasil dihapus.');
+        }
 
     public function tampilRekanTani(Request $request)
     {
