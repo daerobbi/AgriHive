@@ -23,25 +23,28 @@ class C_pengajuanrekan extends Controller
 
         return view('rekantani.v_pengajuan', compact('pengajuan'));
     }
+
+
     public function lihatdetailpengajuan($id)
     {
         $pengajuan = Pengajuan::with(['bibit.rekanTani', 'bibit.jenisBibit'])->findOrFail($id);
         return view('rekantani.v_detailpengajuan', compact('pengajuan'));
     }
+
+
     public function terimaPengajuan(Request $request, $id)
     {
         $request->validate([
-            'file_invoice' => 'required',
+            'foto_invoice' => 'required',
         ]);
-
         $pengajuan = Pengajuan::findOrFail($id);
 
-        if ($request->hasFile('file_invoice')) {
-            $file = $request->file('file_invoice');
+        if ($request->hasFile('foto_invoice')) {
+            $file = $request->file('foto_invoice');
             $fileName = 'invoice_' . time() . '.' . $file->getClientOriginalExtension();
             $filePath = $file->storeAs('invoices', $fileName, 'public'); // HANYA PATH, TANPA URL
 
-            $pengajuan->file_invoice = $filePath; // Simpan hanya "invoices/xxx.jpg"
+            $pengajuan->foto_invoice = $filePath; // Simpan hanya "invoices/xxx.jpg"
         }
 
         $pengajuan->status_pengajuan = 1;
@@ -50,6 +53,7 @@ class C_pengajuanrekan extends Controller
         return redirect()->back()->with('success', 'Pengajuan berhasil diterima dan invoice berhasil diupload.');
     }
 
+
     public function tolakPengajuan($id)
     {
         $pengajuan = Pengajuan::findOrFail($id);
@@ -57,11 +61,5 @@ class C_pengajuanrekan extends Controller
         $pengajuan->save();
 
         return redirect()->back()->with('success', 'Pengajuan berhasil ditolak.');
-    }
-    public function detailkatalog(){
-        return view('rekantani.v_detailkatalogrekan');
-    }
-    public function tambahkatalog(){
-        return view('rekantani.v_tambahkatalog');
     }
 }

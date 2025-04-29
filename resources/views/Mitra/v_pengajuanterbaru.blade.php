@@ -42,7 +42,7 @@
                         <td class="py-4">
                             @php
                                 // Cek tujuan link berdasarkan status_pengajuan
-                                if ($item->status_pengajuan == 'diterima') {
+                                if ($item->status_pengajuan == 1 ) {
                                     $link = route('agen.formpembayaran', ['pengajuan_id' => $item->id]);
                                 } else {
                                     $link = route('agen.detailpengajuan', ['pengajuan_id' => $item->id]);

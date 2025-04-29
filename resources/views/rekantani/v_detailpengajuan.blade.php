@@ -104,7 +104,7 @@
         @csrf
         <h2 class="text-2xl font-semibold mb-6 text-gray-800">Upload Invoice untuk Menerima</h2>
 
-        <input type="file" name="file_invoice" accept="image/*" class="block w-full mb-4 p-2 border rounded-lg" required>
+        <input type="file" name="foto_invoice" accept="image/*" class="block w-full mb-4 p-2 border rounded-lg" required>
 
         <div class="flex justify-center gap-4 mt-6">
             <button type="button" @click="closeModal()" class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700">

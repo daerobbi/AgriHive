@@ -17,11 +17,11 @@ return new class extends Migration
             $table->integer('jumlah_permintaan');
             $table->date('tanggal_dibutuhkan');
             $table->date('tanggal_pengiriman')->nullable();
-            $table->text('lokasi_pengiriman');
-            $table->text('keterangan')->nullable();
+            $table->string('lokasi_pengiriman');
+            $table->string('keterangan')->nullable();
             $table->string('narahubung');
             $table->boolean('status_pengajuan')->nullable();
-            $table->boolean('status_pembayaran');
+            $table->boolean('status_pembayaran')->nullable();
             $table->enum('status_pengiriman',['diproses','dikirim','selesai']);
             $table->string('foto_invoice')->nullable();
             $table->string('bukti_bayar')->nullable();
