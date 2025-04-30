@@ -5,7 +5,7 @@
 
 <div x-data="{ modalHapus: false, modalSukses: false, modalGagal: false }">
     <div class="max-w-6xl mx-auto mt-8 bg-white p-8 rounded-md shadow">
-        <h1 class="text-3xl font-bold mb-6 text-center">Tambah Katalog</h1>
+        <h1 class="text-3xl font-bold mb-6 text-center">Tambah Produk</h1>
 
         <form action="{{ route('rekantani.tambah.katalog') }}" method="POST" enctype="multipart/form-data">
             @csrf

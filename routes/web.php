@@ -67,6 +67,9 @@ Route::middleware(['auth', 'role:rekantani'])->prefix('rekantani')->group(functi
     Route::get('/detailpengajuan/{id}', [C_pengajuanrekan::class, 'lihatdetailpengajuan'])->name('rekantani.detailpengajuan');
     Route::post('/pengajuan/{id}/terima', [C_pengajuanrekan::class, 'terimaPengajuan'])->name('rekantani.pengajuan.terima');
     Route::post('/pengajuan/{id}/tolak', [C_pengajuanrekan::class, 'tolakPengajuan'])->name('rekantani.pengajuan.tolak');
+    Route::get('/pengajuan/{id}', [C_pengajuanrekan::class, 'pembayaran'])->name('rekantani.pengajuan.pembayaran');
+    Route::post('/pengajuan/{id}/verifikasi', [C_pengajuanrekan::class, 'verifikasi'])->name('rekantani.pembayaran.verifikasi');
+    Route::post('/pengajuan/{id}/tolakpembayaran', [C_pengajuanrekan::class, 'tolak'])->name('rekantani.pembayaran.tolak');
     Route::delete('/katalog/{id}', [C_katalog::class, 'delete'])->name('rekantani.katalog.delete');
 });
 

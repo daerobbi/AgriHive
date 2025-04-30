@@ -62,4 +62,41 @@ class C_pengajuanrekan extends Controller
 
         return redirect()->back()->with('success', 'Pengajuan berhasil ditolak.');
     }
+
+    public function pembayaran($id)
+    {
+        $pengajuan = Pengajuan::with('agen')->findOrFail($id);
+        return view('rekantani.v_verifikasipembayaran', compact('pengajuan'));
+    }
+
+    public function verifikasi($id)
+    {
+        $pengajuan = Pengajuan::findOrFail($id);
+
+        // Update status pembayaran 
+        $pengajuan->status_pembayaran = 1;
+
+        // Kurangi stok bibit
+        $bibit = $pengajuan->bibit; // asumsi relasi 'bibit' di model Pengajuan
+        if ($bibit->stok >= $pengajuan->jumlah_permintaan) {
+            $bibit->stok -= $pengajuan->jumlah_permintaan;
+            $bibit->save();
+        } else {
+            return redirect()->back()->with('error', 'Stok bibit tidak mencukupi.');
+        }
+
+        $pengajuan->save();
+
+        return redirect()->route('rekantani.pengajuanmasuk', $id)->with('success', 'Pembayaran telah diverifikasi dan stok bibit dikurangi.');
+    }
+
+    public function tolak($id)
+    {
+        $pengajuan = Pengajuan::findOrFail($id);
+        $pengajuan->status_pembayaran = 0;
+        $pengajuan->status_pengajuan= 0;
+        $pengajuan->save();
+
+        return redirect()->route('rekantani.pengajuanmasuk', $id)->with('error', 'Pembayaran telah ditolak.');
+    }
 }

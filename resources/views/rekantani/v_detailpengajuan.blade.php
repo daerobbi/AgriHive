@@ -84,7 +84,7 @@
             @endif
 
             <div class="flex justify-between items-center mt-8">
-                @if(!$pengajuan->file_invoice && $pengajuan->status_pengajuan == null)  <!-- Status 'perlu diproses' -->
+                @if($pengajuan->status_pengajuan == null)  <!-- Status 'perlu diproses' -->
                 <button @click="openModal('upload')" class="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2">
                     Upload & Terima Pengajuan
                 </button>
