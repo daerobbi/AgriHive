@@ -23,7 +23,6 @@ class C_pengajuanAgen extends Controller
     }
 
 
-
     public function detailkatalog($bibit_id)
     {
         $bibit = bibit::with(['JenisBibit', 'rekanTani.kota'])->findOrFail($bibit_id);
@@ -31,11 +30,13 @@ class C_pengajuanAgen extends Controller
         return view('Mitra.v_detailkatalog', compact('bibit'));
     }
 
+
     public function formpengajuan($bibitId)
     {
         $bibit = bibit::findOrFail($bibitId);
         return view('Mitra.v_formpengajuan', compact('bibit'));
     }
+
 
     public function submitPengajuan(Request $request, $bibit_id)
     {
@@ -131,6 +132,28 @@ class C_pengajuanAgen extends Controller
 
             return redirect()->route('v_pengajuanterbaru')
                 ->with('success', 'Data pengajuan berhasil diubah.');
+        }
+
+        public function detailpembayaran($pengajuan_id)
+        {
+            $pengajuan = Pengajuan::with('bibit.rekanTani')->findOrFail($pengajuan_id);
+            return view('Mitra.v_pembayaran', compact('pengajuan'));
+        }
+        public function uploadBuktiTransfer(Request $request, $pengajuan_id)
+        {
+            $request->validate([
+                'bukti_transfer' => 'required',
+            ]);
+
+            $pengajuan = Pengajuan::findOrFail($pengajuan_id);
+            $path = $request->file('bukti_transfer')->store('bukti_transfer', 'public');
+
+            // Update pengajuan
+            $pengajuan->update([
+                'bukti_bayar' => $path,
+            ]);
+
+            return redirect()->back()->with('success', 'Bukti transfer berhasil diunggah!');
         }
 
         public function hapusPengajuan($pengajuan_id)
