@@ -22,7 +22,7 @@
         </div>
 
         <div class="flex flex-col justify-between items-center border border-gray-300 rounded-lg p-6">
-            <form id="uploadForm" action="{{ route('upload.bukti', $pengajuan->id) }}" method="POST" enctype="multipart/form-data" class="flex flex-col justify-between items-center w-full">
+            <form id="uploadForm" action="{{ route('agen.uploadbukti', $pengajuan->id) }}" method="POST" enctype="multipart/form-data" class="flex flex-col justify-between items-center w-full">
                 @csrf
                 <div class="flex flex-col items-center justify-center h-full w-full">
                     <!-- Preview Bukti Bayar (Gambar jika ada, atau kosong) -->
