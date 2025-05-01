@@ -49,8 +49,8 @@ require __DIR__.'/auth.php';
 
 // ADMIN
 Route::middleware(['auth'])->prefix('admin')->group(function () {
-    Route::get('/pengajuan', function () {return view('admin.v_pengajuan'); });
-    Route::get('/detailpengajuan', [c_pengajuanadmin::class, 'detailpengajuan'])->name('v_detailpengajuanadmin');
+    Route::get('/pengajuan', [c_pengajuanadmin::class, 'index'])->name('admin.pengajuan');
+    Route::get('/pengajuan/{id}', [c_pengajuanadmin::class, 'detailpengajuan'])->name('v_detailpengajuanadmin');
 });
 
 
