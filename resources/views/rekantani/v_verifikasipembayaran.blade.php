@@ -3,7 +3,7 @@
 
 <!-- Main Layout -->
 <div class="flex flex-col md:flex-row min-h-screen"
-     x-data="{ showVerifikasi: false, showTolak: false }">
+    x-data="{ showVerifikasi: false, showTolak: false }">
 
     <!-- Modal Verifikasi -->
     <div x-show="showVerifikasi" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
