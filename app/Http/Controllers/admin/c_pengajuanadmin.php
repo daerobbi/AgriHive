@@ -19,9 +19,10 @@ class c_pengajuanadmin extends Controller
         }
 
         // Filter status
-        if ($request->status && $request->status != 'Semua Pengajuan') {
-            $query->where('status_pengajuan', $request->status);
+        if ($request->has('status') && $request->status !== 'Semua Pengajuan') {
+            $query->where('status_pengajuan', $request->status == '1' ? true : false);
         }
+
 
         // Search by nama agen atau rekan tani (lewat bibit → rekan_tani)
         if ($request->search) {
