@@ -72,7 +72,7 @@ class C_pengajuanAgen extends Controller
             'keterangan' => $request->keterangan,
             'narahubung' => $request->narahubung,
             'status_pengajuan' => null,
-            'status_pembayaran' => 0,
+            'status_pembayaran' => null,
             'status_pengiriman' => 'diproses',
             'foto_invoice' => null,
             'bukti_bayar' => null,
