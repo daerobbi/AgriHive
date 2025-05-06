@@ -6,6 +6,7 @@ use App\Http\Controllers\mitra\C_pengajuanAgen;
 use App\Http\Controllers\rekantani\C_pengajuanrekan;
 use App\Http\Controllers\rekantani\c_katalog;
 use App\Http\Controllers\admin\c_pengajuanadmin;
+use App\Http\Controllers\rekantani\c_manajemenjadwaldistribusi;
 use App\Http\Controllers\Auth\RegisteredUserController;
 
 /*
@@ -54,6 +55,9 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 });
 
 
+
+
+
 //  REKAN TANI
 Route::middleware(['auth', 'role:rekantani'])->prefix('rekantani')->group(function () {
     Route::get('/pengajuan', [C_pengajuanrekan::class, 'tampilpengajuan'])->name('rekantani.pengajuanmasuk');
@@ -70,8 +74,15 @@ Route::middleware(['auth', 'role:rekantani'])->prefix('rekantani')->group(functi
     Route::get('/pengajuan/{id}', [C_pengajuanrekan::class, 'pembayaran'])->name('rekantani.pengajuan.pembayaran');
     Route::post('/pengajuan/{id}/verifikasi', [C_pengajuanrekan::class, 'verifikasi'])->name('rekantani.pembayaran.verifikasi');
     Route::post('/pengajuan/{id}/tolakpembayaran', [C_pengajuanrekan::class, 'tolak'])->name('rekantani.pembayaran.tolak');
+    Route::get('/jadwalDistribusi', [c_manajemenjadwaldistribusi::class, 'terverifikasi'])->name('rekantani.distribusi');
+    Route::get('/jadwalDistribusi/{id}', [c_manajemenjadwaldistribusi::class, 'showdetailpengiriman'])->name('rekantani.detailpengiriman');
+    Route::post('/JadwalDistribusi/{id}/kirim', [c_manajemenjadwaldistribusi::class, 'updateStatusPengiriman'])->name('rekantani.dikirim');
     Route::delete('/katalog/{id}', [C_katalog::class, 'delete'])->name('rekantani.katalog.delete');
 });
+
+
+
+
 
 
 // AGEN
