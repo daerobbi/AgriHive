@@ -65,13 +65,15 @@
         <p class="font-medium">{{ $pengajuan->narahubung }}</p>
     </div>
 
-    <div class="mb-6">
-        <p class="text-sm text-gray-500 mb-3">Bukti Transfer</p>
-        <div class="space-x-4">
-            <a href="{{ asset('storage/'.$pengajuan->foto_invoice) }}" target="_blank" class="bg-gray-400 text-white px-4 py-2 rounded">Tagihan</a>
-            <a href="{{ asset('storage/'.$pengajuan->bukti_bayar) }}" target="_blank" class="bg-green-400 text-white px-4 py-2 rounded">Bukti TF</a>
+    @if($pengajuan->status_pengajuan !== 0)
+        <div class="mb-6">
+            <p class="text-sm text-gray-500 mb-3">Bukti Transfer</p>
+            <div class="space-x-4">
+                <a href="{{ asset('storage/'.$pengajuan->foto_invoice) }}" target="_blank" class="bg-gray-400 text-white px-4 py-2 rounded">Tagihan</a>
+                <a href="{{ asset('storage/'.$pengajuan->bukti_bayar) }}" target="_blank" class="bg-green-400 text-white px-4 py-2 rounded">Bukti TF</a>
+            </div>
         </div>
-    </div>
+    @endif
     <div class="mt-4 text-right">
         <a href="/admin/pengajuan" class="text-green-600 hover:underline text-sm">&lt; kembali</a>
     </div>

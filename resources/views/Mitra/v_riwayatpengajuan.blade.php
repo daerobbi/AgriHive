@@ -74,7 +74,7 @@
                         @endif
                     </td>
                     <td class="py-4">
-                        <a href="" class="bg-green-900 text-white px-4 py-1 rounded-full text-sm inline-block">Detail</a>
+                        <a href="{{ route('agen.detailriwayat', $row->id) }}" class="bg-green-900 text-white px-4 py-1 rounded-full text-sm inline-block">Detail</a>
                     </td>
                 </tr>
                 @empty

@@ -32,7 +32,6 @@ class c_riwayatpengajuan extends Controller
             });
         }
 
-        // Filter berdasarkan status pengiriman jika ada
         if ($request->has('status') && $request->status != '') {
             if ($request->status == 'ditolak') {
                 $pengajuan->where('status_pengajuan', 0);
@@ -53,6 +52,11 @@ class c_riwayatpengajuan extends Controller
         $pengajuan->save();
 
         return redirect()->back()->with('success', 'Bibit sudah diterima.');
+    }
+
+    public function detailriwayat($id){
+        $pengajuan = Pengajuan::with(['agen', 'bibit.rekanTani'])->findOrFail($id);
+        return view('mitra.v_detailriwayat', compact('pengajuan'));
     }
 
 }
