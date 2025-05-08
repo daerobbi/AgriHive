@@ -10,7 +10,7 @@
         <nav class="flex items-center space-x-4 text-sm">
             <a href="/" class="hover:underline">Beranda</a>
             <a href="/agen/pengajuan" class="hover:underline">Cari & ajukan bibit</a>
-            <a href="/" class="hover:underline">Riwayat Pengajuan</a>
+            <a href="/agen/riwayat-pengajuan" class="hover:underline">Riwayat Pengajuan</a>
             <a href="/" class="hover:underline">Broadcast</a>
             <a href="/dashboard" class="hover:underline">Akun</a>
             <a href="">🔔</a>

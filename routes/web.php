@@ -8,6 +8,7 @@ use App\Http\Controllers\rekantani\c_katalog;
 use App\Http\Controllers\admin\c_pengajuanadmin;
 use App\Http\Controllers\rekantani\c_manajemenjadwaldistribusi;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\mitra\c_riwayatpengajuan;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,5 +98,7 @@ Route::middleware(['auth', 'role:agen'])->prefix('agen')->group(function () {
     Route::get('/pembayaran/{pengajuan_id}',[C_pengajuanAgen::class, 'detailpembayaran'])->name('agen.formpembayaran');
     Route::post('/pengajuan/upload-bukti/{pengajuan_id}', [C_pengajuanAgen::class, 'uploadBuktiTransfer'])->name('agen.uploadbukti');
     Route::put('/agen/pengajuan/update/{pengajuan_id}', [C_pengajuanAgen::class, 'updatePengajuan'])->name('agen.updatepengajuan');
+    Route::get('/riwayat-pengajuan', [c_riwayatpengajuan::class, 'riwayatPengajuan'])->name('agen.riwayat');
+    Route::put('/pengajuan/terima/{id}', [c_riwayatpengajuan::class, 'terima'])->name('agen.selesai');
     Route::delete('/agen/pengajuan/hapus/{pengajuan_id}', [C_pengajuanAgen::class, 'hapusPengajuan'])->name('agen.hapuspengajuan');
 });

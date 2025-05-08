@@ -25,7 +25,7 @@
         </thead>
         <tbody class="divide-y divide-gray-300">
             @forelse ($pengajuan as $key => $item)
-                @if($item->status_pengajuan !== 0 && $item->status_pengiriman !== 'selesai') <!-- Menambahkan pengecekan status_pengajuan -->
+                @if($item->status_pengajuan !== 0 && $item->status_pembayaran !== 1) <!-- Menambahkan pengecekan status_pengajuan -->
                     <tr>
                         <td class="py-4">{{ $key + 1 }}.</td>
                         <td class="py-4">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</td>
