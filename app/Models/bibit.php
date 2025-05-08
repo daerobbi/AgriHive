@@ -31,6 +31,6 @@ class bibit extends Model
     }
     public function pengajuan()
     {
-        return $this->hasOne(rekan_tani::class, 'id_bibit');
+        return $this->hasMany(pengajuan::class, 'id_bibit');
     }
 }

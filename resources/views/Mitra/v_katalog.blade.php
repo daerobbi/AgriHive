@@ -26,6 +26,7 @@
 
         <div class="grid grid-cols-6 gap-4">
             @forelse ($rekan->bibit as $bibit)
+                @continue($bibit->stok == 0)
                 <a href="{{ route('v_detailkatalog', ['bibit_id' => $bibit->id]) }}"
                     class="block hover:shadow-lg hover:ring-2 hover:ring-green-300 transition duration-200 rounded-lg">
                     <div class="bg-white p-4 rounded-lg shadow">
@@ -41,6 +42,7 @@
                 <p class="text-gray-500">Belum ada bibit yang ditampilkan.</p>
             @endforelse
         </div>
+
 
         <!-- Button -->
         <div class="flex justify-between mt-6">

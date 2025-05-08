@@ -41,7 +41,7 @@ class c_riwayatpengajuan extends Controller
             }
         }
 
-        $pengajuan = $pengajuan->get();
+        $pengajuan = $pengajuan->orderBy('created_at', 'desc')->get();
 
         return view('Mitra.v_riwayatPengajuan', compact('pengajuan'));
     }

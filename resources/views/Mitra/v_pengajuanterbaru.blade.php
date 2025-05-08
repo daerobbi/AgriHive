@@ -70,39 +70,21 @@
     </div>
 </div>
 
-@if(session('success'))
-    <div x-show="showSuccess" x-cloak
-        x-transition
-        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div class="bg-gray-300 rounded-[50px] p-10 text-center">
-            <h2 class="text-3xl font-semibold text-gray-700 mb-8">Pengajuan Berhasil Diubah</h2>
-            <div class="flex justify-center">
-                <div class="bg-green-800 w-28 h-28 rounded-full flex items-center justify-center">
-                    <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" stroke-width="8" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
+@if (session('success'))
+        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 1500)" x-show="show" x-transition
+            class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+            <div class="bg-white rounded-3xl p-8 w-full max-w-md text-center shadow-lg">
+                <h2 class="text-xl font-medium text-gray-700 mb-6">{{ session('success') }}</h2>
+                <div class="flex justify-center">
+                    <div class="bg-green-800 rounded-full w-24 h-24 flex items-center justify-center">
+                        <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" stroke-width="3"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 @endif
-
-@if(session('success'))
-    <div x-show="showSuccess" x-cloak
-        x-transition
-        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div class="bg-gray-300 rounded-[50px] p-10 text-center">
-            <h2 class="text-3xl font-semibold text-gray-700 mb-8">Pengajuan Berhasil Dihapus</h2>
-            <div class="flex justify-center">
-                <div class="bg-green-800 w-28 h-28 rounded-full flex items-center justify-center">
-                    <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" stroke-width="8" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                </div>
-            </div>
-        </div>
-    </div>
-@endif
-
 </div>
 @endsection

@@ -10,14 +10,12 @@ class C_pengajuanrekan extends Controller
 {
     public function tampilpengajuan()
     {
-        // Ambil Rekan Tani yang sedang login
         $rekanTani = Auth::user()->rekantani;
 
-        // Ambil semua pengajuan yang terkait bibit milik Rekan Tani tersebut
         $pengajuan = Pengajuan::whereHas('bibit', function($query) use ($rekanTani) {
             $query->where('id_rekantani', $rekanTani->id);
         })
-        ->with(['bibit', 'agen']) // load relasi bibit dan agen
+        ->with(['bibit', 'agen'])
         ->orderBy('created_at', 'desc')
         ->get();
 
@@ -42,25 +40,30 @@ class C_pengajuanrekan extends Controller
         if ($request->hasFile('foto_invoice')) {
             $file = $request->file('foto_invoice');
             $fileName = 'invoice_' . time() . '.' . $file->getClientOriginalExtension();
-            $filePath = $file->storeAs('invoices', $fileName, 'public'); // HANYA PATH, TANPA URL
+            $filePath = $file->storeAs('invoices', $fileName, 'public');
 
-            $pengajuan->foto_invoice = $filePath; // Simpan hanya "invoices/xxx.jpg"
+            $pengajuan->foto_invoice = $filePath;
         }
 
         $pengajuan->status_pengajuan = 1;
         $pengajuan->save();
 
-        return redirect()->back()->with('success', 'Pengajuan berhasil diterima dan invoice berhasil diupload.');
+        return redirect()->route('rekantani.pengajuanmasuk', $id)->with('success', 'Pengajuan telah diterima dan invoice berhasil di upload.');
     }
 
 
     public function tolakPengajuan($id)
     {
         $pengajuan = Pengajuan::findOrFail($id);
+
+        $bibit = $pengajuan->bibit;
+        $bibit->stok += $pengajuan->jumlah_permintaan;
+        $bibit->save();
+
         $pengajuan->status_pengajuan = 0;
         $pengajuan->save();
 
-        return redirect()->back()->with('success', 'Pengajuan berhasil ditolak.');
+        return redirect()->route('rekantani.pengajuanmasuk', $id)->with('error', 'Pengajuan telah ditolak dan stok bibit dikembalikan.');
     }
 
     public function pembayaran($id)
@@ -73,30 +76,25 @@ class C_pengajuanrekan extends Controller
     {
         $pengajuan = Pengajuan::findOrFail($id);
 
-        // Update status pembayaran 
         $pengajuan->status_pembayaran = 1;
-
-        // Kurangi stok bibit
-        $bibit = $pengajuan->bibit; // asumsi relasi 'bibit' di model Pengajuan
-        if ($bibit->stok >= $pengajuan->jumlah_permintaan) {
-            $bibit->stok -= $pengajuan->jumlah_permintaan;
-            $bibit->save();
-        } else {
-            return redirect()->back()->with('error', 'Stok bibit tidak mencukupi.');
-        }
-
         $pengajuan->save();
 
-        return redirect()->route('rekantani.pengajuanmasuk', $id)->with('success', 'Pembayaran telah diverifikasi dan stok bibit dikurangi.');
+        return redirect()->route('rekantani.pengajuanmasuk', $id)->with('success', 'Pembayaran telah diverifikasi.');
     }
 
     public function tolak($id)
     {
         $pengajuan = Pengajuan::findOrFail($id);
+
+        $bibit = $pengajuan->bibit;
+        $bibit->stok += $pengajuan->jumlah_permintaan;
+        $bibit->save();
+
+        // Update status
         $pengajuan->status_pembayaran = 0;
-        $pengajuan->status_pengajuan= 0;
+        $pengajuan->status_pengajuan = 0;
         $pengajuan->save();
 
-        return redirect()->route('rekantani.pengajuanmasuk', $id)->with('error', 'Pembayaran telah ditolak.');
+        return redirect()->route('rekantani.pengajuanmasuk', $id)->with('error', 'Pembayaran telah ditolak dan stok bibit dikembalikan.');
     }
 }

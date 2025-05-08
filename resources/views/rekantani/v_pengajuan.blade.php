@@ -22,8 +22,11 @@
         <tbody>
             <tbody>
                 @foreach ($pengajuan as $index => $item)
-                @if ($item->status_pembayaran != 1)
-                <tr class="border-t">
+                @if (
+                    (is_null($item->status_pembayaran) || $item->status_pembayaran != 1)
+                    && (is_null($item->status_pengajuan) || $item->status_pengajuan != 0)
+                )
+                                <tr class="border-t">
                     <td class="px-4 py-3">{{ $index + 1 }}.</td>
                     <td class="px-4 py-3">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</td>
                     <td class="px-4 py-3">{{ \Carbon\Carbon::parse($item->tanggal_dibutuhkan)->format('d/m/Y') }}</td>

@@ -39,49 +39,47 @@ class C_pengajuanAgen extends Controller
 
 
     public function submitPengajuan(Request $request, $bibit_id)
-    {
+        {
+            $request->validate([
+                'jumlah_permintaan' => 'required|integer|min:1',
+                'tanggal_dibutuhkan' => 'required|date',
+                'tanggal_pengiriman' => 'nullable|date',
+                'lokasi_pengiriman' => 'required|string',
+                'keterangan' => 'nullable|string',
+                'narahubung' => 'required|string',
+            ]);
 
-        $request->validate([
-            'jumlah_permintaan' => 'required|integer|min:1',
-            'tanggal_dibutuhkan' => 'required|date',
-            'tanggal_pengiriman' => 'nullable|date',
-            'lokasi_pengiriman' => 'required|string',
-            'keterangan' => 'nullable|string',
-            'narahubung' => 'required|string',
-        ]);
+            $bibit = Bibit::findOrFail($bibit_id);
+            $agen = auth()->user()->agen;
 
-        $bibit = Bibit::findOrFail($bibit_id);
-        $agen = auth()->user()->agen;
+            // Cek apakah stok cukup
+            if ($bibit->stok < $request->jumlah_permintaan) {
+                return redirect()->back()->with('error', 'Stok bibit tidak mencukupi.');
+            }
 
-        // // Handle file uploads if any
-        // $foto_invoice = null;
-        // if ($request->hasFile('foto_invoice')) {
-        //     $foto_invoice = $request->file('foto_invoice')->store('invoices', 'public');
-        // }
+            // Kurangi stok
+            $bibit->stok -= $request->jumlah_permintaan;
+            $bibit->save();
 
-        // $bukti_bayar = null;
-        // if ($request->hasFile('bukti_bayar')) {
-        //     $bukti_bayar = $request->file('bukti_bayar')->store('payment_proofs', 'public');
-        // }
+            Pengajuan::create([
+                'jumlah_permintaan' => $request->jumlah_permintaan,
+                'tanggal_dibutuhkan' => $request->tanggal_dibutuhkan,
+                'tanggal_pengiriman' => $request->tanggal_pengiriman,
+                'lokasi_pengiriman' => $request->lokasi_pengiriman,
+                'keterangan' => $request->keterangan,
+                'narahubung' => $request->narahubung,
+                'status_pengajuan' => null,
+                'status_pembayaran' => null,
+                'status_pengiriman' => 'diproses',
+                'foto_invoice' => null,
+                'bukti_bayar' => null,
+                'id_bibit' => $bibit->id,
+                'id_agens' => $agen->id,
+            ]);
 
-        Pengajuan::create([
-            'jumlah_permintaan' => $request->jumlah_permintaan,
-            'tanggal_dibutuhkan' => $request->tanggal_dibutuhkan,
-            'tanggal_pengiriman' => $request->tanggal_pengiriman,
-            'lokasi_pengiriman' => $request->lokasi_pengiriman,
-            'keterangan' => $request->keterangan,
-            'narahubung' => $request->narahubung,
-            'status_pengajuan' => null,
-            'status_pembayaran' => null,
-            'status_pengiriman' => 'diproses',
-            'foto_invoice' => null,
-            'bukti_bayar' => null,
-            'id_bibit' => $bibit->id,
-            'id_agens' => $agen->id,
-        ]);
-
-        return redirect()->route('agen.katalog', ['rekantani_id' => $bibit->rekanTani->id])->with('success', 'Pengajuan berhasil dikirim!');
+            return redirect()->route('agen.katalog', ['rekantani_id' => $bibit->rekanTani->id])->with('success', 'Pengajuan berhasil dikirim!');
         }
+
 
 
         public function pengajuanterbaru()
@@ -120,9 +118,30 @@ class C_pengajuanAgen extends Controller
             ]);
 
             $pengajuan = Pengajuan::findOrFail($pengajuan_id);
+            $bibit = $pengajuan->bibit;
 
+            $jumlahLama = $pengajuan->jumlah_permintaan;
+            $jumlahBaru = $request->jumlah_permintaan;
+
+            if ($jumlahBaru > $jumlahLama) {
+                // Cek stok untuk tambahan
+                $selisih = $jumlahBaru - $jumlahLama;
+                if ($bibit->stok < $selisih) {
+                    return redirect()->back()->with('error', 'Stok bibit tidak mencukupi untuk pembaruan.');
+                }
+                // Kurangi stok sesuai tambahan
+                $bibit->stok -= $selisih;
+            } elseif ($jumlahBaru < $jumlahLama) {
+                // Tambahkan stok kembali karena jumlah dikurangi
+                $selisih = $jumlahLama - $jumlahBaru;
+                $bibit->stok += $selisih;
+            }
+            // Simpan perubahan stok bibit
+            $bibit->save();
+
+            // Update pengajuan
             $pengajuan->update([
-                'jumlah_permintaan' => $request->jumlah_permintaan,
+                'jumlah_permintaan' => $jumlahBaru,
                 'tanggal_dibutuhkan' => $request->tanggal_dibutuhkan,
                 'tanggal_pengiriman' => $request->tanggal_pengiriman,
                 'lokasi_pengiriman' => $request->lokasi_pengiriman,
@@ -153,12 +172,15 @@ class C_pengajuanAgen extends Controller
                 'bukti_bayar' => $path,
             ]);
 
-            return redirect()->back()->with('success', 'Bukti transfer berhasil diunggah!');
+            return redirect()->route('v_pengajuanterbaru')->with('success', 'Bukti transfer berhasil diunggah!');
         }
 
         public function hapusPengajuan($pengajuan_id)
         {
             $pengajuan = Pengajuan::findOrFail($pengajuan_id);
+            $bibit = $pengajuan->bibit;
+            $bibit->stok += $pengajuan->jumlah_permintaan;
+            $bibit->save();
             $pengajuan->delete();
 
             return redirect()->route('v_pengajuanterbaru')

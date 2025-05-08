@@ -13,7 +13,7 @@
     <form action="{{ route('agen.riwayat') }}" method="GET" class="flex justify-between items-center max-w-screen-xl mx-auto mt-8 mb-4 px-6 space-x-4">
         <div class="flex w-full max-w-4xl space-x-4">
             <div class="relative flex-grow">
-                <input type="text" name="cari" value="{{ request('cari') }}" placeholder="Cari Agen/Bibit" class="w-full border border-gray-300 rounded-full py-2 px-4 pl-10 focus:outline-none">
+                <input type="text" name="cari" value="{{ request('cari') }}" placeholder="Cari Rekan Tani/Bibit" class="w-full border border-gray-300 rounded-full py-2 px-4 pl-10 focus:outline-none">
                 <svg class="absolute left-3 top-2.5 w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M12.9 14.32a8 8 0 111.41-1.41l4.28 4.3-1.42 1.4-4.27-4.3zM14 8a6 6 0 11-12 0 6 6 0 0112 0z" clip-rule="evenodd" />
                 </svg>
@@ -48,7 +48,7 @@
                 @forelse ($pengajuan as $i => $row)
                 <tr class="border-b border-gray-200">
                     <td class="py-4">{{ $i + 1 }}.</td>
-                    <td class="py-4">{{ date('d/m/Y', strtotime($row->tanggal_pengajuan)) }}</td>
+                    <td class="py-4">{{ \Carbon\Carbon::parse($row->created_at)->format('d/m/Y') }}</td>
                     <td class="py-4">{{ $row->bibit->rekanTani->nama ?? '-' }}</td>
                     <td class="py-4">{{ $row->bibit->nama_bibit ?? '-' }}</td>
                     <td class="py-4 font-semibold
