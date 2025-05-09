@@ -13,7 +13,6 @@
             <a href="/agen/riwayat-pengajuan" class="hover:underline">Riwayat Pengajuan</a>
             <a href="/" class="hover:underline">Broadcast</a>
             <a href="/dashboard" class="hover:underline">Akun</a>
-            <a href="">🔔</a>
         </nav>
     </div>
 </div>

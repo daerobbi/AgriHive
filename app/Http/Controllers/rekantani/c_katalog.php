@@ -88,7 +88,8 @@ class c_katalog extends Controller
 
     public function delete($id)
     {
-        bibit::destroy($id);
+        $bibit = bibit::findOrFail($id);
+        $bibit->delete();
         return redirect(route('rekantani.katalog'))->with('success', 'Katalog berhasil dihapus!');
     }
 

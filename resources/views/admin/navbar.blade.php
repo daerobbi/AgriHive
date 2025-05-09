@@ -14,7 +14,6 @@
             <a href="/" class="hover:underline">Agen</a>
             <a href="/" class="hover:underline">Rekan Tani</a>
             <a href="/dashboard" class="hover:underline">Akun</a>
-            <a href="">🔔</a>
         </nav>
     </div>
 </div>

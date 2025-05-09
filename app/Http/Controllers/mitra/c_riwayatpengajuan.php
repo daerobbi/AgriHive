@@ -56,7 +56,7 @@ class c_riwayatpengajuan extends Controller
 
     public function detailriwayat($id){
         $pengajuan = Pengajuan::with(['agen', 'bibit.rekanTani'])->findOrFail($id);
-        return view('mitra.v_detailriwayat', compact('pengajuan'));
+        return view('Mitra.v_detailriwayat', compact('pengajuan'));
     }
 
 }

@@ -50,7 +50,7 @@ require __DIR__.'/auth.php';
 
 
 // ADMIN
-Route::middleware(['auth'])->prefix('admin')->group(function () {
+Route::middleware(['auth','role:admin'])->prefix('admin')->group(function () {
     Route::get('/pengajuan', [c_pengajuanadmin::class, 'index'])->name('admin.pengajuan');
     Route::get('/pengajuan/{id}', [c_pengajuanadmin::class, 'detailpengajuan'])->name('v_detailpengajuanadmin');
 });
@@ -100,6 +100,6 @@ Route::middleware(['auth', 'role:agen'])->prefix('agen')->group(function () {
     Route::put('/agen/pengajuan/update/{pengajuan_id}', [C_pengajuanAgen::class, 'updatePengajuan'])->name('agen.updatepengajuan');
     Route::get('/riwayat-pengajuan', [c_riwayatpengajuan::class, 'riwayatPengajuan'])->name('agen.riwayat');
     Route::put('/pengajuan/terima/{id}', [c_riwayatpengajuan::class, 'terima'])->name('agen.selesai');
-    Route::get('/detail/riwayat/{id}', [c_pengajuanadmin::class, 'detailpengajuan'])->name('agen.detailriwayat');
+    Route::get('/detail/riwayat/{id}', [c_riwayatpengajuan::class, 'detailriwayat'])->name('agen.detailriwayat');
     Route::delete('/agen/pengajuan/hapus/{pengajuan_id}', [C_pengajuanAgen::class, 'hapusPengajuan'])->name('agen.hapuspengajuan');
 });

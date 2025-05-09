@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class bibit extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
+
     protected $table = 'bibit';
 
     protected $fillable = [
@@ -29,6 +31,7 @@ class bibit extends Model
     {
         return $this->belongsTo(JenisBibit::class, 'id_jenisbibit');
     }
+
     public function pengajuan()
     {
         return $this->hasMany(pengajuan::class, 'id_bibit');

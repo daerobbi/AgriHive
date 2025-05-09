@@ -27,7 +27,7 @@ class pengajuan extends Model
 
     public function bibit()
     {
-        return $this->belongsTo(Bibit::class, 'id_bibit');
+        return $this->belongsTo(Bibit::class, 'id_bibit')->withTrashed();
     }
 
     public function agen()

@@ -76,7 +76,7 @@
     @endif
 
     <div class="mt-4 text-right">
-        <a href="/agen/riwayat-pengajuan" class="text-green-600 hover:underline text-sm">&lt; kembali</a>
+        <a href="{{ route('agen.riwayat') }}" class="text-green-600 hover:underline text-sm">&lt; kembali</a>
     </div>
 </main>
 @endsection
