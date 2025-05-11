@@ -39,7 +39,13 @@ class c_manajemenjadwaldistribusi extends Controller
 
     public function showdetailpengiriman($id)
     {
-        $pengajuan = Pengajuan::with(['bibit.jenisBibit', 'bibit.rekanTani'])->findOrFail($id);
+        $rekanTani = Auth::user()->rekantani;
+        $pengajuan = Pengajuan::with(['bibit.jenisBibit', 'bibit.rekanTani'])
+            ->whereHas('bibit', function ($query) use ($rekanTani) {
+                $query->where('id_rekantani', $rekanTani->id);
+            })
+            ->findOrFail($id);
+
         $tanggalDibutuhkan = Carbon::parse($pengajuan->tanggal_dibutuhkan);
         $tanggalPengiriman = Carbon::parse($pengajuan->tanggal_pengiriman);
         $akunRekan = $pengajuan->bibit->rekanTani ?? null;
@@ -49,7 +55,11 @@ class c_manajemenjadwaldistribusi extends Controller
 
     public function updateStatusPengiriman($id)
     {
-        $pengajuan = Pengajuan::findOrFail($id);
+        $rekanTani = Auth::user()->rekantani;
+        $pengajuan = Pengajuan::whereHas('bibit', function ($q) use ($rekanTani) {
+            $q->where('id_rekantani', $rekanTani->id);
+        })->findOrFail($id);
+
         $pengajuan->status_pengiriman = 'dikirim';
         $pengajuan->tanggal_pengiriman = Carbon::now();
         $pengajuan->save();
@@ -59,8 +69,7 @@ class c_manajemenjadwaldistribusi extends Controller
 
     public function riwayatpengajuan(Request $request)
     {
-        $user = Auth::user();
-        $rekanTani = $user->rekanTani;
+        $rekanTani = Auth::user()->rekantani;
 
         $pengajuan = Pengajuan::with(['agen', 'bibit'])
             ->whereHas('bibit', function ($query) use ($rekanTani) {
@@ -96,9 +105,16 @@ class c_manajemenjadwaldistribusi extends Controller
 
         return view('rekantani.v_riwayatpengajuan', compact('pengajuan'));
     }
-    
-    public function detailriwayat($id){
-        $pengajuan = Pengajuan::with(['agen', 'bibit.rekanTani'])->findOrFail($id);
+
+    public function detailriwayat($id)
+    {
+        $rekanTani = Auth::user()->rekantani;
+        $pengajuan = Pengajuan::with(['agen', 'bibit.rekanTani'])
+            ->whereHas('bibit', function ($query) use ($rekanTani) {
+                $query->where('id_rekantani', $rekanTani->id);
+            })
+            ->findOrFail($id);
+
         return view('rekantani.v_detailriwayatpengajuan', compact('pengajuan'));
     }
 }
