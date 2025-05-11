@@ -56,4 +56,48 @@ class c_manajemenjadwaldistribusi extends Controller
 
         return redirect()->route('rekantani.distribusi')->with('success', 'Status pengiriman berhasil diubah!');
     }
+
+    public function riwayatpengajuan(Request $request)
+    {
+        $user = Auth::user();
+        $rekanTani = $user->rekanTani;
+
+        $pengajuan = Pengajuan::with(['agen', 'bibit'])
+            ->whereHas('bibit', function ($query) use ($rekanTani) {
+                $query->where('id_rekantani', $rekanTani->id);
+            })
+            ->where(function ($query) {
+                $query->where('status_pengajuan', 0)
+                    ->orWhere('status_pengiriman', 'selesai');
+            });
+
+        // Filter berdasarkan nama agen atau nama bibit
+        if ($request->cari) {
+            $pengajuan->where(function ($q) use ($request) {
+                $q->whereHas('agen', function ($q1) use ($request) {
+                    $q1->where('nama', 'like', '%' . $request->cari . '%');
+                })
+                ->orWhereHas('bibit', function ($q2) use ($request) {
+                    $q2->where('nama_bibit', 'like', '%' . $request->cari . '%');
+                });
+            });
+        }
+
+        // Filter berdasarkan status
+        if ($request->has('status') && $request->status != '') {
+            if ($request->status == 'ditolak') {
+                $pengajuan->where('status_pengajuan', 0);
+            } else {
+                $pengajuan->where('status_pengiriman', $request->status);
+            }
+        }
+
+        $pengajuan = $pengajuan->orderBy('created_at', 'desc')->get();
+
+        return view('rekantani.v_riwayatpengajuan', compact('pengajuan'));
+    }
+    public function detailriwayat($id){
+        $pengajuan = Pengajuan::with(['agen', 'bibit.rekanTani'])->findOrFail($id);
+        return view('rekantani.v_detailriwayatpengajuan', compact('pengajuan'));
+    }
 }

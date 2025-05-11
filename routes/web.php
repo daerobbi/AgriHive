@@ -78,6 +78,8 @@ Route::middleware(['auth', 'role:rekantani'])->prefix('rekantani')->group(functi
     Route::get('/jadwalDistribusi', [c_manajemenjadwaldistribusi::class, 'terverifikasi'])->name('rekantani.distribusi');
     Route::get('/jadwalDistribusi/{id}', [c_manajemenjadwaldistribusi::class, 'showdetailpengiriman'])->name('rekantani.detailpengiriman');
     Route::post('/JadwalDistribusi/{id}/kirim', [c_manajemenjadwaldistribusi::class, 'updateStatusPengiriman'])->name('rekantani.dikirim');
+    Route::get('/riwayat-pengajuan', [c_manajemenjadwaldistribusi::class, 'riwayatpengajuan'])->name('rekantani.riwayat');
+    Route::get('/detail/riwayat/{id}', [c_manajemenjadwaldistribusi::class, 'detailriwayat'])->name('rekantani.detailriwayat');
     Route::delete('/katalog/{id}', [C_katalog::class, 'delete'])->name('rekantani.katalog.delete');
 });
 
