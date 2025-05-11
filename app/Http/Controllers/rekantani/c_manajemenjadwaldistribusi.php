@@ -39,13 +39,7 @@ class c_manajemenjadwaldistribusi extends Controller
 
     public function showdetailpengiriman($id)
     {
-        $rekanTani = Auth::user()->rekantani;
-        $pengajuan = Pengajuan::with(['bibit.jenisBibit', 'bibit.rekanTani'])
-            ->whereHas('bibit', function ($query) use ($rekanTani) {
-                $query->where('id_rekantani', $rekanTani->id);
-            })
-            ->findOrFail($id);
-
+        $pengajuan = Pengajuan::with(['bibit.jenisBibit', 'bibit.rekanTani'])->findOrFail($id);
         $tanggalDibutuhkan = Carbon::parse($pengajuan->tanggal_dibutuhkan);
         $tanggalPengiriman = Carbon::parse($pengajuan->tanggal_pengiriman);
         $akunRekan = $pengajuan->bibit->rekanTani ?? null;
@@ -55,11 +49,7 @@ class c_manajemenjadwaldistribusi extends Controller
 
     public function updateStatusPengiriman($id)
     {
-        $rekanTani = Auth::user()->rekantani;
-        $pengajuan = Pengajuan::whereHas('bibit', function ($q) use ($rekanTani) {
-            $q->where('id_rekantani', $rekanTani->id);
-        })->findOrFail($id);
-
+        $pengajuan = Pengajuan::findOrFail($id);
         $pengajuan->status_pengiriman = 'dikirim';
         $pengajuan->tanggal_pengiriman = Carbon::now();
         $pengajuan->save();
@@ -69,7 +59,8 @@ class c_manajemenjadwaldistribusi extends Controller
 
     public function riwayatpengajuan(Request $request)
     {
-        $rekanTani = Auth::user()->rekantani;
+        $user = Auth::user();
+        $rekanTani = $user->rekantani;
 
         $pengajuan = Pengajuan::with(['agen', 'bibit'])
             ->whereHas('bibit', function ($query) use ($rekanTani) {
