@@ -96,6 +96,7 @@ class c_manajemenjadwaldistribusi extends Controller
 
         return view('rekantani.v_riwayatpengajuan', compact('pengajuan'));
     }
+    
     public function detailriwayat($id){
         $pengajuan = Pengajuan::with(['agen', 'bibit.rekanTani'])->findOrFail($id);
         return view('rekantani.v_detailriwayatpengajuan', compact('pengajuan'));
