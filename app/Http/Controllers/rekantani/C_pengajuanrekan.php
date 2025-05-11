@@ -33,7 +33,7 @@ class C_pengajuanrekan extends Controller
     public function terimaPengajuan(Request $request, $id)
     {
         $request->validate([
-            'foto_invoice' => 'required',
+            'foto_invoice' => 'required|mimes:png,jpg,jpeg',
         ]);
         $pengajuan = Pengajuan::findOrFail($id);
 

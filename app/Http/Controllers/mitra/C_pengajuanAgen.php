@@ -161,7 +161,7 @@ class C_pengajuanAgen extends Controller
         public function uploadBuktiTransfer(Request $request, $pengajuan_id)
         {
             $request->validate([
-                'bukti_transfer' => 'required',
+                'bukti_transfer' => 'required|mimes:png,jpg,jpeg',
             ]);
 
             $pengajuan = Pengajuan::findOrFail($pengajuan_id);

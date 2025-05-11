@@ -38,7 +38,7 @@ class c_katalog extends Controller
         'stok' => 'required|integer|min:0',
         'harga' => 'required|integer|min:0',
         'deskripsi' => 'required|string',
-        'foto_bibit' => 'required',
+        'foto_bibit' => 'required|mimes:png,jpg,jpeg',
     ]);
 
     $idUser = Auth::id();
