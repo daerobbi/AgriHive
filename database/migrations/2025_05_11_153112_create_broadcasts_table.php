@@ -12,10 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('broadcasts', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->timestamps();
-            $table->string('isi_broadcast');
-            $table->foreignId('id_akun')->constrained('users');
+            $table->string('judul_broadcast');
+            $table->string('nama_bibit');
+            $table->integer('jumlah_bibit');
+            $table->string('lokasi');
+            $table->string('kontak');
+            $table->date('tanggal_kebutuhan');
+            $table->string('deskripsi');
+            $table->foreignId('id_agen')->constrained('agens');
         });
     }
 

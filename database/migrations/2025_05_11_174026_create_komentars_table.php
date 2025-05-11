@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use function Laravel\Prompts\table;
+
 return new class extends Migration
 {
     /**
@@ -12,10 +14,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('komentars', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->timestamps();
             $table->string('isi_komentar');
-            $table->foreignId('id_broadcast')->constrained('broadcasts');
+            $table->foreignId('id_user')->constrained('users');
+            $table->uuid('id_broadcast');
+            $table->foreign('id_broadcast')->references('id')->on('broadcasts')->onDelete('cascade');;
         });
     }
 

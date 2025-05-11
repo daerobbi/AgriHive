@@ -8,6 +8,7 @@ use App\Http\Controllers\rekantani\c_katalog;
 use App\Http\Controllers\admin\c_pengajuanadmin;
 use App\Http\Controllers\rekantani\c_manajemenjadwaldistribusi;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\mitra\c_broadcastagen;
 use App\Http\Controllers\mitra\c_riwayatpengajuan;
 
 /*
@@ -86,8 +87,6 @@ Route::middleware(['auth', 'role:rekantani'])->prefix('rekantani')->group(functi
 
 
 
-
-
 // AGEN
 Route::middleware(['auth', 'role:agen'])->prefix('agen')->group(function () {
     Route::get('/pengajuan', [C_pengajuanAgen::class, 'tampilRekanTani'])->name('v_pengajuan');
@@ -103,5 +102,10 @@ Route::middleware(['auth', 'role:agen'])->prefix('agen')->group(function () {
     Route::get('/riwayat-pengajuan', [c_riwayatpengajuan::class, 'riwayatPengajuan'])->name('agen.riwayat');
     Route::put('/pengajuan/terima/{id}', [c_riwayatpengajuan::class, 'terima'])->name('agen.selesai');
     Route::get('/detail/riwayat/{id}', [c_riwayatpengajuan::class, 'detailriwayat'])->name('agen.detailriwayat');
+    Route::get('/broadcast', [c_broadcastagen::class, 'index'])->name('agen.broadcast');
+    Route::get('/broadcast/create', [c_broadcastagen::class, 'create'])->name('agen.buatbroadcast');
+    Route::post('/broadcast/buat', [c_broadcastagen::class, 'store'])->name('agen.broadcast.store');
+    Route::get('/broadcast/{id}', [c_broadcastagen::class, 'show'])->name('agen.editbroadcast');
+    Route::put('/broadcast/{id}/update', [c_broadcastagen::class, 'update'])->name('agen.broadcast.update');
     Route::delete('/agen/pengajuan/hapus/{pengajuan_id}', [C_pengajuanAgen::class, 'hapusPengajuan'])->name('agen.hapuspengajuan');
 });

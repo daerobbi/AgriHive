@@ -1,15 +1,40 @@
 <?php
 
+// app/Models/Broadcast.php
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
-class broadcast extends Model
+class Broadcast extends Model
 {
-    protected $table = 'broadcasts';
+    use HasUuids;
+
+    protected $keyType = 'string';  // UUID = string
+    public $incrementing = false;
 
     protected $fillable = [
-        'isi_broadcast',
-        'id_akun'];
+        'judul_broadcast',
+        'nama_bibit',
+        'jumlah_bibit',
+        'lokasi',
+        'kontak',
+        'tanggal_kebutuhan',
+        'deskripsi',
+        'id_agen',
+    ];
+
+    // Relasi ke agen
+    public function agen()
+    {
+        return $this->belongsTo(Agen::class, 'id_agen');
+    }
+
+    // Relasi ke komentar (jika ingin broadcast punya banyak komentar)
+    public function komentars()
+    {
+        return $this->hasMany(Komentar::class, 'id_broadcast');
+    }
 }
+
