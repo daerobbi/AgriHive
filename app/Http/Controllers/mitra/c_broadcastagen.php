@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Broadcast;
+use App\Models\Komentar;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 
@@ -76,21 +77,61 @@ class c_broadcastagen extends Controller
         return view('Mitra.v_editbroadcast', compact('broadcast'));
     }
 
-public function update(Request $request, $id)
-{
-    $request->validate([
-        'judul_broadcast' => 'required|string',
-        'nama_bibit' => 'required|string',
-        'jumlah_bibit' => 'required|integer|min:1',
-        'lokasi' => 'required|string',
-        'kontak' => 'required|string',
-        'tanggal_kebutuhan' => 'required|date',
-        'deskripsi' => 'required|string',
-    ]);
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'judul_broadcast' => 'required|string',
+            'nama_bibit' => 'required|string',
+            'jumlah_bibit' => 'required|integer|min:1',
+            'lokasi' => 'required|string',
+            'kontak' => 'required|string',
+            'tanggal_kebutuhan' => 'required|date',
+            'deskripsi' => 'required|string',
+        ]);
 
-    $broadcast = Broadcast::findOrFail($id);
-    $broadcast->update($request->all());
+        $broadcast = Broadcast::findOrFail($id);
+        $broadcast->update($request->all());
 
-    return redirect()->route('agen.broadcast', $broadcast->id)->with('success', 'Broadcast berhasil diperbarui!');
-}
+        return redirect()->route('agen.broadcast', $broadcast->id)->with('success', 'Broadcast berhasil diperbarui!');
+    }
+
+    public function detail($id)
+    {
+        $broadcast = Broadcast::with('agen')->findOrFail($id);
+
+        $komentars = Komentar::with(['user.agen', 'user.rekantani'])
+                        ->where('id_broadcast', $broadcast->id)
+                        ->orderBy('created_at', 'asc')
+                        ->get();
+
+        return view('Mitra.v_komentar', compact('broadcast', 'komentars'));
+    }
+
+    public function kirimKomentar(Request $request, $id)
+    {
+        $request->validate([
+            'isi_komentar' => 'required|string|max:255',
+        ]);
+
+        Komentar::create([
+            'id_user' => Auth::id(),
+            'id_broadcast' => $id,
+            'isi_komentar' => $request->isi_komentar,
+        ]);
+
+        return back()->with('success', 'Komentar berhasil dikirim.');
+    }
+
+    public function hapusKomentar($id)
+    {
+        $komentar = Komentar::findOrFail($id);
+
+        // if ($komentar->id_user !== Auth::id()) {
+        //     abort(403, 'Tidak diizinkan menghapus komentar ini.');
+        // }
+
+        $komentar->delete();
+
+        return back()->with('success', 'Komentar berhasil dihapus.');
+    }
 }

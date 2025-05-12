@@ -107,5 +107,8 @@ Route::middleware(['auth', 'role:agen'])->prefix('agen')->group(function () {
     Route::post('/broadcast/buat', [c_broadcastagen::class, 'store'])->name('agen.broadcast.store');
     Route::get('/broadcast/{id}', [c_broadcastagen::class, 'show'])->name('agen.editbroadcast');
     Route::put('/broadcast/{id}/update', [c_broadcastagen::class, 'update'])->name('agen.broadcast.update');
+    Route::get('/{id}/detail', [c_broadcastagen::class, 'detail'])->name('agen.broadcast.detail');
+    Route::post('/{id}/komentar', [c_broadcastagen::class, 'kirimKomentar'])->name('agen.broadcast.komentar');
+    Route::delete('/komentar/{id}', [c_broadcastagen::class, 'hapusKomentar'])->name('agen.komentar.hapus');
     Route::delete('/agen/pengajuan/hapus/{pengajuan_id}', [C_pengajuanAgen::class, 'hapusPengajuan'])->name('agen.hapuspengajuan');
 });

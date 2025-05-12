@@ -38,13 +38,13 @@
             </div>
         </div>
         <div class="text-sm text-right min-w-[110px] space-y-2">
-            <a href="">
+            <a href="{{ route('agen.broadcast.detail', $broadcast->id) }}" class="text-blue-600 hover:underline">
                 <div class="text-gray-600 flex items-center gap-1 mb-5 justify-end">
                     <img src="https://img.icons8.com/ios-glyphs/20/speech-bubble.png" />
                     <span>{{ $broadcast->komentars_count }} Komentar</span>
                 </div>
             </a>
-            <a href="{{ route('agen.editbroadcast', $broadcast->id) }}" class="bg-green-700 text-white px-4 py-1 rounded-full">Detail</a>
+            <a href="{{ route('agen.editbroadcast', $broadcast->id) }}" class="bg-green-700 text-white px-4 py-1 rounded-full">Edit</a>
         </div>
     </div>
     @empty
