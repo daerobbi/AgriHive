@@ -10,6 +10,7 @@ use App\Http\Controllers\rekantani\c_manajemenjadwaldistribusi;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\mitra\c_broadcastagen;
 use App\Http\Controllers\mitra\c_riwayatpengajuan;
+use App\Http\Controllers\rekantani\c_broadcastrekan;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +82,10 @@ Route::middleware(['auth', 'role:rekantani'])->prefix('rekantani')->group(functi
     Route::post('/JadwalDistribusi/{id}/kirim', [c_manajemenjadwaldistribusi::class, 'updateStatusPengiriman'])->name('rekantani.dikirim');
     Route::get('/riwayat-pengajuan', [c_manajemenjadwaldistribusi::class, 'riwayatpengajuan'])->name('rekantani.riwayat');
     Route::get('/detail/riwayat/{id}', [c_manajemenjadwaldistribusi::class, 'detailriwayat'])->name('rekantani.detailriwayat');
+    Route::get('/broadcast', [c_broadcastrekan::class, 'index'])->name('rekantani.broadcast');
+    Route::get('/broadcast/{id}', [c_broadcastrekan::class, 'show'])->name('rekantani.detailbroadcast');
+    Route::post('/broadcast/{id}/komentar', [c_broadcastrekan::class, 'kirimKomentar'])->name('rekantani.broadcast.komentar');
+    Route::delete('/komentar/{id}', [c_broadcastrekan::class, 'hapusKomentar'])->name('rekantani.komentar.hapus');
     Route::delete('/katalog/{id}', [C_katalog::class, 'delete'])->name('rekantani.katalog.delete');
 });
 
@@ -95,7 +100,7 @@ Route::middleware(['auth', 'role:agen'])->prefix('agen')->group(function () {
     Route::get('/pengajuan/form/{bibit_id}', [C_pengajuanAgen::class, 'formpengajuan'])->name('v_formpengajuan');
     Route::post('/submit-pengajuan/{bibit_id}', [C_pengajuanAgen::class, 'submitPengajuan'])->name('agen.submitpengajuan');
     Route::get('/pengajuanterbaru', [C_pengajuanAgen::class, 'pengajuanterbaru'])->name('v_pengajuanterbaru');
-    Route::get('/agen/pengajuan/detail/{pengajuan_id}', [C_pengajuanAgen::class, 'detailpengajuan'])->name('agen.detailpengajuan');
+    Route::get('/pengajuan/detail/{pengajuan_id}', [C_pengajuanAgen::class, 'detailpengajuan'])->name('agen.detailpengajuan');
     Route::get('/pembayaran/{pengajuan_id}',[C_pengajuanAgen::class, 'detailpembayaran'])->name('agen.formpembayaran');
     Route::post('/pengajuan/upload-bukti/{pengajuan_id}', [C_pengajuanAgen::class, 'uploadBuktiTransfer'])->name('agen.uploadbukti');
     Route::put('/agen/pengajuan/update/{pengajuan_id}', [C_pengajuanAgen::class, 'updatePengajuan'])->name('agen.updatepengajuan');
@@ -107,8 +112,8 @@ Route::middleware(['auth', 'role:agen'])->prefix('agen')->group(function () {
     Route::post('/broadcast/buat', [c_broadcastagen::class, 'store'])->name('agen.broadcast.store');
     Route::get('/broadcast/{id}', [c_broadcastagen::class, 'show'])->name('agen.editbroadcast');
     Route::put('/broadcast/{id}/update', [c_broadcastagen::class, 'update'])->name('agen.broadcast.update');
-    Route::get('/{id}/detail', [c_broadcastagen::class, 'detail'])->name('agen.broadcast.detail');
-    Route::post('/{id}/komentar', [c_broadcastagen::class, 'kirimKomentar'])->name('agen.broadcast.komentar');
+    Route::get('/broadcast/{id}/detail', [c_broadcastagen::class, 'detail'])->name('agen.broadcast.detail');
+    Route::post('/broadcast/{id}/komentar', [c_broadcastagen::class, 'kirimKomentar'])->name('agen.broadcast.komentar');
     Route::delete('/komentar/{id}', [c_broadcastagen::class, 'hapusKomentar'])->name('agen.komentar.hapus');
     Route::delete('/agen/pengajuan/hapus/{pengajuan_id}', [C_pengajuanAgen::class, 'hapusPengajuan'])->name('agen.hapuspengajuan');
 });

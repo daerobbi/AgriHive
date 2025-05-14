@@ -85,7 +85,7 @@
 
         <div class="mb-6">
             <h2 class="text-lg font-bold mb-2">Kontak Narahubung</h2>
-            <a href="https://wa.me/{{ $pengajuan->narahubung }}" class="text-blue-600 hover:underline">wa.me/{{ $pengajuan->narahubung }}</a>
+            <a href="https://wa.me/{{ $pengajuan->narahubung }}" target="blank" class="text-blue-600 hover:underline">wa.me/{{ $pengajuan->narahubung }}</a>
         </div>
 
         <div class="mb-6">

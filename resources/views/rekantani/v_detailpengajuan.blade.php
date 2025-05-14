@@ -39,10 +39,10 @@
                 <p>{{ $pengajuan->bibit->jenisBibit->jenis_bibit }}</p>
 
                 <p class="font-semibold">Nama Bibit</p>
-                <p>{{ $pengajuan->nama_bibit }}</p>
+                <p>{{ $pengajuan->bibit->nama_bibit }}</p>
 
                 <p class="font-semibold">Jumlah Bibit</p>
-                <p>{{ $pengajuan->jumlah_bibit }}</p>
+                <p>{{ $pengajuan->jumlah_permintaan }}</p>
             </div>
             <hr>
 

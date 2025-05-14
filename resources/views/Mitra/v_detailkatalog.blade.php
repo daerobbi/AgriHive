@@ -9,9 +9,11 @@
                 class="rounded-full w-40 h-40 object-cover mb-4">
         <h2 class="text-xl font-bold mb-2">{{ $bibit->rekanTani->nama ?? 'Nama Petani' }}</h2>
         <p class="text-sm text-gray-600 mb-1">Lokasi : {{ $bibit->rekanTani->kota->nama_kota ?? '-' }}</p>
-        <p class="text-sm text-gray-600 text-center mb-4">
+        <p class="text-sm text-gray-600 text-center mb-1">
             Jenis Bibit : {{ $bibit->JenisBibit->jenis_bibit ?? '-' }}
         </p>
+        <p class="text-sm text-gray-600 text-center mb-1">Kontak : {{ $bibit->rekanTani->no_hp }}</p>
+        <p class="text-sm text-gray-600 text-center mb-1">Alamat : {{ $bibit->rekanTani->alamat }}</p>
     </aside>
 
     <!-- Katalog -->

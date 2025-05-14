@@ -11,7 +11,9 @@
         <img src="{{ asset('storage/' .$pengajuan->bibit->rekanTani->foto_profil)}}" alt="Petani" class="rounded-full w-40 h-40 object-cover mb-4">
         <h2 class="text-xl font-bold mb-2">{{ $pengajuan->bibit->rekanTani->nama ?? '-' }}</h2>
         <p class="text-sm text-gray-600 mb-1">Lokasi : {{ $pengajuan->bibit->rekanTani->kota->nama_kota ?? '-' }}</p>
-        <p class="text-sm text-gray-600 text-center mb-4">Jenis Bibit : {{ $pengajuan->bibit->jenisBibit->jenis_bibit ?? '-' }}</p>
+        <p class="text-sm text-gray-600 text-center mb-1">Jenis Bibit : {{ $pengajuan->bibit->jenisBibit->jenis_bibit ?? '-' }}</p>
+        <p class="text-sm text-gray-600 text-center mb-1">Kontak : {{ $pengajuan->bibit->rekanTani->no_hp }}</p>
+        <p class="text-sm text-gray-600 text-center mb-1">Alamat : {{ $pengajuan->bibit->rekanTani->alamat }}</p>
     </aside>
 
     <!-- Form -->

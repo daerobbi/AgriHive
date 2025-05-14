@@ -15,35 +15,35 @@
                     <!-- Judul -->
                     <div>
                         <label class="block text-sm font-medium mb-1">Judul</label>
-                        <input type="text" name="judul_broadcast" class="w-full border rounded px-3 py-1.5 text-sm" value="{{ old('judul_broadcast') }}" required />
+                        <input type="text" name="judul_broadcast" class="w-full border rounded px-3 py-1.5 text-sm" value="{{ old('judul_broadcast') }}" placeholder="Masukkan judul broadcast" required />
                         @error('judul_broadcast') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                     </div>
 
                     <!-- Nama Bibit -->
                     <div>
                         <label class="block text-sm font-medium mb-1">Nama Bibit</label>
-                        <input type="text" name="nama_bibit" class="w-full border rounded px-3 py-1.5 text-sm" value="{{ old('nama_bibit') }}" required />
+                        <input type="text" name="nama_bibit" class="w-full border rounded px-3 py-1.5 text-sm" value="{{ old('nama_bibit') }}" placeholder="Masukkan nama bibit" required />
                         @error('nama_bibit') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                     </div>
 
                     <!-- Jumlah -->
                     <div>
                         <label class="block text-sm font-medium mb-1">Jumlah</label>
-                        <input type="number" name="jumlah_bibit" class="w-full border rounded px-3 py-1.5 text-sm" value="{{ old('jumlah_bibit') }}" required min="1" />
+                        <input type="number" name="jumlah_bibit" class="w-full border rounded px-3 py-1.5 text-sm" value="{{ old('jumlah_bibit') }}" placeholder="Masukkan jumlah bibit" required min="1" />
                         @error('jumlah_bibit') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                     </div>
 
                     <!-- Lokasi -->
                     <div>
                         <label class="block text-sm font-medium mb-1">Lokasi</label>
-                        <textarea name="lokasi" rows="2" class="w-full border rounded px-3 py-1.5 text-sm" required>{{ old('lokasi') }}</textarea>
+                        <textarea name="lokasi" rows="2" class="w-full border rounded px-3 py-1.5 text-sm" placeholder="Masukkan alamat anda" required>{{ old('lokasi') }}</textarea>
                         @error('lokasi') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                     </div>
 
                     <!-- Kontak -->
                     <div>
                         <label class="block text-sm font-medium mb-1">Kontak</label>
-                        <input type="text" name="kontak" class="w-full border rounded px-3 py-1.5 text-sm" value="{{ old('kontak') }}" required />
+                        <input type="text" name="kontak" class="w-full border rounded px-3 py-1.5 text-sm" value="{{ old('kontak') }}" placeholder="masukan nomor dengan format : 628597413214" required />
                         @error('kontak') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                     </div>
                 </div>
@@ -60,7 +60,7 @@
             <div class="md:col-span-3 bg-white rounded-2xl p-6 shadow mt-6">
                 <h2 class="text-green-800 font-semibold text-lg mb-4">🟢 Informasi Khusus</h2>
                 <label class="block text-sm font-medium mb-1">Deskripsi</label>
-                <textarea name="deskripsi" rows="3" class="w-full border rounded px-3 py-1.5 text-sm" required>{{ old('deskripsi') }}</textarea>
+                <textarea name="deskripsi" rows="3" class="w-full border rounded px-3 py-1.5 text-sm" placeholder="Masukkan deskripsi khusus" required>{{ old('deskripsi') }}</textarea>
                 @error('deskripsi') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
             </div>
         </div>

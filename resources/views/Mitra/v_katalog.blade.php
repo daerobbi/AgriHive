@@ -10,7 +10,7 @@
     <!-- Sidebar -->
     <aside class="w-1/4 h-screen sticky top-16 bg-gray-200 p-6 flex flex-col items-center shadow-md min-h-full">
         <img src="{{ asset('storage/' .$rekan->foto_profil) }}" alt="Rekan Tani" class="rounded-full w-40 h-40 object-cover mb-4">
-        <h2 class="text-xl font-bold mb-2">{{ $rekan->nama_rekan }}</h2>
+        <h2 class="text-xl font-bold mb-2">{{ $rekan->nama }}</h2>
         <p class="text-sm text-gray-600 mb-1">Lokasi : {{ $rekan->kota->nama_kota ?? '-' }}</p>
         <p class="text-sm text-gray-600 text-center mb-1">
             Jenis Bibit:

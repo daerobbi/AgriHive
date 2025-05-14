@@ -1,4 +1,4 @@
-@extends('Mitra.app')
+@extends('rekantani.app')
 @section('content')
 
 <style>
@@ -52,33 +52,7 @@
     <section>
         <h3 class="text-lg font-semibold mb-4">{{ $komentars->count() }} Komentar</h3>
 
-        <div class="space-y-4">
-            @foreach ($komentars as $komentar)
-                <div class="border p-4 rounded-lg relative text-sm bg-gray-50">
-                    @if ($komentar->user->agen)
-                        <p class="font-bold">{{ $komentar->user->agen->nama }}</p>
-                    @elseif ($komentar->user->rekantani)
-                        <p class="font-bold">{{ $komentar->user->rekantani->nama }}</p>
-                    @else
-                        <p class="font-bold">Nama Tidak Diketahui</p>
-                    @endif
-
-                    <p class="mt-1">{{ $komentar->isi_komentar }}</p>
-
-                    @if (Auth::user()->role === 'agen')
-                        <form method="POST" action="{{ route('agen.komentar.hapus', $komentar->id) }}" class="absolute top-2 right-2">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="text-gray-500 hover:text-red-600 text-xs flex items-center gap-1">
-                                <img src="{{ asset('asset/sampah.png') }}">Hapus
-                            </button>
-                        </form>
-                    @endif
-                </div>
-            @endforeach
-        </div>
-
-            <!-- Flash Message -->
+        <!-- Flash Messages -->
         @if (session('success'))
             <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 1500)" x-show="show" x-cloak x-transition
                 class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
@@ -96,8 +70,41 @@
             </div>
         @endif
 
+        @if (session('error'))
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        <!-- Daftar Komentar -->
+        <div class="space-y-4">
+            @foreach ($komentars as $komentar)
+                <div class="border p-4 rounded-lg relative text-sm bg-gray-50">
+                    @if ($komentar->user->agen)
+                        <p class="font-bold">{{ $komentar->user->agen->nama }}</p>
+                    @elseif ($komentar->user->rekantani)
+                        <p class="font-bold">{{ $komentar->user->rekantani->nama }}</p>
+                    @else
+                        <p class="font-bold">Nama Tidak Diketahui</p>
+                    @endif
+
+                    <p class="mt-1">{{ $komentar->isi_komentar }}</p>
+
+                    @if (Auth::id() === $komentar->id_user)
+                        <form method="POST" action="{{ route('rekantani.komentar.hapus', $komentar->id) }}" class="absolute top-2 right-2">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-gray-500 hover:text-red-600 text-xs flex items-center gap-1">
+                                <img src="{{ asset('asset/sampah.png') }}">Hapus
+                            </button>
+                        </form>
+                    @endif
+                </div>
+            @endforeach
+        </div>
+
         <!-- Form Komentar -->
-        <form method="POST" action="{{ route('agen.broadcast.komentar', $broadcast->id) }}" class="mt-6 flex items-center gap-2">
+        <form method="POST" action="{{ route('rekantani.broadcast.komentar', $broadcast->id) }}" class="mt-6 flex items-center gap-2">
             @csrf
             <input type="text" name="isi_komentar" placeholder="Tambahkan Komentar.." required
                 class="flex-1 border border-gray-300 rounded-full px-4 py-2 text-sm" />

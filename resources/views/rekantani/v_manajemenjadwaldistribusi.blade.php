@@ -31,7 +31,7 @@
             </button>
         </form>
         <a href="{{ route('rekantani.riwayat') }}" class="bg-green-500 hover:bg-green-600 text-white text-sm rounded-full px-4 py-2 flex items-center space-x-1">
-            <span>Lihat Riwayat (Pengajuan Selesai)</span>
+            <span>Lihat Riwayat Pengajuan</span>
             <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>
