@@ -64,7 +64,7 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function () {
 //  REKAN TANI
 Route::middleware(['auth', 'role:rekantani'])->prefix('rekantani')->group(function () {
     Route::get('/pengajuan', [C_pengajuanrekan::class, 'tampilpengajuan'])->name('rekantani.pengajuanmasuk');
-    Route::get('katalog', [C_katalog::class, 'index'])->name('rekantani.katalog');
+    Route::get('/katalog', [C_katalog::class, 'index'])->name('rekantani.katalog');
     Route::get('/katalog/cari', [C_katalog::class, 'cariKatalog'])->name('rekantani.cariKatalog');
     Route::get('/{id}/detailkatalog', [C_katalog::class, 'detailkatalog'])->name('rekantani.detailkatalog');
     Route::get('/tambahkatalog', [C_katalog::class, 'tampiltambahkatalog'])->name('rekantani.tambahkatalog');
