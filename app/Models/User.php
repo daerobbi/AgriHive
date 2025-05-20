@@ -50,7 +50,7 @@ class User extends Authenticatable
     }
     public function rekantani()
     {
-        return $this->hasOne(rekan_tani::class, 'id_akun', 'id'); // Menghubungkan 'id_akun' di RekanTani dengan 'id' di User
+        return $this->hasOne(rekan_tani::class, 'id_akun', 'id');
     }
 
 }

@@ -15,7 +15,6 @@ class c_broadcastrekan extends Controller
     {
         Broadcast::where('tanggal_kebutuhan', '<', Carbon::today()->toDateString())
         ->delete();
-
         $broadcasts = Broadcast::withCount('komentars')->latest()
         ->get();
 
