@@ -45,7 +45,7 @@
     <!-- Right account info -->
     <section class="flex flex-col flex-grow max-w-2xl w-full space-y-10">
         <div class="flex items-center justify-end space-x-6">
-            <form method="POST" action="">
+            <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button class="bg-[#1b6b44] text-white text-base font-semibold rounded-full px-6 py-3 flex items-center gap-2 hover:bg-[#165734] transition">
                     Logout
