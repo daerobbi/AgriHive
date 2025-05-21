@@ -13,7 +13,7 @@
             <a href="/rekantani/pengajuan" class="hover:underline">Pengajuan Bibit</a>
             <a href="/rekantani/broadcast" class="hover:underline">Broadcast</a>
             <a href="/rekantani/jadwalDistribusi" class="hover:underline">Manajamen Jadwal Distribusi</a>
-            <a href="/dashboard" class="hover:underline">Akun</a>
+            <a href="{{ route('profil.rekantani') }}" class="hover:underline">Akun</a>
         </nav>
     </div>
 </div>

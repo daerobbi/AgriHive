@@ -12,7 +12,7 @@
             <a href="/agen/pengajuan" class="hover:underline">Cari & ajukan bibit</a>
             <a href="/agen/riwayat-pengajuan" class="hover:underline">Riwayat Pengajuan</a>
             <a href="{{ route('agen.broadcast') }}" class="hover:underline">Broadcast</a>
-            <a href="/dashboard" class="hover:underline">Akun</a>
+            <a href="{{ route('agen.profil') }}" class="hover:underline">Akun</a>
         </nav>
     </div>
 </div>

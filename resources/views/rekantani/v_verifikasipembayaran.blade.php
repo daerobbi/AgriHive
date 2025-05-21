@@ -41,7 +41,7 @@
 
     <!-- Sidebar -->
     <div class="bg-white p-6 rounded-lg shadow-md w-full md:w-1/3 flex flex-col items-center text-center">
-        <img src="{{ asset($pengajuan->agen->foto_profil) }}"
+        <img src="{{ asset('storage/'. $pengajuan->agen->foto_profil) }}"
             class="w-32 h-32 rounded-full object-cover mb-4" alt="Foto Mitra">
         <h3 class="font-bold text-lg">{{ $pengajuan->agen->nama }}</h3>
         <div class="text-sm text-gray-600 mt-2 space-y-1">
