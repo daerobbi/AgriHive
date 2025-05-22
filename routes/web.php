@@ -89,6 +89,8 @@ Route::middleware(['auth', 'role:rekantani'])->prefix('rekantani')->group(functi
     Route::get('/broadcast/{id}', [c_broadcastrekan::class, 'show'])->name('rekantani.detailbroadcast');
     Route::post('/broadcast/{id}/komentar', [c_broadcastrekan::class, 'kirimKomentar'])->name('rekantani.broadcast.komentar');
     Route::get('/profil', [c_akunrekan::class, 'profil'])->name('profil.rekantani');
+    Route::get('/edit/profil', [c_akunrekan::class, 'edit'])->name('rekantani.editprofil');
+    Route::post('/profil/update', [c_akunrekan::class, 'update'])->name('rekan.profil.update');
     Route::delete('/komentar/{id}', [c_broadcastrekan::class, 'hapusKomentar'])->name('rekantani.komentar.hapus');
     Route::delete('/katalog/{id}', [C_katalog::class, 'delete'])->name('rekantani.katalog.delete');
 });

@@ -27,5 +27,9 @@ class rekan_tani extends Model
     {
         return $this->belongsTo(kota::class, 'id_kota');
     }
-
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_akun');
+    }
 }
