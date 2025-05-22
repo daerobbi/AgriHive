@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class rekan_tani extends Model
 {
     protected $table = 'rekan_tanis';
@@ -27,7 +28,7 @@ class rekan_tani extends Model
     {
         return $this->belongsTo(kota::class, 'id_kota');
     }
-    
+
     public function user()
     {
         return $this->belongsTo(User::class, 'id_akun');

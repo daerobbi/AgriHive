@@ -11,9 +11,15 @@
             <a href="/" class="hover:underline">Beranda</a>
             <a href="/" class="hover:underline">Verifikasi</a>
             <a href="/admin/pengajuan" class="hover:underline">Pengajuan</a>
-            <a href="/" class="hover:underline">Agen</a>
-            <a href="/" class="hover:underline">Rekan Tani</a>
-            <a href="/dashboard" class="hover:underline">Akun</a>
+            <a href="{{ route('admin.agen') }}" class="hover:underline">Agen</a>
+            <a href="{{ route('admin.rekantani') }}" class="hover:underline">Rekan Tani</a>
+            <form action="{{ route('logout') }}" method="POST" class="inline">
+                @csrf
+                <button type="submit" class="bg-red-600 hover:bg-red-800 text-white font-semibold py-1 px-3 rounded transition duration-200">
+                    LOGOUT
+                </button>
+            </form>
         </nav>
+
     </div>
 </div>

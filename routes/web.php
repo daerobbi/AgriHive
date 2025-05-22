@@ -13,6 +13,8 @@ use App\Http\Controllers\mitra\c_riwayatpengajuan;
 use App\Http\Controllers\mitra\c_akunagen;
 use App\Http\Controllers\rekantani\c_akunrekan;
 use App\Http\Controllers\rekantani\c_broadcastrekan;
+use App\Http\Controllers\admin\c_rekantani;
+use App\Http\Controllers\admin\c_agen;
 
 
 /*
@@ -58,6 +60,9 @@ require __DIR__.'/auth.php';
 Route::middleware(['auth','role:admin'])->prefix('admin')->group(function () {
     Route::get('/pengajuan', [c_pengajuanadmin::class, 'index'])->name('admin.pengajuan');
     Route::get('/pengajuan/{id}', [c_pengajuanadmin::class, 'detailpengajuan'])->name('v_detailpengajuanadmin');
+    Route::get('/rekan-tani', [c_rekantani::class, 'rekantani'])->name('admin.rekantani');
+    Route::get('/agen', [c_agen::class, 'agen'])->name('admin.agen');
+
 });
 
 
