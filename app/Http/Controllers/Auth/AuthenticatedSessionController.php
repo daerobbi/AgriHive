@@ -29,7 +29,19 @@ class AuthenticatedSessionController extends Controller
 
         session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        $user = Auth::user();
+
+        // Redirect berdasarkan role user
+        switch ($user->role) {
+            case 'admin':
+                return redirect()->route('admin.agen');
+            case 'agen':
+                return redirect()->route('agen.beranda');
+            case 'rekantani':
+                return redirect()->route('rekantani.beranda');
+            default:
+                return redirect()->route('home'); // asumsi ada route 'home' sebagai fallback
+        }
     }
 
     /**

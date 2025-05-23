@@ -15,7 +15,8 @@ use App\Http\Controllers\rekantani\c_akunrekan;
 use App\Http\Controllers\rekantani\c_broadcastrekan;
 use App\Http\Controllers\admin\c_rekantani;
 use App\Http\Controllers\admin\c_agen;
-
+use App\Http\Controllers\mitra\c_berandaagen;
+use App\Http\Controllers\rekantani\c_berandarekantani;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +72,7 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function () {
 
 //  REKAN TANI
 Route::middleware(['auth', 'role:rekantani'])->prefix('rekantani')->group(function () {
+    Route::get('/beranda', [c_berandarekantani::class, 'index'])->name('rekantani.beranda');
     Route::get('/pengajuan', [C_pengajuanrekan::class, 'tampilpengajuan'])->name('rekantani.pengajuanmasuk');
     Route::get('/katalog', [C_katalog::class, 'index'])->name('rekantani.katalog');
     Route::get('/katalog/cari', [C_katalog::class, 'cariKatalog'])->name('rekantani.cariKatalog');
@@ -105,6 +107,7 @@ Route::middleware(['auth', 'role:rekantani'])->prefix('rekantani')->group(functi
 
 // AGEN
 Route::middleware(['auth', 'role:agen'])->prefix('agen')->group(function () {
+    Route::get('/beranda', [c_berandaagen::class, 'index'])->name('agen.beranda');
     Route::get('/pengajuan', [C_pengajuanAgen::class, 'tampilRekanTani'])->name('v_pengajuan');
     Route::get('/katalog/{rekantani_id}', [C_pengajuanAgen::class, 'lihatprofil'])->name('agen.katalog');
     Route::get('/detailkatalog/{bibit_id}', [C_pengajuanAgen::class, 'detailkatalog'])->name('v_detailkatalog');

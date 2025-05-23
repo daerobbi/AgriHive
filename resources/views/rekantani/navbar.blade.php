@@ -8,7 +8,7 @@
         </div>
         <!-- Kanan: Navigasi -->
         <nav class="flex items-center space-x-4 text-sm">
-            <a href="/" class="hover:underline">Beranda</a>
+            <a href="{{ route('rekantani.beranda') }}" class="hover:underline">Beranda</a>
             <a href="/rekantani/katalog" class="hover:underline">Katalog</a>
             <a href="/rekantani/pengajuan" class="hover:underline">Pengajuan Bibit</a>
             <a href="/rekantani/broadcast" class="hover:underline">Broadcast</a>
