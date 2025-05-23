@@ -24,25 +24,37 @@ class AuthenticatedSessionController extends Controller
      * Handle an incoming authentication request.
      */
     public function store(LoginRequest $request): RedirectResponse
-    {
-        $request->authenticate();
+{
+    $request->authenticate();
 
-        session()->regenerate();
+    $user = Auth::user();
 
-        $user = Auth::user();
-
-        // Redirect berdasarkan role user
-        switch ($user->role) {
-            case 'admin':
-                return redirect()->route('admin.agen');
-            case 'agen':
-                return redirect()->route('agen.beranda');
-            case 'rekantani':
-                return redirect()->route('rekantani.beranda');
-            default:
-                return redirect()->route('home'); // asumsi ada route 'home' sebagai fallback
-        }
+    // Cek status akun
+    if ($user->status_akun === 0) {
+        Auth::logout();
+        return redirect()->back()->with('error', 'Verivikasi akun anda ditolak oleh admin.');
     }
+
+    if (is_null($user->status_akun)) {
+        Auth::logout();
+        return redirect()->back()->with('error', 'Akun anda masih belum diverivikasi admin. Coba lagi nanti.');
+    }
+
+    session()->regenerate();
+
+    // Redirect berdasarkan role user
+    switch ($user->role) {
+        case 'admin':
+            return redirect()->route('admin.agen');
+        case 'agen':
+            return redirect()->route('agen.beranda');
+        case 'rekantani':
+            return redirect()->route('rekantani.beranda');
+        default:
+            return redirect()->route('home'); // fallback
+    }
+}
+
 
     /**
      * Destroy an authenticated session.
