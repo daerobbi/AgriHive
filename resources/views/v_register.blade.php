@@ -6,9 +6,9 @@
     <title>AgriHive Register</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
-          rel="stylesheet" />
+        rel="stylesheet" />
     <style>body{font-family:"Inter",sans-serif}</style>
 </head>
 <body class="relative bg-[#e3e3e3] min-h-screen overflow-x-hidden">
@@ -60,11 +60,11 @@
                 <div class="flex flex-col space-y-4">
                     <label class="text-sm text-[#6b7280]">Nama</label>
                     <input name="nama" value="{{ old('nama') }}" required
-                           class="border border-[#1b7a4a] rounded px-3 py-2 focus:ring-[#1b7a4a] focus:outline-none">
+                            class="border border-[#1b7a4a] rounded px-3 py-2 focus:ring-[#1b7a4a] focus:outline-none">
 
                     <label class="text-sm text-[#6b7280]">Alamat</label>
                     <input name="alamat" value="{{ old('alamat') }}" required
-                           class="border border-[#1b7a4a] rounded px-3 py-2 focus:ring-[#1b7a4a] focus:outline-none">
+                            class="border border-[#1b7a4a] rounded px-3 py-2 focus:ring-[#1b7a4a] focus:outline-none">
 
                     <label class="text-sm text-[#6b7280]">Kota Domisili</label>
                     <select name="kota" required
@@ -82,19 +82,19 @@
                 <div class="flex flex-col space-y-4">
                     <label class="text-sm text-[#6b7280]">No. WhatsApp</label>
                     <input name="whatsapp" value="{{ old('whatsapp') }}" required
-                           class="border border-[#1b7a4a] rounded px-3 py-2 focus:ring-[#1b7a4a] focus:outline-none">
+                            class="border border-[#1b7a4a] rounded px-3 py-2 focus:ring-[#1b7a4a] focus:outline-none">
 
                     <label class="text-sm text-[#6b7280]">Email</label>
                     <input name="email" type="email" value="{{ old('email') }}" required
-                           class="border border-[#1b7a4a] rounded px-3 py-2 focus:ring-[#1b7a4a] focus:outline-none">
+                            class="border border-[#1b7a4a] rounded px-3 py-2 focus:ring-[#1b7a4a] focus:outline-none">
 
                     <label class="text-sm text-[#6b7280]">Password</label>
                     <input name="password" type="password" required
-                           class="border border-[#1b7a4a] rounded px-3 py-2 focus:ring-[#1b7a4a] focus:outline-none">
+                            class="border border-[#1b7a4a] rounded px-3 py-2 focus:ring-[#1b7a4a] focus:outline-none">
 
                     <label class="text-sm text-[#6b7280]">Konfirmasi Password</label>
                     <input name="password_confirmation" type="password" required
-                           class="border border-[#1b7a4a] rounded px-3 py-2 focus:ring-[#1b7a4a] focus:outline-none">
+                            class="border border-[#1b7a4a] rounded px-3 py-2 focus:ring-[#1b7a4a] focus:outline-none">
                 </div>
 
                 {{-- Kolom 3 --}}
@@ -109,13 +109,13 @@
 
                     <p class="text-xs text-[#6b7280] mt-1">*Unduh dan lengkapi dokumen berikut:</p>
                     <a href="{{ asset('template_bukti_usaha.docx') }}"
-                       class="text-[#1b7a4a] text-sm border border-[#1b7a4a] rounded px-3 py-1 inline-block hover:bg-[#1b7a4a] hover:text-white transition">
+                        class="text-[#1b7a4a] text-sm border border-[#1b7a4a] rounded px-3 py-1 inline-block hover:bg-[#1b7a4a] hover:text-white transition">
                         template_bukti_usaha.docx
                     </a>
 
                     <label class="text-xs text-[#6b7280] mt-4">*Unggah dokumen yang telah dilengkapi:</label>
                     <input type="file" name="dokumen_verifikasi" required
-                           class="border border-[#1b7a4a] rounded px-3 py-2 text-sm file:mr-3 file:py-1 file:px-3 file:border-0 file:bg-[#2ecc71] file:text-white file:rounded file:cursor-pointer">
+                            class="border border-[#1b7a4a] rounded px-3 py-2 text-sm file:mr-3 file:py-1 file:px-3 file:border-0 file:bg-[#2ecc71] file:text-white file:rounded file:cursor-pointer">
                 </div>
             </div>
 

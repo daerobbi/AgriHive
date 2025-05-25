@@ -26,9 +26,9 @@ class c_register extends Controller
             'kota' => 'required|exists:kotas,id',
             'whatsapp' => 'required|string|max:20',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|min:8|confirmed',
             'daftar' => 'required|in:rekantani,agen',
-            'dokumen_verifikasi' => 'required|file|mimes:pdf,doc,docx|max:2048',
+            'dokumen_verifikasi' => 'required|file|mimes:pdf',
         ]);
 
         // Upload dokumen
