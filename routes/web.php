@@ -15,6 +15,8 @@ use App\Http\Controllers\rekantani\c_akunrekan;
 use App\Http\Controllers\rekantani\c_broadcastrekan;
 use App\Http\Controllers\admin\c_rekantani;
 use App\Http\Controllers\admin\c_agen;
+use App\Http\Controllers\admin\c_berandaadmin;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\mitra\c_berandaagen;
 use App\Http\Controllers\rekantani\c_berandarekantani;
 
@@ -28,37 +30,38 @@ use App\Http\Controllers\rekantani\c_berandarekantani;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('auth.login');
-});
+Route::get('/', function () {return view('v_landingpage');});
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 // Pendaftaran Rekantani
-Route::get('/register/rekantani', [RegisteredUserController::class, 'createRekantani'])->name('register.rekantani');
-Route::post('/register/rekantani', [RegisteredUserController::class, 'storeRekantani']);
+// Route::get('/register/rekantani', [RegisteredUserController::class, 'createRekantani'])->name('register.rekantani');
+// Route::post('/register/rekantani', [RegisteredUserController::class, 'storeRekantani']);
 
-// Pendaftaran Agen
-Route::get('/register/agen', [RegisteredUserController::class, 'createAgen'])->name('register.agen');
-Route::post('/register/agen', [RegisteredUserController::class, 'storeAgen']);
+// // Pendaftaran Agen
+// Route::get('/register/agen', [RegisteredUserController::class, 'createAgen'])->name('register.agen');
+// Route::post('/register/agen', [RegisteredUserController::class, 'storeAgen']);
 
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-require __DIR__.'/auth.php';
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
+// require __DIR__.'/auth.php';
 
 // Route::get('/', function () {return view('v_landingpage');});
 
 
 // ADMIN
 Route::middleware(['auth','role:admin'])->prefix('admin')->group(function () {
+    Route::get('/beranda', [c_berandaadmin::class, 'index'])->name('admin.beranda');
     Route::get('/pengajuan', [c_pengajuanadmin::class, 'index'])->name('admin.pengajuan');
     Route::get('/pengajuan/{id}', [c_pengajuanadmin::class, 'detailpengajuan'])->name('v_detailpengajuanadmin');
     Route::get('/rekan-tani', [c_rekantani::class, 'rekantani'])->name('admin.rekantani');

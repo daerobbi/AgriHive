@@ -45,7 +45,7 @@ class AuthenticatedSessionController extends Controller
     // Redirect berdasarkan role user
     switch ($user->role) {
         case 'admin':
-            return redirect()->route('admin.agen');
+            return redirect()->route('admin.beranda');
         case 'agen':
             return redirect()->route('agen.beranda');
         case 'rekantani':
