@@ -130,6 +130,32 @@
                         <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
                     @enderror
                 </div>
+                <div class="border-t pt-6 mt-6">
+                    <h3 class="text-gray-800 font-semibold text-sm mb-4 select-none">Ubah Password (Opsional)</h3>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block mb-1 text-gray-600 text-sm">Password Lama</label>
+                            <input type="password" name="password_lama"
+                                class="w-full rounded-md bg-gray-100 text-xs px-3 py-2 border focus:ring-green-400">
+                            @error('password_lama') <p class="text-red-600 text-xs">{{ $message }}</p> @enderror
+                        </div>
+
+                        <div>
+                            <label class="block mb-1 text-gray-600 text-sm">Password Baru</label>
+                            <input type="password" name="password_baru"
+                                class="w-full rounded-md bg-gray-100 text-xs px-3 py-2 border focus:ring-green-400">
+                            @error('password_baru') <p class="text-red-600 text-xs">{{ $message }}</p> @enderror
+                        </div>
+
+                        <div>
+                            <label class="block mb-1 text-gray-600 text-sm">Konfirmasi Password Baru</label>
+                            <input type="password" name="konfirmasi_password"
+                                class="w-full rounded-md bg-gray-100 text-xs px-3 py-2 border focus:ring-green-400">
+                            @error('konfirmasi_password') <p class="text-red-600 text-xs">{{ $message }}</p> @enderror
+                        </div>
+                    </div>
+                </div>
             </section>
         </form>
 

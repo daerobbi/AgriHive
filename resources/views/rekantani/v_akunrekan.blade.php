@@ -70,10 +70,6 @@
                     <label class="block text-sm text-gray-500 mb-1 select-none">Password</label>
                     <div class="w-full rounded-lg bg-gray-300 text-base px-4 py-2.5">••••••••••</div>
                 </div>
-                <button class="text-base bg-gray-300 rounded-full px-5 py-2 text-gray-600 flex items-center gap-1 cursor-default select-none" disabled>
-                    Ganti Password
-                    <i class="fas fa-lock text-base"></i>
-                </button>
             </div>
         </div>
     </section>

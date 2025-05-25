@@ -76,9 +76,6 @@
                         ••••••••••
                     </div>
                 </div>
-                <button class="text-sm bg-gray-300 rounded-full px-4 py-2 text-gray-600 flex items-center gap-1 cursor-default" disabled type="button">
-                    Ganti Password <i class="fas fa-lock text-sm"></i>
-                </button>
             </div>
         </div>
     </section>
