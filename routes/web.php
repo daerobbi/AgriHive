@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\mitra\C_pengajuanAgen;
 use App\Http\Controllers\rekantani\C_pengajuanrekan;
