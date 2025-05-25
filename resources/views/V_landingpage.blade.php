@@ -32,7 +32,7 @@
                 Login
                 <i class="fas fa-arrow-right"></i>
             </a>
-            <a href="#" class="bg-[#f2c419] text-black rounded-full px-5 py-2 text-sm font-semibold flex items-center gap-2 hover:brightness-110 transition">
+            <a href="{{ route('register') }}" class="bg-[#f2c419] text-black rounded-full px-5 py-2 text-sm font-semibold flex items-center gap-2 hover:brightness-110 transition">
                 Register
                 <i class="fas fa-sign-in-alt"></i>
             </a>
@@ -292,17 +292,18 @@
         >
         <div class="space-y-4 max-w-[350px]">
             <h2 class="text-2xl font-light leading-tight">
-            Bersama <span class="font-bold">AgriHive</span>,<br />
-            Kuatkan Ekosistem<br />
-            Tani Lokal
+                Bersama <span class="font-bold">AgriHive</span>,<br />
+                Kuatkan Ekosistem<br />
+                Tani Lokal
             </h2>
-            <button
-            type="button"
-            class="border border-white rounded-full px-5 py-2 text-xs font-light flex items-center gap-2 hover:bg-white hover:text-[#1f7a4a] transition w-max"
+            <a
+                href="{{ route('register') }}"
+                class="border border-white rounded-full px-5 py-2 text-xs font-light flex items-center gap-2 hover:bg-white hover:text-[#1f7a4a] transition w-max"
             >
-            Bergabung Sekarang <i class="fas fa-arrow-right"></i>
-            </button>
+                Bergabung Sekarang <i class="fas fa-arrow-right"></i>
+            </a>
         </div>
+
 
         <div class="space-y-4 max-w-[350px]">
             <h2 class="text-2xl font-light leading-tight">

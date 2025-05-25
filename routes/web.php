@@ -7,7 +7,6 @@ use App\Http\Controllers\rekantani\C_pengajuanrekan;
 use App\Http\Controllers\rekantani\c_katalog;
 use App\Http\Controllers\admin\c_pengajuanadmin;
 use App\Http\Controllers\rekantani\c_manajemenjadwaldistribusi;
-use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\mitra\c_broadcastagen;
 use App\Http\Controllers\mitra\c_riwayatpengajuan;
 use App\Http\Controllers\mitra\c_akunagen;
@@ -17,6 +16,7 @@ use App\Http\Controllers\admin\c_rekantani;
 use App\Http\Controllers\admin\c_agen;
 use App\Http\Controllers\admin\c_berandaadmin;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\c_register;
 use App\Http\Controllers\mitra\c_berandaagen;
 use App\Http\Controllers\rekantani\c_berandarekantani;
 
@@ -30,10 +30,13 @@ use App\Http\Controllers\rekantani\c_berandarekantani;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', function () {return view('v_landingpage');});
+Route::get('/', function () {return view('V_landingpage');});
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+Route::get('/register', [c_register::class, 'showForm'])->name('register');
+Route::post('/register', [c_register::class, 'store'])->name('register.store');
+
 
 // Pendaftaran Rekantani
 // Route::get('/register/rekantani', [RegisteredUserController::class, 'createRekantani'])->name('register.rekantani');
