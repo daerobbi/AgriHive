@@ -67,10 +67,4 @@
         @endforelse
     </div>
 
-    <!-- Back Link -->
-    <div class="mt-6">
-        <a href="#" class="text-green-700 font-semibold hover:underline text-sm">&lt; kembali</a>
-    </div>
-</div>
-
 @endsection
