@@ -14,6 +14,7 @@ use App\Http\Controllers\rekantani\c_broadcastrekan;
 use App\Http\Controllers\admin\c_rekantani;
 use App\Http\Controllers\admin\c_agen;
 use App\Http\Controllers\admin\c_berandaadmin;
+use App\Http\Controllers\admin\c_verifikasi;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\c_register;
 use App\Http\Controllers\mitra\c_berandaagen;
@@ -64,6 +65,10 @@ Route::post('/register', [c_register::class, 'store'])->name('register.store');
 // ADMIN
 Route::middleware(['auth','role:admin'])->prefix('admin')->group(function () {
     Route::get('/beranda', [c_berandaadmin::class, 'index'])->name('admin.beranda');
+    Route::get('/verifikasi-pendaftaran', [c_verifikasi::class, 'index'])->name('admin.verifikasi');
+    Route::get('/verifikasi/{id}', [c_verifikasi::class, 'showdetail'])->name('admin.verifikasidetail');
+    Route::post('/verifikasi-akun/{id}/verifikasi', [c_verifikasi::class, 'verifikasi'])->name('verifikasi.verifikasi');
+    Route::post('/verifikasi-akun/{id}/tolak', [c_verifikasi::class, 'tolak'])->name('verifikasi.tolak');
     Route::get('/pengajuan', [c_pengajuanadmin::class, 'index'])->name('admin.pengajuan');
     Route::get('/pengajuan/{id}', [c_pengajuanadmin::class, 'detailpengajuan'])->name('v_detailpengajuanadmin');
     Route::get('/rekan-tani', [c_rekantani::class, 'rekantani'])->name('admin.rekantani');

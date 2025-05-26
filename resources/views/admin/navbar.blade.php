@@ -9,7 +9,7 @@
         <!-- Kanan: Navigasi -->
         <nav class="flex items-center space-x-4 text-sm">
             <a href="{{ route('admin.beranda') }}" class="hover:underline">Beranda</a>
-            <a href="/" class="hover:underline">Verifikasi</a>
+            <a href="{{ route('admin.verifikasi') }}" class="hover:underline">Verifikasi</a>
             <a href="/admin/pengajuan" class="hover:underline">Pengajuan</a>
             <a href="{{ route('admin.agen') }}" class="hover:underline">Agen</a>
             <a href="{{ route('admin.rekantani') }}" class="hover:underline">Rekan Tani</a>
