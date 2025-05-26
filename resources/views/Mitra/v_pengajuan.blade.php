@@ -46,7 +46,7 @@
 </form>
 
 <!-- Daftar Rekan Tani -->
-<div class="max-w-7xl mx-auto mt-8 bg-white p-6 rounded shadow">
+<div class="max-w-7xl mx-auto mt-8 bg-white p-6 rounded shadow mb-8">
     <h2 class="text-2xl font-bold mb-6 text-center">Daftar Rekan Tani</h2>
 
     <!-- Card List -->
@@ -66,5 +66,5 @@
             <p class="py-6 text-center text-gray-500">Tidak ada data Rekan Tani ditemukan.</p>
         @endforelse
     </div>
-
+</div>
 @endsection

@@ -21,6 +21,7 @@
             <div class="relative">
                 <select name="status" class="border border-gray-300 rounded-full py-2 px-4 focus:outline-none">
                     <option value="">Semua Status</option>
+                    <option value="diproses" {{ request('status') == 'diproses' ? 'selected' : '' }}>Diproses</option>
                     <option value="dikirim" {{ request('status') == 'dikirim' ? 'selected' : '' }}>Dikirim</option>
                     <option value="selesai" {{ request('status') == 'selesai' ? 'selected' : '' }}>Selesai</option>
                     <option value="ditolak" {{ request('status') == 'ditolak' ? 'selected' : '' }}>Ditolak</option>
@@ -31,7 +32,7 @@
     </form>
 
     <!-- Table -->
-    <div class="max-w-screen-xl mx-auto px-6 overflow-x-auto">
+    <div class="max-w-screen-xl mx-auto px-6 overflow-x-auto mb-8">
         <table class="w-full text-center border-collapse">
             <thead class="border-b-2 border-gray-300">
                 <tr class="text-gray-600">

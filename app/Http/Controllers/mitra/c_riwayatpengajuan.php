@@ -35,7 +35,12 @@ class c_riwayatpengajuan extends Controller
         if ($request->has('status') && $request->status != '') {
             if ($request->status == 'ditolak') {
                 $pengajuan->where('status_pengajuan', 0);
-            } else {
+            }
+            elseif ($request->status == 'diproses') {
+                $pengajuan->where('status_pembayaran', 1)
+                        ->where('status_pengiriman', 'diproses');
+            }
+                else {
                 $pengajuan->where('status_pengiriman', $request->status);
             }
         }

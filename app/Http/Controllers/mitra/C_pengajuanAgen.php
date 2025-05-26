@@ -192,7 +192,10 @@ class C_pengajuanAgen extends Controller
         $lokasi = $request->input('lokasi');
         $jenis = $request->input('jenis');
 
-        $query = rekan_tani::with(['bibit.JenisBibit', 'kota']);
+        $query = rekan_tani::with(['bibit.JenisBibit', 'kota', 'user'])
+            ->whereHas('user', function ($q) {
+                $q->where('status_akun', 1);
+            });
 
         if ($lokasi) {
             $query->whereHas('kota', function ($q) use ($lokasi) {
