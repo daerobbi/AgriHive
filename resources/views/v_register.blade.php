@@ -108,7 +108,7 @@
                     </select>
 
                     <p class="text-xs text-[#6b7280] mt-1">*Unduh dan lengkapi dokumen berikut:</p>
-                    <a href="{{ asset('template_bukti_usaha.docx') }}"
+                    <a href="{{ asset('asset/DOKUMEN_PENDAFTARAN.docx') }}"
                         class="text-[#1b7a4a] text-sm border border-[#1b7a4a] rounded px-3 py-1 inline-block hover:bg-[#1b7a4a] hover:text-white transition">
                         template_bukti_usaha.docx
                     </a>
