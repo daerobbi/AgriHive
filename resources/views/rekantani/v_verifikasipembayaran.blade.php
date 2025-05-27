@@ -40,7 +40,7 @@
     </div>
 
     <!-- Sidebar -->
-    <div class="bg-white p-6 rounded-lg shadow-md w-full md:w-1/3 flex flex-col items-center text-center">
+    <div class="bg-gray-100 p-6 rounded-lg shadow-md w-full md:w-1/3 flex flex-col items-center text-center">
         <img src="{{ asset('storage/'. $pengajuan->agen->foto_profil) }}"
             class="w-32 h-32 rounded-full object-cover mb-4" alt="Foto Mitra">
         <h3 class="font-bold text-lg">{{ $pengajuan->agen->nama }}</h3>
@@ -63,7 +63,8 @@
     </div>
 
     <!-- Main Content -->
-    <main class="flex-1 bg-white p-6">
+    <div class="flex-1 bg-white p-6">
+
         <h1 class="text-2xl font-bold mb-6">Pengajuan</h1>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <p><span class="font-semibold">Jenis Bibit:</span> {{ $pengajuan->bibit->jenis_bibit ?? 'Tidak diketahui' }}</p>
@@ -108,7 +109,7 @@
                 </button>
             @endif
         </div>
-    </main>
+    </div>
 </div>
 
 @endsection
