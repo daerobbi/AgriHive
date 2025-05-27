@@ -75,7 +75,7 @@
         <!-- Modal Konfirmasi -->
         <div x-show="openModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50" x-transition>
             <div class="bg-white p-6 rounded-2xl text-center shadow-lg max-w-md w-full">
-                <p class="text-lg mb-6">yakin ingin mengirimkan broadcast ?</p>
+                <p class="text-lg mb-6">Yakin ingin mengirimkan broadcast?</p>
                 <div class="flex justify-center gap-4">
                     <button
                         type="button"

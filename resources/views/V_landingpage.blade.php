@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <title>
-    Agrihive
+    AgriHive
     </title>
     @vite('resources/css/app.css')
     </script>
