@@ -44,7 +44,7 @@
                             </td>
                             <td class="py-4 px-4">{{ $rekan->kota->nama_kota ?? '-' }}</td>
                             <td class="py-4 px-4">
-                                <a href="#" class="bg-green-400 text-white font-semibold text-xs rounded-full px-4 py-1 hover:bg-green-500 transition">
+                                <a href="{{ route('admin.rekantani.detail', $rekan->id) }}" class="bg-green-400 text-white font-semibold text-xs rounded-full px-4 py-1 hover:bg-green-500 transition">
                                     Detail Rekan Tani
                                 </a>
                             </td>

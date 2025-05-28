@@ -72,7 +72,9 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function () {
     Route::get('/pengajuan', [c_pengajuanadmin::class, 'index'])->name('admin.pengajuan');
     Route::get('/pengajuan/{id}', [c_pengajuanadmin::class, 'detailpengajuan'])->name('v_detailpengajuanadmin');
     Route::get('/rekan-tani', [c_rekantani::class, 'rekantani'])->name('admin.rekantani');
+    Route::get('/rekantani/{id}/detail', [C_rekantani::class, 'detail'])->name('admin.rekantani.detail');
     Route::get('/agen', [c_agen::class, 'agen'])->name('admin.agen');
+    Route::get('/agen/{id}/detail', [c_agen::class, 'detail'])->name('admin.agen.detail');
 
 });
 

@@ -56,7 +56,7 @@
                     </td>
                     <td class="py-5 px-4 select-none">{{ $agen->alamat }}</td>
                     <td class="py-5 px-4">
-                        <a href="" class="bg-green-500 text-white font-semibold text-xs rounded-full px-4 py-1 hover:bg-green-600 transition select-none">
+                        <a href="{{ route('admin.agen.detail', $agen->id) }}" class="bg-green-500 text-white font-semibold text-xs rounded-full px-4 py-1 hover:bg-green-600 transition select-none">
                             Detail Agen
                         </a>
                     </td>

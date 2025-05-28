@@ -35,4 +35,10 @@ class c_rekantani extends Controller
 
         return view('admin.v_rekantani', compact('rekans', 'kotaList'));
     }
+
+    public function detail($id)
+    {
+        $rekantani = rekan_tani::with(['user', 'kota'])->findOrFail($id);
+        return view('admin.v_detailakunrekantani', compact('rekantani'));
+    }
 }
