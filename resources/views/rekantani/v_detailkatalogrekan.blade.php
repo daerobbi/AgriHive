@@ -22,7 +22,7 @@
 
                 <!-- Detail -->
                 <div class="flex-1">
-                    <div class="text-green-700 font-medium mb-1">Tanaman Hias</div>
+                    <div class="text-green-700 font-medium mb-1">{{ $detailKatalog->jenisBibit->jenis_bibit }}</div>
                     <h2 class="text-2xl font-semibold">{{ $detailKatalog->nama_bibit }}</h2>
                     <div class="text-gray-500 text-sm mb-2">Stok : {{ $detailKatalog->stok }}</div>
                     <div class="text-2xl font-bold text-black mb-6">{{ $detailKatalog->harga }}

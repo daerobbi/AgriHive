@@ -46,7 +46,7 @@
         </div>
         <div>
             <p class="text-sm text-gray-500">Jadwal Pengiriman Bibit</p>
-            <p class="font-medium">{{ \Carbon\Carbon::parse($pengajuan->tanggal_pengiriman)->format('d/m/Y') }}</p>
+            <p class="font-medium">{{ $pengajuan->tanggal_pengiriman ? \Carbon\Carbon::parse($pengajuan->tanggal_pengiriman)->format('d/m/Y') : '-' }}</p>
         </div>
     </div>
 
