@@ -90,7 +90,6 @@ class c_verifikasi extends Controller
         ));
     }
 
-
     public function verifikasi($id)
     {
         $user = User::findOrFail($id);
