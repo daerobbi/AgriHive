@@ -12,14 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('agens', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary(); // UUID sebagai primary key
             $table->timestamps();
             $table->string('nama');
             $table->string('alamat');
             $table->string('foto_profil')->nullable();
             $table->string('no_hp');
-            $table->string('bukti_usaha')->nullable();
-            $table->foreignId('id_akun')->constrained('users');
+            $table->string('bukti_usaha');
+
+            // Foreign key UUID ke tabel users
+            $table->uuid('id_akun');
+            $table->foreign('id_akun')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

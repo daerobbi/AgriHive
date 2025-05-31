@@ -17,7 +17,8 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->timestamps();
             $table->string('isi_komentar');
-            $table->foreignId('id_user')->constrained('users');
+            $table->uuid('id_user');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->uuid('id_broadcast');
             $table->foreign('id_broadcast')->references('id')->on('broadcasts')->onDelete('cascade');;
         });

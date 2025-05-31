@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pengajuan', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary(); // pakai UUID agar konsisten
             $table->timestamps();
             $table->integer('jumlah_permintaan');
             $table->date('tanggal_dibutuhkan');
@@ -25,11 +25,20 @@ return new class extends Migration
             $table->enum('status_pengiriman',['diproses','dikirim','selesai']);
             $table->string('foto_invoice')->nullable();
             $table->string('bukti_bayar')->nullable();
-            $table->foreignId('id_bibit')->constrained('bibit');
-            $table->foreignId('id_agens')->constrained('agens');
+
+            // foreign key id_bibit tanpa onDelete cascade
+            $table->uuid('id_bibit');
+            $table->foreign('id_bibit')->references('id')->on('bibit');
+
+            // foreign key id_agens dengan onDelete cascade
+            $table->uuid('id_agens');
+            $table->foreign('id_agens')->references('id')->on('agens')->onDelete('cascade');
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
         Schema::dropIfExists('pengajuan');

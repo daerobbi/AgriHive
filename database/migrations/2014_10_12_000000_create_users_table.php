@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary(); // Ubah ke UUID
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->enum('role',['admin','rekantani','agen']);
+            $table->enum('role', ['admin', 'rekantani', 'agen']);
             $table->boolean('status_akun')->nullable();
         });
     }

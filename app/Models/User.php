@@ -2,15 +2,32 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+    /**
+     * UUID Configuration
+     */
+    public $incrementing = false;
+    protected $keyType = 'string';
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            if (empty($model->id)) {
+                $model->id = (string) Str::uuid();
+            }
+        });
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -46,11 +63,11 @@ class User extends Authenticatable
 
     public function agen()
     {
-    return $this->hasOne(agen::class, 'id_akun');
+        return $this->hasOne(agen::class, 'id_akun');
     }
+
     public function rekantani()
     {
         return $this->hasOne(rekan_tani::class, 'id_akun', 'id');
     }
-
 }

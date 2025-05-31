@@ -12,21 +12,27 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('rekan_tanis', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary(); // Primary key UUID
             $table->timestamps();
             $table->string('nama');
             $table->string('alamat');
             $table->string('foto_profil')->nullable();
             $table->string('no_hp');
-            $table->string('bukti_usaha')->nullable();
-            $table->foreignId('id_akun')->constrained('users');
-            $table->foreignId('id_kota')->constrained('kotas');
+            $table->string('bukti_usaha');
+
+            // Foreign keys as UUID
+            $table->uuid('id_akun');
+            $table->uuid('id_kota');
+
+            // Set foreign key constraints
+            $table->foreign('id_akun')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_kota')->references('id')->on('kotas')->onDelete('cascade');
         });
     }
 
     /**
      * Reverse the migrations.
-     */ 
+     */
     public function down(): void
     {
         Schema::dropIfExists('rekan_tanis');

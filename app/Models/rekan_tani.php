@@ -4,11 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Str;
 
 class rekan_tani extends Model
 {
+    use HasFactory;
+
     protected $table = 'rekan_tanis';
+
+    public $incrementing = false;
+    protected $keyType = 'string';
 
     protected $fillable = [
         'nama',
@@ -17,7 +22,19 @@ class rekan_tani extends Model
         'no_hp',
         'bukti_usaha',
         'id_akun',
-        'id_kota'];
+        'id_kota',
+    ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            if (empty($model->id)) {
+                $model->id = (string) Str::uuid();
+            }
+        });
+    }
 
     public function bibit()
     {

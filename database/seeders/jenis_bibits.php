@@ -17,3 +17,4 @@ class jenis_bibits extends Seeder
     }
 }
 
+

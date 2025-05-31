@@ -21,7 +21,9 @@ return new class extends Migration
             $table->string('kontak');
             $table->date('tanggal_kebutuhan');
             $table->string('deskripsi');
-            $table->foreignId('id_agen')->constrained('agens');
+            $table->uuid('id_agen');
+            $table->foreign('id_agen')->references('id')->on('agens')->onDelete('cascade');
+
         });
     }
 
