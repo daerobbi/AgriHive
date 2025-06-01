@@ -55,8 +55,8 @@
         <dl class="grid grid-cols-[max-content_1fr] gap-x-6 gap-y-3 text-base items-center">
             <dt class="font-bold">Dokumen Pendaftaran :</dt>
             <dd class="mb-2">
-                @if ($agen->dokumen)
-                    <a href="{{ asset('storage/' . $agen->dokumen) }}"
+                @if ($agen->bukti_usaha)
+                    <a href="{{ asset('storage/' . $agen->bukti_usaha) }}"
                         class="inline-block bg-green-400 text-white px-4 py-1 rounded-lg underline"
                         target="_blank">
                         bukti usaha
