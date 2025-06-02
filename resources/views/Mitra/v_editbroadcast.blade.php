@@ -79,10 +79,10 @@
                     <button
                         type="button"
                         @click="openModal = false; $el.closest('form').submit()"
-                        class="bg-red-600 text-white px-6 py-2 rounded-full">
+                        class="bg-green-700 text-white px-6 py-2 rounded-full">
                         Yakin
                     </button>
-                    <button type="button" @click="openModal = false" class="bg-green-800 text-white px-6 py-2 rounded-full">Batal</button>
+                    <button type="button" @click="openModal = false" class="bg-red-700 text-white px-6 py-2 rounded-full">Batal</button>
                 </div>
             </div>
         </div>

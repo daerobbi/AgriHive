@@ -88,7 +88,6 @@
     </div>
 
     <!-- Modal -->
-    <!-- Modal -->
 <div x-show="openModal" x-cloak class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
     <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full text-center">
         <p class="text-lg mb-6">Pastikan bibit benar-benar sudah anda terima.<br>Lanjutkan konfirmasi?</p>

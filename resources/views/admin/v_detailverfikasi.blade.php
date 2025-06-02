@@ -102,7 +102,7 @@
             <div class="flex justify-center gap-4">
                 <button
                     @click="closeModal()"
-                    class="bg-gray-400 text-white font-bold px-10 py-3 rounded-xl"
+                    class="bg-red-700 text-white font-bold px-10 py-3 rounded-xl"
                 >
                     Batal
                 </button>
@@ -110,7 +110,7 @@
                     @csrf
                     <button
                         type="submit"
-                        class="bg-red-700 text-white font-bold px-10 py-3 rounded-xl"
+                        class="bg-green-700 text-white font-bold px-10 py-3 rounded-xl"
                     >
                         Yakin
                     </button>
