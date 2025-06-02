@@ -19,7 +19,6 @@
     </div>
 
     <section class="max-w-4xl">
-        {{-- Bagian ini tetap persis seperti yang kamu punya --}}
         <dl class="grid grid-cols-[max-content_1fr] gap-x-6 gap-y-3 text-base">
             <dt class="font-bold">Tanggal Mendaftar :</dt>
             <dd class="mb-2">{{ $tanggal_daftar }}</dd>

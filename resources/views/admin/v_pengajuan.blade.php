@@ -4,9 +4,7 @@
     <h1 class="text-2xl font-bold">Pengajuan</h1>
 </div>
 
-<!-- Filter dan Search -->
 <form method="GET" action="{{ route('admin.pengajuan') }}" class="flex flex-wrap gap-4 px-6 py-4 bg-white shadow mt-4 items-center">
-    <!-- Search Bar + Button -->
     <div class="flex items-center gap-2">
         <div class="relative">
             <input
