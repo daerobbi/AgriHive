@@ -22,11 +22,10 @@ return new class extends Migration
 
             // Foreign keys as UUID
             $table->uuid('id_akun');
-            $table->uuid('id_kota');
 
             // Set foreign key constraints
             $table->foreign('id_akun')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('id_kota')->references('id')->on('kotas')->onDelete('cascade');
+            $table->foreignId('id_kota')->constrained('kotas');
         });
     }
 

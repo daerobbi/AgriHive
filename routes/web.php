@@ -1,25 +1,25 @@
 <?php
 
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\admin\c_agen;
-use App\Http\Controllers\Auth\c_register;
-use App\Http\Controllers\mitra\c_akunagen;
-use App\Http\Controllers\admin\c_rekantani;
-use App\Http\Controllers\admin\c_verifikasi;
-use App\Http\Controllers\mitra\c_berandaagen;
-use App\Http\Controllers\rekantani\c_katalog;
-use App\Http\Controllers\admin\c_berandaadmin;
-use App\Http\Controllers\mitra\c_broadcastagen;
 use App\Http\Controllers\mitra\C_pengajuanAgen;
-use App\Http\Controllers\rekantani\c_akunrekan;
-use App\Http\Controllers\admin\c_pengajuanadmin;
-use App\Http\Controllers\mitra\c_riwayatpengajuan;
-use App\Http\Controllers\rekantani\c_broadcastrekan;
 use App\Http\Controllers\rekantani\C_pengajuanrekan;
-use App\Http\Controllers\rekantani\c_berandarekantani;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\rekantani\c_katalog;
+use App\Http\Controllers\admin\c_pengajuanadmin;
 use App\Http\Controllers\rekantani\c_manajemenjadwaldistribusi;
+use App\Http\Controllers\mitra\c_broadcastagen;
+use App\Http\Controllers\mitra\c_riwayatpengajuan;
+use App\Http\Controllers\mitra\c_akunagen;
+use App\Http\Controllers\rekantani\c_akunrekan;
+use App\Http\Controllers\rekantani\c_broadcastrekan;
+use App\Http\Controllers\admin\c_rekantani;
+use App\Http\Controllers\admin\c_agen;
+use App\Http\Controllers\admin\c_berandaadmin;
+use App\Http\Controllers\admin\c_verifikasi;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\c_register;
+use App\Http\Controllers\mitra\c_berandaagen;
+use App\Http\Controllers\rekantani\c_berandarekantani;
+use Illuminate\Support\Facades\URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +35,6 @@ use App\Http\Controllers\rekantani\c_manajemenjadwaldistribusi;
 if (env('APP_ENV') === 'production') {
     URL::forceSchema('https');
 }
-
 Route::get('/', function () {return view('V_landingpage');});
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
