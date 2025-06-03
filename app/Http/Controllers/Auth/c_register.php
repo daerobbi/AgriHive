@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\agen;
 use App\Models\rekan_tani;
-use App\Models\Kota;
+use App\Models\kota;
 
 class c_register extends Controller
 {
