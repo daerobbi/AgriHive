@@ -19,7 +19,6 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\c_register;
 use App\Http\Controllers\mitra\c_berandaagen;
 use App\Http\Controllers\rekantani\c_berandarekantani;
-use Illuminate\Support\Facades\URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,10 +30,6 @@ use Illuminate\Support\Facades\URL;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-if (env('APP_ENV') === 'production') {
-    URL::forceSchema('https');
-}
 Route::get('/', function () {return view('V_landingpage');});
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
