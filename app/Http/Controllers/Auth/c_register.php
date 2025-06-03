@@ -14,7 +14,7 @@ class c_register extends Controller
 {
     public function showForm()
     {
-        $kota = Kota::all(); // ambil dari tabel kota
+        $kota = Kota::all();
         return view('v_register', compact('kota'));
     }
 
