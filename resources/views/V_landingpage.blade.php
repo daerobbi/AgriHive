@@ -76,7 +76,7 @@
                 </div>
                 <p class="text-center text-xs mb-6">
                     Bergabung di Agrihive sebagai :
-                </p>
+                </p>    
                 <div class="flex flex-col sm:flex-row gap-6 justify-center">
                     <div class="bg-white rounded-xl shadow-md p-5 max-w-[320px]">
                         <h3 class="text-[#1f6f4f] font-semibold text-sm mb-3 text-center">

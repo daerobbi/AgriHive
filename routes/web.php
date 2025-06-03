@@ -30,7 +30,8 @@ use App\Http\Controllers\rekantani\c_berandarekantani;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', function () {return view('V_landingpage');});
+
+Route::get('/', fn() => view('V_landingpage'));
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
@@ -63,7 +64,7 @@ Route::post('/register', [c_register::class, 'store'])->name('register.store');
 
 
 // ADMIN
-Route::middleware(['auth','role:admin'])->prefix('admin')->group(function () {
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/beranda', [c_berandaadmin::class, 'index'])->name('admin.beranda');
     Route::get('/verifikasi-pendaftaran', [c_verifikasi::class, 'index'])->name('admin.verifikasi');
     Route::get('/verifikasi/{id}', [c_verifikasi::class, 'showdetail'])->name('admin.verifikasidetail');
@@ -75,7 +76,6 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function () {
     Route::get('/rekantani/{id}/detail', [C_rekantani::class, 'detail'])->name('admin.rekantani.detail');
     Route::get('/agen', [c_agen::class, 'agen'])->name('admin.agen');
     Route::get('/agen/{id}/detail', [c_agen::class, 'detail'])->name('admin.agen.detail');
-
 });
 
 
@@ -127,7 +127,7 @@ Route::middleware(['auth', 'role:agen'])->prefix('agen')->group(function () {
     Route::post('/submit-pengajuan/{bibit_id}', [C_pengajuanAgen::class, 'submitPengajuan'])->name('agen.submitpengajuan');
     Route::get('/pengajuanterbaru', [C_pengajuanAgen::class, 'pengajuanterbaru'])->name('v_pengajuanterbaru');
     Route::get('/pengajuan/detail/{pengajuan_id}', [C_pengajuanAgen::class, 'detailpengajuan'])->name('agen.detailpengajuan');
-    Route::get('/pembayaran/{pengajuan_id}',[C_pengajuanAgen::class, 'detailpembayaran'])->name('agen.formpembayaran');
+    Route::get('/pembayaran/{pengajuan_id}', [C_pengajuanAgen::class, 'detailpembayaran'])->name('agen.formpembayaran');
     Route::post('/pengajuan/upload-bukti/{pengajuan_id}', [C_pengajuanAgen::class, 'uploadBuktiTransfer'])->name('agen.uploadbukti');
     Route::put('/agen/pengajuan/update/{pengajuan_id}', [C_pengajuanAgen::class, 'updatePengajuan'])->name('agen.updatepengajuan');
     Route::get('/riwayat-pengajuan', [c_riwayatpengajuan::class, 'riwayatPengajuan'])->name('agen.riwayat');
