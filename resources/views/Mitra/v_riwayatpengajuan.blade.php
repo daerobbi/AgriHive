@@ -71,7 +71,7 @@
                     </td>
                     <td class="py-4">
                         @if (!($row->status_pengiriman == 'selesai' || $row->status_pengajuan == 0))
-                        <button @click="openModal = true; selectedId = {{ $row->id }}" class="bg-green-400 text-white px-4 py-1 rounded-full text-sm">Bibit Diterima</button>
+                            <button @click="openModal = true; selectedId = '{{ $row->id }}'" class="bg-green-400 text-white px-4 py-1 rounded-full text-sm">Bibit Diterima</button>
                         @endif
                     </td>
                     <td class="py-4">
