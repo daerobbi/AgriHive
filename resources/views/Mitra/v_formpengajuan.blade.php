@@ -63,7 +63,7 @@
 
             <div class="mb-4">
                 <label class="block text-sm font-medium">Kontak Narahubung</label>
-                <input type="number" name="narahubung" placeholder="Contoh : +628XXXXXXXXXX" class="mt-1 w-full border rounded-md p-2" required />
+                <input type="number" name="narahubung" placeholder="Contoh : 628XXXXXXXXXX" class="mt-1 w-full border rounded-md p-2" required />
             </div>
 
             <div class="flex justify-between items-center mt-6">

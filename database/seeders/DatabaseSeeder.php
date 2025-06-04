@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
     {
         // // Menggunakan User::create() untuk menambah data
             User::create([
-                'email' => 'admin@gmail.com', // Menggunakan key dan value
+                'email' => 'agrihive@gmail.com', // Menggunakan key dan value
                 'password' => bcrypt('admin1234'),
                 'role' => 'admin',
                 'created_at' => now(),
