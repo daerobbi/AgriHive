@@ -117,7 +117,7 @@
                         name="no_hp"
                         class="w-full rounded-md bg-gray-100 text-black text-xs px-3 py-2 border focus:outline-none focus:ring-2 focus:ring-green-400"
                         id="whatsapp"
-                        type="text"
+                        type="number"
                         value="{{ old('no_hp', $agen->no_hp) }}"
                     />
                     @error('no_hp')

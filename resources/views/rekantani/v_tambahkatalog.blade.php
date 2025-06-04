@@ -86,6 +86,7 @@
                 </div>
             </div>
 
+            <!-- Tombol Aksi -->
             <div class="flex justify-end mt-6 space-x-4">
                 <a href="{{ route('rekantani.katalog') }}" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded">Batal</a>
                 <button type="button"
@@ -105,42 +106,33 @@
                 </button>
             </div>
 
-            <!-- Modal Konfirmasi -->
-            <div x-show="modalHapus" x-transition x-cloak class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-                <div class="bg-white p-8 rounded-3xl text-center shadow-lg" @click.away="modalHapus = false">
-                    <h2 class="text-xl font-medium mb-6">Yakin ingin menambah katalog ini?</h2>
-                    <div class="flex justify-center gap-4">
-                        <button @click="modalHapus = false" class="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full">Batal</button>
-                        <button type="submit"
-                            @click="modalHapus = false; modalSukses = true; setTimeout(() => modalSukses = false, 1800);"
-                            class="bg-green-700 hover:bg-green-800 text-white px-5 py-2 rounded-full">
-                            Yakin
-                        </button>
-                    </div>
-                </div>
-            </div>
+            <!-- Tombol Submit Tersembunyi -->
+            <button type="submit" class="hidden" x-ref="submitForm"></button>
         </form>
 
-        <!-- Modal Sukses -->
-        <div x-show="modalSukses" x-transition x-cloak class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-            <div class="bg-white p-8 rounded-3xl text-center shadow-lg">
-                <h2 class="text-xl font-medium mb-4">Katalog berhasil ditambahkan</h2>
-                <div class="bg-green-800 rounded-full w-20 h-20 mx-auto flex items-center justify-center">
-                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" stroke-width="3"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
+        <!-- Modal Konfirmasi -->
+        <div x-show="modalHapus" x-transition x-cloak class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+            <div class="bg-white p-8 rounded-3xl text-center shadow-lg" @click.away="modalHapus = false">
+                <h2 class="text-xl font-medium mb-6">Yakin ingin menambah katalog ini?</h2>
+                <div class="flex justify-center gap-4">
+                    <button @click="modalHapus = false" class="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full">Batal</button>
+                    <button @click="
+                        modalHapus = false;
+                        modalSukses = true;
+                        setTimeout(() => modalSukses = false, 1800);
+                        $refs.submitForm.click();
+                    " class="bg-green-700 hover:bg-green-800 text-white px-5 py-2 rounded-full">
+                        Yakin
+                    </button>
                 </div>
             </div>
         </div>
-
         <!-- Modal Gagal -->
-        <div x-show="modalGagal" x-transition x-cloak class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-            <div class="bg-white p-8 rounded-3xl text-center shadow-lg">
-                <h2 class="text-xl font-medium mb-4">Harap isi semua data!</h2>
-                <div class="bg-red-600 rounded-full w-20 h-20 mx-auto flex items-center justify-center">
-                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" stroke-width="3"
-                        viewBox="0 0 24 24">
+        <div x-show="modalGagal" x-transition x-cloak class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white px-12 py-10 rounded-3xl text-center shadow-2xl w-[90%] max-w-md">
+                <h2 class="text-2xl font-semibold mb-6">Harap isi semua data!</h2>
+                <div class="bg-red-600 rounded-full w-24 h-24 mx-auto flex items-center justify-center">
+                    <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </div>

@@ -55,7 +55,7 @@
                 </div>
                 <div>
                     <label class="block text-gray-700 font-medium">Kontak Narahubung</label>
-                    <input type="text" name="narahubung" value="{{ old('narahubung', $pengajuan->narahubung) }}" class="w-full border rounded px-3 py-2" />
+                    <input type="number" name="narahubung" value="{{ old('narahubung', $pengajuan->narahubung) }}" class="w-full border rounded px-3 py-2" />
                 </div>
             </div>
         </form>

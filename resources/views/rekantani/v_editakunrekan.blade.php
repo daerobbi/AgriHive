@@ -122,7 +122,7 @@
                     <label class="block mb-1 text-gray-600 text-sm font-normal select-none">No WhatsApp</label>
                     <input
                         name="no_hp"
-                        type="text"
+                        type="number"
                         value="{{ old('no_hp', $rekan->no_hp) }}"
                         class="w-full rounded-md bg-gray-100 text-black text-xs px-3 py-2 border focus:outline-none focus:ring-2 focus:ring-green-400"
                     />

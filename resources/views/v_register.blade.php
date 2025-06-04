@@ -81,7 +81,7 @@
                 {{-- Kolom 2 --}}
                 <div class="flex flex-col space-y-4">
                     <label class="text-sm text-[#6b7280]">No. WhatsApp</label>
-                    <input name="whatsapp" value="{{ old('whatsapp') }}" required
+                    <input type="number" name="whatsapp" value="{{ old('whatsapp') }}" required
                             class="border border-[#1b7a4a] rounded px-3 py-2 focus:ring-[#1b7a4a] focus:outline-none">
 
                     <label class="text-sm text-[#6b7280]">Email</label>

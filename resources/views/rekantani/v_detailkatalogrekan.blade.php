@@ -72,7 +72,7 @@
                 </div>
             </div>
         </div>
-    @endif
+        @endif
         <!-- Modal Konfirmasi Hapus -->
         <div x-show="modalHapus" x-cloak class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50"
             x-transition>
@@ -95,22 +95,5 @@
                 </button>
             </div>
         </div>
-    </div>
-
-    <!-- Modal Sukses -->
-    <div x-show="modalSukses" x-cloak class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50"
-        x-transition>
-        <div class="bg-white rounded-3xl p-8 w-full max-w-md text-center shadow-lg">
-            <h2 class="text-xl font-medium text-gray-700 mb-6">Katalog berhasil dihapus</h2>
-            <div class="flex justify-center">
-                <div class="bg-green-800 rounded-full w-24 h-24 flex items-center justify-center">
-                    <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" stroke-width="3"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                </div>
-            </div>
-        </div>
-    </div>
     </div>
 @endsection

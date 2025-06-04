@@ -60,7 +60,7 @@ class c_katalog extends Controller
         'id_jenisbibit' => $request->jenis_bibit_id,
     ]);
 
-    return redirect('/rekantani/katalog')->with('success', 'Katalog berhasil ditambahkan!');
+    return redirect()->route('rekantani.katalog')->with('success', 'Katalog berhasil ditambahkan!');
     }
 
 
@@ -90,7 +90,7 @@ class c_katalog extends Controller
     {
         $bibit = bibit::findOrFail($id);
         $bibit->delete();
-        return redirect(route('rekantani.katalog'))->with('success', 'Katalog berhasil dihapus!');
+        return redirect()->route('rekantani.katalog')->with('success', 'Katalog berhasil dihapus!');
     }
 
     public function editkatalog($id)

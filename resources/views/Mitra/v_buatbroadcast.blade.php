@@ -43,7 +43,7 @@
                     <!-- Kontak -->
                     <div>
                         <label class="block text-sm font-medium mb-1">Kontak</label>
-                        <input type="text" name="kontak" class="w-full border rounded px-3 py-1.5 text-sm" value="{{ old('kontak') }}" placeholder="masukan nomor dengan format : 628597413214" required />
+                        <input type="number" name="kontak" class="w-full border rounded px-3 py-1.5 text-sm" value="{{ old('kontak') }}" placeholder="masukan nomor dengan format : 628597413214" required />
                         @error('kontak') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                     </div>
                 </div>
