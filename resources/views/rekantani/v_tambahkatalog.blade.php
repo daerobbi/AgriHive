@@ -3,7 +3,7 @@
 @section('content')
 <style>[x-cloak] { display: none !important; }</style>
 
-<div x-data="{ modalHapus: false, modalSukses: false, modalGagal: false }">
+<div x-data="{ modalGagal: false }">
     <div class="max-w-6xl mx-auto mt-8 bg-white p-8 rounded-md shadow">
         <h1 class="text-3xl font-bold mb-6 text-center">Tambah Produk</h1>
 
@@ -98,7 +98,7 @@
                             modalGagal = true;
                             setTimeout(() => modalGagal = false, 1500);
                         } else {
-                            modalHapus = true;
+                            $refs.submitForm.click();
                         }
                     }"
                     class="bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded">
@@ -110,23 +110,6 @@
             <button type="submit" class="hidden" x-ref="submitForm"></button>
         </form>
 
-        <!-- Modal Konfirmasi -->
-        <div x-show="modalHapus" x-transition x-cloak class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-            <div class="bg-white p-8 rounded-3xl text-center shadow-lg" @click.away="modalHapus = false">
-                <h2 class="text-xl font-medium mb-6">Yakin ingin menambah katalog ini?</h2>
-                <div class="flex justify-center gap-4">
-                    <button @click="modalHapus = false" class="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full">Batal</button>
-                    <button @click="
-                        modalHapus = false;
-                        modalSukses = true;
-                        setTimeout(() => modalSukses = false, 1800);
-                        $refs.submitForm.click();
-                    " class="bg-green-700 hover:bg-green-800 text-white px-5 py-2 rounded-full">
-                        Yakin
-                    </button>
-                </div>
-            </div>
-        </div>
         <!-- Modal Gagal -->
         <div x-show="modalGagal" x-transition x-cloak class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div class="bg-white px-12 py-10 rounded-3xl text-center shadow-2xl w-[90%] max-w-md">
