@@ -48,8 +48,8 @@
             <ul class="space-y-2">
             <li class="flex items-center gap-2">
                 <i class="fas fa-envelope"></i>
-                <a href="mailto:adminAgrihive@mail.com" class="hover:underline"
-                >adminAgrihive@mail.com</a
+                <a href="mailto:Agrihive@mail.com" class="hover:underline"
+                >Agrihive@mail.com</a
                 >
             </li>
             <li class="flex items-center gap-2">

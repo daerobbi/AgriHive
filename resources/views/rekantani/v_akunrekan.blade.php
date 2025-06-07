@@ -47,7 +47,7 @@
         <div class="flex items-center justify-end space-x-6">
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <button class="bg-[#1b6b44] text-white text-base font-semibold rounded-full px-6 py-3 flex items-center gap-2 hover:bg-[#165734] transition">
+                <button class="bg-red-700 text-white text-base font-semibold rounded-full px-6 py-3 flex items-center gap-2 hover:bg-red-900 transition">
                     Logout
                     <i class="fas fa-sign-out-alt"></i>
                 </button>
